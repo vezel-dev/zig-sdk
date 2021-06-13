@@ -1,0 +1,50 @@
+<Project>
+    <!--
+    This file figures out if a suitable binary emulator exists given the host
+    and target characteristics that were determined earlier.
+    -->
+
+    <PropertyGroup Condition="'$(TargetSystem)' == 'linux' and '$(HostSystem)' == 'linux'">
+        <_EmulatorName>qemu-$(TargetArchitecture)</_EmulatorName>
+        <_EmulatorCommand>qemu-$(TargetArchitecture)</_EmulatorCommand>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetSystem)' == 'linux' and '$(HostSystem)' == 'windows'">
+        <_EmulatorName>wsl</_EmulatorName>
+        <_EmulatorName Condition="'$(TargetArchitecture)' != 'x86_64'">$(_EmulatorName) qemu-$(TargetArchitecture)</_EmulatorName>
+        <_EmulatorCommand>wsl</_EmulatorCommand>
+        <_EmulatorArgumentPrefix>`wslpath </_EmulatorArgumentPrefix>
+        <_EmulatorArgumentPrefix Condition="'$(TargetArchitecture)' != 'x86_64'">qemu-$(TargetArchitecture) $(_EmulatorArgumentPrefix)</_EmulatorArgumentPrefix>
+        <_EmulatorArgumentSuffix>`</_EmulatorArgumentSuffix>
+    </PropertyGroup>
+
+    <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/6 -->
+    <PropertyGroup Condition="'$(TargetSystem)' == 'macos' and '$(HostSystem)' == 'linux' and '$(IsCrossCompilingArchitecture)' == 'false'">
+        <_EmulatorName>darling</_EmulatorName>
+        <_EmulatorCommand>darling</_EmulatorCommand>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetSystem)' == 'macos' and '$(HostSystem)' == 'windows' and '$(IsCrossCompilingArchitecture)' == 'false'">
+        <_EmulatorName>wsl darling</_EmulatorName>
+        <_EmulatorCommand>wsl</_EmulatorCommand>
+        <_EmulatorArgumentPrefix>darling `wslpath </_EmulatorArgumentPrefix>
+        <_EmulatorArgumentSuffix>`</_EmulatorArgumentSuffix>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetSystem)' == 'windows' and '$(TargetBits)' == '32'">
+        <_EmulatorName>wine</_EmulatorName>
+        <_EmulatorCommand>wine</_EmulatorCommand>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetSystem)' == 'windows' and '$(TargetBits)' == '64'">
+        <_EmulatorName>wine64</_EmulatorName>
+        <_EmulatorCommand>wine64</_EmulatorCommand>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsCrossExecuting)' == 'true' and '$(UseEmulator)' == 'true'">
+        <EmulatorName>$(_EmulatorName)</EmulatorName>
+        <EmulatorCommand>$(_EmulatorCommand)</EmulatorCommand>
+        <EmulatorArgumentPrefix>$(_EmulatorArgumentPrefix)</EmulatorArgumentPrefix>
+        <EmulatorArgumentSuffix>$(_EmulatorArgumentSuffix)</EmulatorArgumentSuffix>
+    </PropertyGroup>
+</Project>

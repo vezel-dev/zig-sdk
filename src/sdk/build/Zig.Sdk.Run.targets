@@ -1,0 +1,23 @@
+<Project>
+    <PropertyGroup Condition="'$(RunCommand)' == '' and '$(OutputType)' == 'Exe' and '$(EmulatorCommand)' != ''">
+        <RunCommand>$(EmulatorCommand)</RunCommand>
+        <RunArguments>$(EmulatorArgumentPrefix)&quot;$(TargetPath)&quot;$(EmulatorArgumentSuffix)$(StartArguments)</RunArguments>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(RunCommand)' == '' and '$(OutputType)' == 'Exe'">
+        <RunCommand>$(TargetPath)</RunCommand>
+        <RunArguments>$(StartArguments)</RunArguments>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(RunCommand)' == ''">
+        <RunCommand>dotnet</RunCommand>
+        <RunArguments>msbuild -nologo -t:_UnableToRun</RunArguments>
+    </PropertyGroup>
+
+    <Target Name="_UnableToRun">
+        <Error Text="A project with output type '$(OutputType)' cannot be executed"
+               Condition="'$(OutputType)' != 'Exe'" />
+        <Error Text="A suitable binary emulator is not available for '$(HostTriple)' -> '$(TargetTriple)'"
+               Condition="'$(EmulatorCommand)' == ''" />
+    </Target>
+</Project>

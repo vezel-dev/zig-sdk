@@ -1,0 +1,54 @@
+<Project>
+    <ItemGroup>
+        <TestAssembly Include="$(IntermediateOutputPath)$(TargetFileName).test" />
+    </ItemGroup>
+
+    <!--
+    Most of the test logic in the .NET SDK is superfluous for our purposes, so
+    we will just override the target entirely.
+    -->
+    <Target Name="VSTest"
+            Condition="'$(CompilerMode)' == 'Zig' and '$(IsTestable)' == 'true'">
+        <Message Text="Running tests natively..."
+                 Importance="high"
+                 Condition="'$(EmulatorCommand)' == ''" />
+
+        <Zig AccessControl="$(AccessControl)"
+             AttributeExtensions="$(AttributeExtensions)"
+             BlockExtensions="$(BlockExtensions)"
+             CompilerMode="Test"
+             Configuration="$(Configuration)"
+             CxxExceptions="$(CxxExceptions)"
+             CxxReflection="$(CxxReflection)"
+             DebugSymbols="$(DebugSymbols)"
+             DefineConstants="$(DefineConstants)"
+             EnvironmentVariables="ZIG_LOCAL_CACHE_DIR=$(CachePath)"
+             FastMath="$(FastMath)"
+             IncludeDirectories="@(IncludeDirectory)"
+             LanguageStandard="$(LanguageStandard)"
+             MicrosoftExtensions="$(MicrosoftExtensions)"
+             OutputBinary="@(TestAssembly)"
+             OutputType="$(OutputType)"
+             PreludeHeaders="@(PreludeHeader)"
+             PublicIncludeDirectory="$(PublicHeadersPath)"
+             ReleaseMode="$(ReleaseMode)"
+             Sanitizers="$(Sanitizers)"
+             Sources="@(Compile)"
+             StandardErrorImportance="high"
+             StandardOutputImportance="high"
+             SymbolExports="$(SymbolExports)"
+             SymbolVisibility="$(SymbolVisibility)"
+             TargetTriple="$(TargetTriple)"
+             TestFilter="$(VSTestTestCaseFilter)"
+             ToolExe="$(ZigExePath)"
+             TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+             WarningLevel="$(WarningLevel)" />
+
+        <Message Text="Running tests with binary emulator '$(EmulatorName)'..."
+                 Importance="high"
+                 Condition="'$(EmulatorCommand)' != ''" />
+
+        <Exec Command="$(EmulatorCommand) $(EmulatorArgumentPrefix)&quot;@(TestAssembly)&quot;$(EmulatorArgumentSuffix) &quot;$(ZigExePath)&quot;"
+              Condition="'$(EmulatorCommand)' != ''" />
+    </Target>
+</Project>

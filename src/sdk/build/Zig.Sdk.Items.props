@@ -1,0 +1,19 @@
+<Project>
+    <ItemGroup>
+        <CHeader Include="**/*.h"
+                 Exclude="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
+                 Watch="true" />
+        <CSource Include="**/*.c"
+                 Exclude="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
+                 Watch="true" />
+        <CxxHeader Include="**/*.hxx"
+                   Exclude="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
+                   Watch="true" />
+        <CxxSource Include="**/*.cxx"
+                   Exclude="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
+                   Watch="true" />
+        <ZigSource Include="**/*.zig"
+                   Exclude="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
+                   Watch="true" />
+    </ItemGroup>
+</Project>

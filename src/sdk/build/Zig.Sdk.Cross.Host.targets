@@ -1,0 +1,60 @@
+<Project>
+    <!--
+    This file contains logic to determine characteristics about the host
+    machine (i.e. the machine we are building on).
+    -->
+
+    <PropertyGroup>
+        <HostRuntimeIdentifier>$(NETCoreSdkPortableRuntimeIdentifier)</HostRuntimeIdentifier>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-arm64'))">aarch64</HostArchitecture>
+        <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-arm'))">arm</HostArchitecture>
+        <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-x86'))">i386</HostArchitecture>
+        <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-x64'))">x86_64</HostArchitecture>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <HostBits>32</HostBits>
+        <HostBits Condition="$(HostArchitecture.EndsWith('64'))">64</HostBits>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <HostSystem Condition="$(HostRuntimeIdentifier.StartsWith('linux-'))">linux</HostSystem>
+        <HostSystem Condition="$(HostRuntimeIdentifier.StartsWith('osx-'))">macos</HostSystem>
+        <HostSystem Condition="$(HostRuntimeIdentifier.StartsWith('win-'))">windows</HostSystem>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <HostAbi>gnu</HostAbi>
+        <HostAbi Condition="$(HostRuntimeIdentifier.Contains('-musl-'))">musl</HostAbi>
+        <HostAbi Condition="'$(HostArchitecture)' == 'arm'">$(HostAbi)eabihf</HostAbi>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <HostLibrary Condition="'$(HostSystem)' == 'linux'">glibc</HostLibrary>
+        <HostLibrary Condition="'$(HostSystem)' == 'macos'">libsystem</HostLibrary>
+        <HostLibrary Condition="'$(HostSystem)' == 'windows'">msvcrt</HostLibrary>
+        <HostLibrary Condition="$(HostAbi.StartsWith('musl'))">musl</HostLibrary>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <HostTriple>$(HostArchitecture)-$(HostSystem)-$(HostAbi)</HostTriple>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(HostSystem)' == 'linux'">
+        <HostLibraryPrefix>lib</HostLibraryPrefix>
+        <HostLibrarySuffix>.so</HostLibrarySuffix>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(HostSystem)' == 'macos'">
+        <HostLibraryPrefix>lib</HostLibraryPrefix>
+        <HostLibrarySuffix>.dylib</HostLibrarySuffix>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(HostSystem)' == 'windows'">
+        <HostLibrarySuffix>.dll</HostLibrarySuffix>
+        <HostExeSuffix>.exe</HostExeSuffix>
+    </PropertyGroup>
+</Project>

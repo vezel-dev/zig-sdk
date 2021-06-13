@@ -1,0 +1,68 @@
+<Project>
+    <!--
+    This file sets the default values for the public properties that we use and
+    allow users to alter if they wish.
+    -->
+
+    <PropertyGroup>
+        <CachePath Condition="'$(CachePath)' == ''">$(BaseIntermediateOutputPath)zig-cache</CachePath>
+        <CompilerMode Condition="'$(CompilerMode)' == '' and '$(MSBuildProjectExtension)' == '.cproj'">C</CompilerMode>
+        <CompilerMode Condition="'$(CompilerMode)' == '' and '$(MSBuildProjectExtension)' == '.cxxproj'">Cxx</CompilerMode>
+        <CompilerMode Condition="'$(CompilerMode)' == ''">Zig</CompilerMode>
+        <DefaultSources Condition="'$(DefaultSources)' == ''">true</DefaultSources>
+        <IsTestable Condition="'$(IsTestable)' == ''">true</IsTestable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <CompilerDefines Condition="'$(CompilerDefines)' == ''">true</CompilerDefines>
+        <PackageDefines Condition="'$(PackageDefines)' == ''">true</PackageDefines>
+        <PlatformDefines Condition="'$(PlatformDefines)' == ''">true</PlatformDefines>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <AccessControl Condition="'$(AccessControl)' == ''">true</AccessControl>
+        <AttributeExtensions Condition="'$(AttributeExtensions)' == ''">false</AttributeExtensions>
+        <BlockExtensions Condition="'$(BlockExtensions)' == ''">false</BlockExtensions>
+        <CxxExceptions Condition="'$(CxxExceptions)' == ''">true</CxxExceptions>
+        <CxxReflection Condition="'$(CxxReflection)' == ''">true</CxxReflection>
+        <LanguageStandard Condition="'$(CompilerMode)' == 'C' and '$(LanguageStandard)' == ''">gnu17</LanguageStandard>
+        <LanguageStandard Condition="'$(CompilerMode)' == 'Cxx' and '$(LanguageStandard)' == ''">gnu++17</LanguageStandard>
+        <LanguageStandard Condition="'$(CompilerMode)' == 'Zig' and '$(LanguageStandard)' == ''">zig</LanguageStandard>
+        <MicrosoftExtensions Condition="'$(MicrosoftExtensions)' == ''">false</MicrosoftExtensions>
+        <WarningLevel Condition="'$(WarningLevel)' == ''">3</WarningLevel>
+        <ZigVersion Condition="'$(ZigVersion)' == ''">0.8.0</ZigVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <FastMath Condition="'$(FastMath)' == ''">false</FastMath>
+        <ReleaseMode Condition="'$(ReleaseMode)' == ''">Fast</ReleaseMode>
+        <SymbolExports Condition="'$(SymbolExports)' == ''">Used</SymbolExports>
+        <SymbolVisibility Condition="'$(SymbolVisibility)' == ''">Default</SymbolVisibility>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(RuntimeIdentifiers)' == ''">
+        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/4 -->
+        <_OsxArm64 Condition="'$(OutputType)' == 'Exe'">osx-arm64</_OsxArm64>
+        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/5 -->
+        <_WinX86 Condition="'$(CompilerMode)' != 'Zig' or '$(OutputType)' == 'Exe'">win-x86</_WinX86>
+
+        <!--
+        TODO:
+        https://github.com/alexrp/zig-msbuild-sdk/issues/1
+        https://github.com/alexrp/zig-msbuild-sdk/issues/3
+        -->
+
+        <RuntimeIdentifiers>
+            linux-arm64;
+            linux-x64;
+            linux-musl-arm;
+            linux-musl-arm64;
+            linux-musl-x64;
+            $(_OsxArm64);
+            osx-x64;
+            $(_WinX86);
+            win-x64
+        </RuntimeIdentifiers>
+        <UseEmulator Condition="'$(UseEmulator)' == ''">true</UseEmulator>
+    </PropertyGroup>
+</Project>

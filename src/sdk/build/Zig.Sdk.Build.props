@@ -1,0 +1,22 @@
+<Project>
+    <!--
+    Unlike C and C++, Zig just needs a single root source file to perform the
+    compilation. If we add more, the compiler will error out.
+
+    By convention, we will say that libraries should name their root source file
+    the same as their package and executables should name it main. Users can
+    override this in their project file if they wish.
+    -->
+    <ItemGroup Condition="'$(DefaultSources)' == 'true'">
+        <Compile Include="**/*.c"
+                 Excludes="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
+                 Condition="'$(CompilerMode)' == 'C'" />
+        <Compile Include="**/*.cxx"
+                 Excludes="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
+                 Condition="'$(CompilerMode)' == 'Cxx'" />
+        <Compile Include="main.zig"
+                 Condition="'$(CompilerMode)' == 'Zig' and '$(OutputType)' == 'Exe'" />
+        <Compile Include="$(AssemblyName).zig"
+                 Condition="'$(CompilerMode)' == 'Zig' and '$(OutputType)' != 'Exe'" />
+    </ItemGroup>
+</Project>

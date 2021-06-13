@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.Build.Traversal">
+    <!--
+    FIXME: There seem to be some concurrency issues here...
+    -->
+    <PropertyGroup>
+        <BuildInParallel>false</BuildInParallel>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="*/*.*proj" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,20 @@
+<Project>
+    <!--
+    This file defines some common properties, items, and tasks used by core
+    targets like Build, Clean, Run, etc.
+    -->
+
+    <ItemGroup>
+       <PackageReference Include="Zig.Toolset.$(HostRuntimeIdentifier)"
+                         Version="$(ZigVersion).*"
+                         IsImplicitlyDefined="true" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)../tools/net6.0/Zig.Tasks.dll</_ZigTasksPath>
+        <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)../tools/net472/Zig.Tasks.dll</_ZigTasksPath>
+    </PropertyGroup>
+
+    <UsingTask TaskName="Zig"
+               AssemblyFile="$(_ZigTasksPath)" />
+</Project>

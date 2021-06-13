@@ -1,0 +1,19 @@
+<Project>
+    <!--
+    Here we override some properties from Microsoft.NET.Sdk to disable default
+    functionality that either breaks us or just slows down the build for no
+    benefit.
+    -->
+    <PropertyGroup>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <DisableImplicitFrameworkDefines>true</DisableImplicitFrameworkDefines>
+        <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+        <GenerateDependencyFile>false</GenerateDependencyFile>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <RuntimeIdentifier>$(NETCoreSdkPortableRuntimeIdentifier)</RuntimeIdentifier>
+        <ShouldBeValidatedAsExecutableReference>false</ShouldBeValidatedAsExecutableReference>
+        <TargetFramework>netstandard1.0</TargetFramework>
+    </PropertyGroup>
+</Project>

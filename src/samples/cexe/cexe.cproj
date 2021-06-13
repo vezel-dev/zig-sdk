@@ -1,0 +1,9 @@
+<Project Sdk="Zig.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PreludeHeader Include="prelude.h" />
+    </ItemGroup>
+</Project>

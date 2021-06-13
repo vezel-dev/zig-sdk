@@ -1,0 +1,5 @@
+<Project Sdk="Zig.Sdk">
+    <ItemGroup>
+        <IncludeDirectory Include="include" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,93 @@
+<Project>
+    <PropertyGroup>
+        <PublicHeadersPath Condition="'$(PublicHeadersPath)' != ''">$([MSBuild]::EnsureTrailingSlash('$(PublicHeadersPath)'))</PublicHeadersPath>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackDependsOn>_PackNativeAssets; $(PackDependsOn)</PackDependsOn>
+    </PropertyGroup>
+
+    <!--
+    Build all RIDs (or just the current RID) and add native binaries to the
+    appropriate folders in the NuGet package.
+    -->
+    <Target Name="_PackNativeAssets">
+        <!--
+        Since we claim to support netstandard1.0 but do not package any managed
+        assemblies, NuGet will warn during package validation. We place a dummy
+        file in the lib directory to silence it.
+        -->
+        <ItemGroup>
+            <None Include="$(MSBuildThisFileDirectory)../content/_._"
+                  Pack="true"
+                  PackagePath="lib/$(TargetFramework)" />
+        </ItemGroup>
+
+        <!--
+        Zig projects need to package all source code. C and C++ projects only
+        need to package public header files.
+        -->
+        <ItemGroup>
+            <None Include="$(PublicHeadersPath)**/*.h; $(PublicHeadersPath)**/*.hxx"
+                  Exclude="$(DefaultItemExcludes)"
+                  Pack="true"
+                  PackagePath="include"
+                  Condition="'$(PublicHeadersPath)' != ''" />
+            <None Include="**/*.zig"
+                  Exclude="$(DefaultItemExcludes)"
+                  Pack="true"
+                  PackagePath="zig" />
+        </ItemGroup>
+
+        <ItemGroup>
+            <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
+        </ItemGroup>
+
+        <MSBuild Projects="$(MSBuildProjectFullPath)"
+                 Targets="_PackNativeBinary"
+                 Properties="RuntimeIdentifier=%(_RuntimeIdentifiers.Identity)">
+            <Output TaskParameter="TargetOutputs"
+                    ItemName="_NativeBinary" />
+        </MSBuild>
+
+        <ItemGroup>
+            <None Include="@(_NativeBinary)" />
+        </ItemGroup>
+
+        <!--
+        Prevent NuGet from doing a pointless current-RID build after us since we
+        have already built all the RIDs the user requested.
+        -->
+        <ItemGroup>
+            <_GenerateNuspecDependsOn Include="$(GenerateNuspecDependsOn)" />
+            <_GenerateNuspecDependsOn Remove="Build" />
+        </ItemGroup>
+
+        <PropertyGroup>
+            <GenerateNuspecDependsOn>@(_GenerateNuspecDependsOn)</GenerateNuspecDependsOn>
+        </PropertyGroup>
+    </Target>
+
+    <Target Name="_PackNativeBinary"
+            Outputs="@(_NativeBinary)">
+        <MSBuild Projects="$(MSBuildProjectFullPath)"
+                 Targets="Build"
+                 Condition="'$(NoBuild)' != 'true'" />
+
+        <PropertyGroup>
+            <_PackageNativePath>runtimes</_PackageNativePath>
+            <_PackageNativePath Condition="'$(OutputType)' == 'Exe'">tools</_PackageNativePath>
+        </PropertyGroup>
+
+        <!--
+        When NoBuild is set and a build for this RID has not been run, nothing
+        will exist at TargetPath. This will cause NuGet to fail to pack later
+        on, which is the behavior we want. So, do not add a condition here.
+        -->
+        <ItemGroup>
+            <_NativeBinary Include="$(TargetPath)"
+                           Pack="true"
+                           PackagePath="$(_PackageNativePath)/$(RuntimeIdentifier)/native" />
+        </ItemGroup>
+    </Target>
+</Project>

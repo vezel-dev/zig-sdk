@@ -1,0 +1,8 @@
+.idea
+.vs
+*.user
+/src/samples/global.json
+/src/samples/nuget.config
+bin
+obj
+pkg

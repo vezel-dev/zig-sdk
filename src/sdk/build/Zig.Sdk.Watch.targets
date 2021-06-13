@@ -1,0 +1,9 @@
+<Project>
+    <ItemGroup Condition="'$(DotNetWatchBuild)' == 'true'">
+        <Watch Include="@(CHeader->WithMetadataValue('Watch', 'true'))" />
+        <Watch Include="@(CSource->WithMetadataValue('Watch', 'true'))" />
+        <Watch Include="@(CxxHeader->WithMetadataValue('Watch', 'true'))" />
+        <Watch Include="@(CxxSource->WithMetadataValue('Watch', 'true'))" />
+        <Watch Include="@(ZigSource->WithMetadataValue('Watch', 'true'))" />
+    </ItemGroup>
+</Project>

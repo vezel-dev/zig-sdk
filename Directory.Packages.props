@@ -1,0 +1,12 @@
+<Project>
+    <ItemGroup>
+        <PackageVersion Include="Microsoft.Build.Tasks.Core"
+                        Version="16.10.0" />
+        <PackageVersion Include="Microsoft.SourceLink.GitHub"
+                        Version="1.1.0-beta-20204-02" />
+        <PackageVersion Include="Nerdbank.GitVersioning"
+                        Version="3.4.205" />
+        <PackageVersion Include="StyleCop.Analyzers"
+                        Version="1.2.0-beta.333" />
+    </ItemGroup>
+</Project>

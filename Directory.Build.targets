@@ -1,0 +1,22 @@
+<Project>
+    <ItemGroup Condition="$(IsPackable) == 'true'">
+        <None Include="$(MSBuildThisFileDirectory)*.md; $(MSBuildThisFileDirectory)zig.png"
+              Pack="true"
+              PackagePath="" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub"
+                          PrivateAssets="all" />
+        <PackageReference Include="Nerdbank.GitVersioning"
+                          PrivateAssets="all" />
+    </ItemGroup>
+
+    <Target Name="_SetReleaseNotes"
+            DependsOnTargets="GetBuildVersion"
+            BeforeTargets="GenerateNuspec">
+        <PropertyGroup>
+            <PackageReleaseNotes>https://github.com/alexrp/zig-msbuild-sdk/releases/tag/v$(Version)</PackageReleaseNotes>
+        </PropertyGroup>
+    </Target>
+</Project>

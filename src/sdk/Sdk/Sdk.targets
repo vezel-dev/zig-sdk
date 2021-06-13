@@ -1,0 +1,18 @@
+<Project>
+    <Import Project="../build/Zig.Sdk.Overrides.targets" />
+    <Import Project="../build/Zig.Sdk.Cross.targets" />
+    <Import Project="Sdk.targets"
+            Sdk="Microsoft.NET.Sdk" />
+    <Import Project="../build/Zig.Sdk.Hacks.targets" />
+    <Import Project="../build/Zig.Sdk.Defaults.targets" />
+    <Import Project="../build/Zig.Sdk.Defines.targets" />
+    <Import Project="../build/Zig.Sdk.Core.targets" />
+    <Import Project="../build/Zig.Sdk.Emulator.targets" />
+    <Import Project="../build/Zig.Sdk.Build.targets" />
+    <Import Project="../build/Zig.Sdk.Clean.targets" />
+    <Import Project="../build/Zig.Sdk.Run.targets" />
+    <Import Project="../build/Zig.Sdk.Test.targets" />
+    <Import Project="../build/Zig.Sdk.Pack.targets" />
+    <Import Project="../build/Zig.Sdk.Publish.targets" />
+    <Import Project="../build/Zig.Sdk.Watch.targets" />
+</Project>

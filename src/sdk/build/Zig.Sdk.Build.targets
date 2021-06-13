@@ -1,0 +1,36 @@
+<Project>
+    <!--
+    This is the target that actually compiles source code to a native binary.
+    -->
+    <Target Name="CoreCompile"
+            DependsOnTargets="$(CoreCompileDependsOn)">
+        <Zig AccessControl="$(AccessControl)"
+             AttributeExtensions="$(AttributeExtensions)"
+             BlockExtensions="$(BlockExtensions)"
+             CompilerMode="$(CompilerMode)"
+             Configuration="$(Configuration)"
+             CxxExceptions="$(CxxExceptions)"
+             CxxReflection="$(CxxReflection)"
+             DebugSymbols="$(DebugSymbols)"
+             DefineConstants="$(DefineConstants)"
+             EnvironmentVariables="ZIG_LOCAL_CACHE_DIR=$(CachePath)"
+             FastMath="$(FastMath)"
+             IncludeDirectories="@(IncludeDirectory)"
+             LanguageStandard="$(LanguageStandard)"
+             MicrosoftExtensions="$(MicrosoftExtensions)"
+             OutputBinary="@(IntermediateAssembly)"
+             OutputType="$(OutputType)"
+             PublicIncludeDirectory="$(PublicHeadersPath)"
+             PreludeHeaders="@(PreludeHeader)"
+             ReleaseMode="$(ReleaseMode)"
+             Sanitizers="$(Sanitizers)"
+             Sources="@(Compile)"
+             SymbolExports="$(SymbolExports)"
+             SymbolVisibility="$(SymbolVisibility)"
+             TargetTriple="$(TargetTriple)"
+             TestFilter=""
+             ToolExe="$(ZigExePath)"
+             TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+             WarningLevel="$(WarningLevel)" />
+    </Target>
+</Project>

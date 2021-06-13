@@ -1,0 +1,15 @@
+<Project>
+    <!--
+    The .NET SDK unconditionally sets TargetExt to force a .dll suffix. We work
+    around that nonsense here.
+    -->
+    <PropertyGroup>
+        <TargetExt>$(TargetSuffix)</TargetExt>
+    </PropertyGroup>
+
+    <!--
+    For some reason, this appears to be a language-specific target that the SDK
+    expects to find even when it cannot figure the project language...
+    -->
+    <Target Name="CreateManifestResourceNames" />
+</Project>

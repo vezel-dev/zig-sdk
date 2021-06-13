@@ -1,0 +1,5 @@
+<Project Sdk="Zig.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+</Project>

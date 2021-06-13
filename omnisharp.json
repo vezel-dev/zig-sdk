@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/omnisharp.json",
+  "RoslynExtensionsOptions": {
+    "EnableAnalyzersSupport": true,
+    "EnableDecompilationSupport": true
+  },
+  "FormattingOptions": {
+    "EnableEditorConfigSupport": true
+  }
+}

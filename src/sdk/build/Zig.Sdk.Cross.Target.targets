@@ -1,0 +1,60 @@
+<Project>
+    <!--
+    This file contains logic to determine characteristics about the target
+    machine (i.e. the machine the built binary will run on).
+    -->
+
+    <PropertyGroup>
+        <TargetRuntimeIdentifier>$(RuntimeIdentifier)</TargetRuntimeIdentifier>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-arm64'))">aarch64</TargetArchitecture>
+        <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-arm'))">arm</TargetArchitecture>
+        <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x86'))">i386</TargetArchitecture>
+        <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x64'))">x86_64</TargetArchitecture>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetBits>32</TargetBits>
+        <TargetBits Condition="$(TargetArchitecture.EndsWith('64'))">64</TargetBits>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetSystem Condition="$(TargetRuntimeIdentifier.StartsWith('linux-'))">linux</TargetSystem>
+        <TargetSystem Condition="$(TargetRuntimeIdentifier.StartsWith('osx-'))">macos</TargetSystem>
+        <TargetSystem Condition="$(TargetRuntimeIdentifier.StartsWith('win-'))">windows</TargetSystem>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetAbi>gnu</TargetAbi>
+        <TargetAbi Condition="$(TargetRuntimeIdentifier.Contains('-musl-'))">musl</TargetAbi>
+        <TargetAbi Condition="'$(TargetArchitecture)' == 'arm'">$(TargetAbi)eabihf</TargetAbi>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetLibrary Condition="'$(TargetSystem)' == 'linux'">glibc</TargetLibrary>
+        <TargetLibrary Condition="'$(TargetSystem)' == 'macos'">libsystem</TargetLibrary>
+        <TargetLibrary Condition="'$(TargetSystem)' == 'windows'">msvcrt</TargetLibrary>
+        <TargetLibrary Condition="$(TargetAbi.StartsWith('musl'))">musl</TargetLibrary>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetTriple>$(TargetArchitecture)-$(TargetSystem)-$(TargetAbi)</TargetTriple>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetSystem)' == 'linux'">
+        <TargetLibraryPrefix>lib</TargetLibraryPrefix>
+        <TargetLibrarySuffix>.so</TargetLibrarySuffix>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetSystem)' == 'macos'">
+        <TargetLibraryPrefix>lib</TargetLibraryPrefix>
+        <TargetLibrarySuffix>.dylib</TargetLibrarySuffix>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetSystem)' == 'windows'">
+        <TargetLibrarySuffix>.dll</TargetLibrarySuffix>
+        <TargetExeSuffix>.exe</TargetExeSuffix>
+    </PropertyGroup>
+</Project>
