@@ -132,6 +132,10 @@ as sensible for historical reasons.
   to `true`.
 * `DefaultSources` (`true`, `false`): Enable/disable default `Compile` item
   includes. Defaults to `true`.
+* `Deterministic` (`true`, `false`): Enable/disable deterministic builds. Among
+  other things, this will try to prevent the compiler from using relative paths
+  and will prevent usage of certain problematic language features like
+  `__TIME__`. Defaults to `true`.
 
 #### Package Information
 
