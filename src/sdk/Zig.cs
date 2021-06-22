@@ -45,6 +45,9 @@ namespace Zig.Tasks
         public string? DefineConstants { get; set; }
 
         [Required]
+        public bool Deterministic { get; set; }
+
+        [Required]
         public bool FastMath { get; set; }
 
         [Required]
@@ -132,7 +135,9 @@ namespace Zig.Tasks
         protected override string GenerateCommandLineCommands()
         {
             var builder = new CommandLineBuilderExtension();
-            var isZig = _compilerMode is ZigCompilerMode.Zig or ZigCompilerMode.Test;
+
+            var isTest = _compilerMode == ZigCompilerMode.Test;
+            var isZig = _compilerMode == ZigCompilerMode.Zig || isTest;
 
             builder.AppendTextUnquoted((_compilerMode, _outputType) switch
             {
@@ -232,7 +237,14 @@ namespace Zig.Tasks
                 else
                     builder.AppendTextUnquoted(" -w");
 
-                // These exact flags are treated specially by zig cc. They
+                if (Deterministic)
+                {
+                    builder.AppendSwitch("-Werror=date-time");
+                    builder.AppendSwitch("-no-canonical-prefixes");
+                    builder.AppendSwitchIfNotNull("-fdebug-compilation-dir ", GetWorkingDirectory() ?? ".");
+                }
+
+                // These exact flags are treated specially by zig cc/c++. They
                 // activate Debug, ReleaseFast, ReleaseSafe, and ReleaseSmall
                 // respectively. This in turns activates a bunch of other
                 // mode-specific flags that we do not have to specify here as a
@@ -240,7 +252,7 @@ namespace Zig.Tasks
                 builder.AppendTextUnquoted((_configuration, _releaseMode) switch
                 {
                     (ZigConfiguration.Debug, _) => " -Og",
-                    (ZigConfiguration.Release, ZigReleaseMode.Fast) => " -O4",
+                    (ZigConfiguration.Release, ZigReleaseMode.Fast) => " -O3",
                     (ZigConfiguration.Release, ZigReleaseMode.Safe) => " -O2 -fsanitize=undefined",
                     (ZigConfiguration.Release, ZigReleaseMode.Small) => " -Oz",
                     _ => throw new Exception(),
@@ -252,9 +264,7 @@ namespace Zig.Tasks
 
             foreach (var item in Sanitizers)
             {
-                var normalized = item.ItemSpec.ToLowerInvariant();
-
-                switch (normalized)
+                switch (item.ItemSpec.ToLowerInvariant())
                 {
                     case "undefined":
                         Log.LogWarning("The '{0}' sanitizer is controlled by '{1}'",
@@ -265,7 +275,7 @@ namespace Zig.Tasks
                         break;
                     default:
                         if (!isZig)
-                            builder.AppendTextUnquoted($" -fsanitize={normalized}");
+                            builder.AppendTextUnquoted($" -fsanitize={item.ItemSpec}");
                         else
                             Log.LogWarning("The '{0}' sanitizer is not supported with '{1}={2}'",
                                 item, nameof(CompilerMode), ZigCompilerMode.Zig);
@@ -280,7 +290,7 @@ namespace Zig.Tasks
             {
                 var trimmed = define.Trim();
 
-                if (!string.IsNullOrWhiteSpace(trimmed))
+                if (!string.IsNullOrEmpty(trimmed))
                     builder.AppendTextUnquoted($" -D{trimmed}");
             }
 
@@ -294,7 +304,9 @@ namespace Zig.Tasks
 
             builder.AppendFileNamesIfNotNull(Sources, " ");
             builder.AppendSwitchIfNotNull(isZig ? "-femit-bin=" : "-o ", OutputBinary);
-            builder.AppendSwitchIfNotNull("--test-filter ", TestFilter);
+
+            if (isTest)
+                builder.AppendSwitchIfNotNull("--test-filter ", TestFilter);
 
             return builder.ToString();
         }

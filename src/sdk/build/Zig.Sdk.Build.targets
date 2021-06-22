@@ -13,6 +13,7 @@
              CxxReflection="$(CxxReflection)"
              DebugSymbols="$(DebugSymbols)"
              DefineConstants="$(DefineConstants)"
+             Deterministic="$(Deterministic)"
              EnvironmentVariables="ZIG_LOCAL_CACHE_DIR=$(CachePath)"
              FastMath="$(FastMath)"
              IncludeDirectories="@(IncludeDirectory)"

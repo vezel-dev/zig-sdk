@@ -112,6 +112,7 @@ dotnet_style_require_accessibility_modifiers = omit_if_default : error
 
 [*.cs]
 dotnet_diagnostic.IDE0055.severity = error
+dotnet_diagnostic.IDE0057.severity = silent
 dotnet_diagnostic.SA0001.severity = none
 dotnet_diagnostic.SA1101.severity = none
 dotnet_diagnostic.SA1116.severity = none
