@@ -157,7 +157,7 @@ namespace Zig.Tasks
             var isZig = _compilerMode == ZigCompilerMode.Zig || isTest;
             var isCxx = _compilerMode == ZigCompilerMode.Cxx;
 
-            builder.AppendTextUnquoted((_compilerMode, _outputType) switch
+            builder.AppendSwitch((_compilerMode, _outputType) switch
             {
                 (ZigCompilerMode.C, _) => "cc",
                 (ZigCompilerMode.Cxx, _) => "c++",
@@ -170,67 +170,67 @@ namespace Zig.Tasks
             // This enables MSBuild to recognize diagnostics properly. Make sure
             // we pass this immediately after the cc/c++ command.
             if (!isZig)
-                builder.AppendTextUnquoted(" -fdiagnostics-format=msvc");
+                builder.AppendSwitch("-fdiagnostics-format=msvc");
 
-            builder.AppendTextUnquoted($" -target {TargetTriple.ToLowerInvariant()}");
+            builder.AppendSwitch($"-target {TargetTriple.ToLowerInvariant()}");
 
             if (_outputType == ZigOutputType.Exe)
             {
-                builder.AppendTextUnquoted(" -fPIE");
+                builder.AppendSwitch("-fPIE");
 
                 if (_symbolExports == ZigSymbolExports.All)
-                    builder.AppendTextUnquoted(" -rdynamic");
+                    builder.AppendSwitch("-rdynamic");
             }
             else
             {
-                builder.AppendTextUnquoted(isZig ? " -dynamic" : " -shared");
-                builder.AppendTextUnquoted(" -fPIC");
+                builder.AppendSwitch(isZig ? "-dynamic" : "-shared");
+                builder.AppendSwitch("-fPIC");
             }
 
             if (isZig)
             {
-                builder.AppendTextUnquoted((_configuration, _releaseMode) switch
+                builder.AppendSwitch((_configuration, _releaseMode) switch
                 {
-                    (ZigConfiguration.Debug, _) => " -O Debug",
-                    (ZigConfiguration.Release, var m) => $" -O Release{m}",
+                    (ZigConfiguration.Debug, _) => "-O Debug",
+                    (ZigConfiguration.Release, var m) => $"-O Release{m}",
                     _ => throw new Exception(),
                 });
 
                 if (!DebugSymbols)
-                    builder.AppendTextUnquoted(" --strip");
+                    builder.AppendSwitch("--strip");
             }
             else
             {
                 if (_symbolVisibility == ZigSymbolVisibility.Hidden)
-                    builder.AppendTextUnquoted(" -fvisibility=hidden");
+                    builder.AppendSwitch("-fvisibility=hidden");
 
-                builder.AppendTextUnquoted($" -std={LanguageStandard.ToLowerInvariant()}");
+                builder.AppendSwitch($"-std={LanguageStandard.ToLowerInvariant()}");
 
                 if (BlockExtensions)
-                    builder.AppendTextUnquoted(" -fblocks");
+                    builder.AppendSwitch("-fblocks");
 
                 if (MicrosoftExtensions)
-                    builder.AppendTextUnquoted(" -fms-extensions");
+                    builder.AppendSwitch("-fms-extensions");
 
                 if (isCxx)
                 {
                     if (!AccessControl)
-                        builder.AppendTextUnquoted(" -fno-access-control");
+                        builder.AppendSwitch("-fno-access-control");
 
                     if (!CxxReflection)
-                        builder.AppendTextUnquoted(" -fno-rtti");
+                        builder.AppendSwitch("-fno-rtti");
 
                     if (!CxxExceptions)
-                        builder.AppendTextUnquoted(" -fno-exceptions");
+                        builder.AppendSwitch("-fno-exceptions");
                 }
                 else if (CxxExceptions)
-                    builder.AppendTextUnquoted(" -fexceptions");
+                    builder.AppendSwitch("-fexceptions");
 
-                builder.AppendTextUnquoted(" -fno-strict-aliasing");
-                builder.AppendTextUnquoted(" -fno-strict-overflow");
+                builder.AppendSwitch("-fno-strict-aliasing");
+                builder.AppendSwitch("-fno-strict-overflow");
 
                 if (FastMath)
-                    builder.AppendTextUnquoted("-ffast-math");
+                    builder.AppendSwitch("-ffast-math");
 
                 if (TreatWarningsAsErrors)
                     builder.AppendSwitch("-Werror");
@@ -446,17 +446,17 @@ namespace Zig.Tasks
                 // respectively. This in turns activates a bunch of other
                 // mode-specific flags that we do not have to specify here as a
                 // result.
-                builder.AppendTextUnquoted((_configuration, _releaseMode) switch
+                builder.AppendSwitch((_configuration, _releaseMode) switch
                 {
-                    (ZigConfiguration.Debug, _) => " -Og",
-                    (ZigConfiguration.Release, ZigReleaseMode.Fast) => " -O3",
-                    (ZigConfiguration.Release, ZigReleaseMode.Safe) => " -O2 -fsanitize=undefined",
-                    (ZigConfiguration.Release, ZigReleaseMode.Small) => " -Oz",
+                    (ZigConfiguration.Debug, _) => "-Og",
+                    (ZigConfiguration.Release, ZigReleaseMode.Fast) => "-O3",
+                    (ZigConfiguration.Release, ZigReleaseMode.Safe) => "-O2 -fsanitize=undefined",
+                    (ZigConfiguration.Release, ZigReleaseMode.Small) => "-Oz",
                     _ => throw new Exception(),
                 });
 
                 if (DebugSymbols)
-                    builder.AppendTextUnquoted(" -g");
+                    builder.AppendSwitch("-g");
             }
 
             foreach (var item in Sanitizers)
@@ -468,11 +468,11 @@ namespace Zig.Tasks
                             item, nameof(ReleaseMode));
                         break;
                     case "thread" when isZig:
-                        builder.AppendTextUnquoted(" -fsanitize-thread");
+                        builder.AppendSwitch("-fsanitize-thread");
                         break;
                     default:
                         if (!isZig)
-                            builder.AppendTextUnquoted($" -fsanitize={item.ItemSpec}");
+                            builder.AppendSwitch($"-fsanitize={item.ItemSpec}");
                         else
                             Log.LogWarning("The '{0}' sanitizer is not supported with '{1}={2}'",
                                 item, nameof(CompilerMode), ZigCompilerMode.Zig);
@@ -481,14 +481,14 @@ namespace Zig.Tasks
             }
 
             if (_configuration != ZigConfiguration.Debug)
-                builder.AppendTextUnquoted(" -flto");
+                builder.AppendSwitch("-flto");
 
             foreach (var define in (DefineConstants ?? string.Empty).Split(new[] { ';' }, SplitOptions))
             {
                 var trimmed = define.Trim();
 
                 if (!string.IsNullOrEmpty(trimmed))
-                    builder.AppendTextUnquoted($" -D{trimmed}");
+                    builder.AppendSwitch($"-D{trimmed}");
             }
 
             builder.AppendSwitchIfNotNull("-I ", PublicIncludeDirectory);
