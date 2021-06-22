@@ -10,11 +10,9 @@ namespace Zig.Tasks
     {
         const StringSplitOptions SplitOptions = StringSplitOptions.RemoveEmptyEntries;
 
-        [Required]
-        public bool AccessControl { get; set; }
 
         [Required]
-        public bool AttributeExtensions { get; set; }
+        public bool AccessControl { get; set; }
 
         [Required]
         public bool BlockExtensions { get; set; }
@@ -138,6 +136,7 @@ namespace Zig.Tasks
 
             var isTest = _compilerMode == ZigCompilerMode.Test;
             var isZig = _compilerMode == ZigCompilerMode.Zig || isTest;
+            var isCxx = _compilerMode == ZigCompilerMode.Cxx;
 
             builder.AppendTextUnquoted((_compilerMode, _outputType) switch
             {
@@ -194,15 +193,7 @@ namespace Zig.Tasks
                 if (MicrosoftExtensions)
                     builder.AppendTextUnquoted(" -fms-extensions");
 
-                if (_compilerMode == ZigCompilerMode.C)
-                {
-                    if (AttributeExtensions)
-                        builder.AppendTextUnquoted(" -fdouble-square-bracket-attributes");
-
-                    if (CxxExceptions)
-                        builder.AppendTextUnquoted(" -fexceptions");
-                }
-                else if (_compilerMode == ZigCompilerMode.Cxx)
+                if (isCxx)
                 {
                     if (!AccessControl)
                         builder.AppendTextUnquoted(" -fno-access-control");
@@ -213,6 +204,8 @@ namespace Zig.Tasks
                     if (!CxxExceptions)
                         builder.AppendTextUnquoted(" -fno-exceptions");
                 }
+                else if (CxxExceptions)
+                    builder.AppendTextUnquoted(" -fexceptions");
 
                 builder.AppendTextUnquoted(" -fno-strict-aliasing");
                 builder.AppendTextUnquoted(" -fno-strict-overflow");

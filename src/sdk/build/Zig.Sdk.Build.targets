@@ -5,7 +5,6 @@
     <Target Name="CoreCompile"
             DependsOnTargets="$(CoreCompileDependsOn)">
         <Zig AccessControl="$(AccessControl)"
-             AttributeExtensions="$(AttributeExtensions)"
              BlockExtensions="$(BlockExtensions)"
              CompilerMode="$(CompilerMode)"
              Configuration="$(Configuration)"

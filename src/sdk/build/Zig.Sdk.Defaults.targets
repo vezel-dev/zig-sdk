@@ -21,12 +21,11 @@
 
     <PropertyGroup>
         <AccessControl Condition="'$(AccessControl)' == ''">true</AccessControl>
-        <AttributeExtensions Condition="'$(AttributeExtensions)' == ''">false</AttributeExtensions>
         <BlockExtensions Condition="'$(BlockExtensions)' == ''">false</BlockExtensions>
         <CxxExceptions Condition="'$(CxxExceptions)' == ''">true</CxxExceptions>
         <CxxReflection Condition="'$(CxxReflection)' == ''">true</CxxReflection>
-        <LanguageStandard Condition="'$(CompilerMode)' == 'C' and '$(LanguageStandard)' == ''">gnu17</LanguageStandard>
-        <LanguageStandard Condition="'$(CompilerMode)' == 'Cxx' and '$(LanguageStandard)' == ''">gnu++17</LanguageStandard>
+        <LanguageStandard Condition="'$(CompilerMode)' == 'C' and '$(LanguageStandard)' == ''">gnu2x</LanguageStandard>
+        <LanguageStandard Condition="'$(CompilerMode)' == 'Cxx' and '$(LanguageStandard)' == ''">gnu++2b</LanguageStandard>
         <LanguageStandard Condition="'$(CompilerMode)' == 'Zig' and '$(LanguageStandard)' == ''">zig</LanguageStandard>
         <MicrosoftExtensions Condition="'$(MicrosoftExtensions)' == ''">false</MicrosoftExtensions>
         <WarningLevel Condition="'$(WarningLevel)' == ''">3</WarningLevel>

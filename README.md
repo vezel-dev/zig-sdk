@@ -175,11 +175,10 @@ as sensible for historical reasons.
 * `ZigVersion` (`x.y.z`): The version of the Zig compiler toolset to use.
   Defaults to the latest version known to the `Zig.Sdk` package that is in use.
 * `LanguageStandard`: The language standard used for C/C++ projects. Passed to
-  Clang's `-std` flag. Defaults to `gnu17` for C and `gnu++17` for C++.
+  Clang's `-std` flag. Defaults to the latest standards known to the compiler
+  version that `ZigVersion` defaults to.
 * `AccessControl` (`true`, `false`): Enable/disable access control in C++
   projects. Defaults to `true`.
-* `AttributeExtensions` (`true`, `false`): Enables/disables C++11 attributes as
-  an alternative to `__attribute__` in C projects. Defaults to `false`.
 * `BlockExtensions` (`true`, `false`): Enables/disables Clang's block language
   extensions. Defaults to `false`.
 * `CxxExceptions` (`true`, `false`): Enables/disables C++ exceptions. In C
