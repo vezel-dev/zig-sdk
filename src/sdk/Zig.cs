@@ -213,7 +213,7 @@ namespace Zig.Tasks
                 builder.AppendTextUnquoted(" -fno-strict-overflow");
 
                 if (FastMath)
-                    builder.AppendTextUnquoted("-ffast-math");
+                    builder.AppendTextUnquoted(" -ffast-math");
 
                 if (WarningLevel > 0)
                 {
