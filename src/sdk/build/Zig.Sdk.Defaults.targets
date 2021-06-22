@@ -28,8 +28,16 @@
         <LanguageStandard Condition="'$(CompilerMode)' == 'Cxx' and '$(LanguageStandard)' == ''">gnu++2b</LanguageStandard>
         <LanguageStandard Condition="'$(CompilerMode)' == 'Zig' and '$(LanguageStandard)' == ''">zig</LanguageStandard>
         <MicrosoftExtensions Condition="'$(MicrosoftExtensions)' == ''">false</MicrosoftExtensions>
-        <WarningLevel Condition="'$(WarningLevel)' == ''">3</WarningLevel>
         <ZigVersion Condition="'$(ZigVersion)' == ''">0.8.0</ZigVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ConsumptionAnalysis Condition="'$(ConsumptionAnalysis)' == ''">true</ConsumptionAnalysis>
+        <DocumentationAnalysis Condition="'$(DocumentationAnalysis)' == ''">false</DocumentationAnalysis>
+        <NullabilityAnalysis Condition="'$(NullabilityAnalysis)' == ''">true</NullabilityAnalysis>
+        <TagAnalysis Condition="'$(TagAnalysis)' == ''">true</TagAnalysis>
+        <ThreadingAnalysis Condition="'$(ThreadingAnalysis)' == ''">true</ThreadingAnalysis>
+        <WarningLevel Condition="'$(WarningLevel)' == ''">3</WarningLevel>
     </PropertyGroup>
 
     <PropertyGroup>

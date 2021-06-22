@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Tasks;
@@ -10,6 +11,7 @@ namespace Zig.Tasks
     {
         const StringSplitOptions SplitOptions = StringSplitOptions.RemoveEmptyEntries;
 
+        const StringComparison Comparison = StringComparison.InvariantCulture;
 
         [Required]
         public bool AccessControl { get; set; }
@@ -32,6 +34,9 @@ namespace Zig.Tasks
         }
 
         [Required]
+        public bool ConsumptionAnalysis { get; set; }
+
+        [Required]
         public bool CxxExceptions { get; set; }
 
         [Required]
@@ -45,6 +50,11 @@ namespace Zig.Tasks
         [Required]
         public bool Deterministic { get; set; }
 
+        public string? DisableWarnings { get; set; }
+
+        [Required]
+        public bool DocumentationAnalysis { get; set; }
+
         [Required]
         public bool FastMath { get; set; }
 
@@ -56,6 +66,9 @@ namespace Zig.Tasks
 
         [Required]
         public bool MicrosoftExtensions { get; set; }
+
+        [Required]
+        public bool NullabilityAnalysis { get; set; }
 
         [Required]
         public ITaskItem OutputBinary { get; set; } = null!;
@@ -100,9 +113,15 @@ namespace Zig.Tasks
         }
 
         [Required]
+        public bool TagAnalysis { get; set; }
+
+        [Required]
         public string TargetTriple { get; set; } = null!;
 
         public string? TestFilter { get; set; }
+
+        [Required]
+        public bool ThreadingAnalysis { get; set; }
 
         [Required]
         public bool TreatWarningsAsErrors { get; set; }
@@ -213,22 +232,207 @@ namespace Zig.Tasks
                 if (FastMath)
                     builder.AppendTextUnquoted("-ffast-math");
 
-                if (WarningLevel > 0)
+                if (TreatWarningsAsErrors)
+                    builder.AppendSwitch("-Werror");
+
+                var disabledWarnings = (DisableWarnings ?? string.Empty).Split(new[] { ';' }, SplitOptions).Where(w =>
                 {
-                    if (WarningLevel >= 2)
-                        builder.AppendTextUnquoted(" -Wall");
+                    var trimmed = w.Trim();
 
-                    if (WarningLevel >= 3)
-                        builder.AppendTextUnquoted(" -Wextra");
+                    if (string.IsNullOrEmpty(trimmed))
+                        return false;
 
-                    if (WarningLevel >= 4)
-                        builder.AppendTextUnquoted(" -Wdocumentation");
+                    if (trimmed.StartsWith("no-", Comparison))
+                    {
+                        Log.LogWarning("The 'no-' prefix on warning '{0}' is invalid",
+                            trimmed.Substring(3));
+                        return false;
+                    }
 
-                    if (TreatWarningsAsErrors)
-                        builder.AppendTextUnquoted(" -Werror");
+                    if (trimmed.StartsWith("error=", Comparison))
+                    {
+                        Log.LogWarning("Changing specific warning '{0}' to error is not supported",
+                            trimmed.Substring(6));
+                        return false;
+                    }
+
+                    if (trimmed == "error")
+                    {
+                        Log.LogWarning("Changing all warnings to errors should be done with '{0}'",
+                            nameof(TreatWarningsAsErrors));
+                        return false;
+                    }
+
+                    string? property = null;
+
+                    if (trimmed.StartsWith("consumed", Comparison))
+                        property = nameof(ConsumptionAnalysis);
+                    else if (trimmed.StartsWith("documentation", Comparison))
+                        property = nameof(DocumentationAnalysis);
+                    else if (trimmed.StartsWith("nullability", Comparison) ||
+                        trimmed.StartsWith("nullable", Comparison))
+                        property = nameof(NullabilityAnalysis);
+                    else if (trimmed.StartsWith("type-safety", Comparison))
+                        property = nameof(TagAnalysis);
+                    else if (trimmed.StartsWith("thread-safety", Comparison))
+                        property = nameof(ThreadingAnalysis);
+
+                    if (property != null)
+                    {
+                        Log.LogWarning("The '{0}' warning is controlled by '{1}'",
+                            trimmed, property);
+                        return false;
+                    }
+
+                    return true;
+                }).ToHashSet();
+
+                void TryAppendWarningSwitch(string name)
+                {
+                    // Try to avoid adding a warning flag if the user explicitly
+                    // disabled it. This will not cover every possible case due
+                    // to aggregate flags, but it will at least prevent some
+                    // amount of command line length explosion.
+                    if (!disabledWarnings.Contains(name))
+                        builder.AppendSwitch($"-W{name}");
+                }
+
+                // Unfortunately, a lot of good warnings that really should be
+                // on by default are not. So, we have to keep a manual list of
+                // extra warnings to enable and make sure to keep it in sync
+                // with whatever LLVM/Clang version Zig is shipping with.
+                switch (WarningLevel)
+                {
+                    case <= 0:
+                        builder.AppendSwitch("-Wno-everything");
+                        break;
+                    case 1:
+                        // TODO: Add -Wreserved-identifier for Clang 13.
+
+                        TryAppendWarningSwitch("alloca");
+                        TryAppendWarningSwitch("non-gcc");
+                        TryAppendWarningSwitch("signed-enum-bitfield");
+
+                        if (isCxx)
+                        {
+                            TryAppendWarningSwitch("class-varargs");
+                            TryAppendWarningSwitch("non-virtual-dtor");
+                            TryAppendWarningSwitch("undefined-reinterpret-cast");
+                        }
+
+                        foreach (var warning in disabledWarnings)
+                            builder.AppendSwitch($"-Wno-{warning}");
+
+                        break;
+                    case 2:
+                        TryAppendWarningSwitch("all");
+                        TryAppendWarningSwitch("array-bounds-pointer-arithmetic");
+                        TryAppendWarningSwitch("c++-compat");
+                        TryAppendWarningSwitch("cast-align");
+                        TryAppendWarningSwitch("cast-qual");
+                        TryAppendWarningSwitch("comma");
+                        TryAppendWarningSwitch("float-equal");
+                        TryAppendWarningSwitch("pointer-arith");
+                        TryAppendWarningSwitch("shift-sign-overflow");
+
+                        goto case 1;
+                    case 3:
+                        TryAppendWarningSwitch("anon-enum-enum-conversion");
+                        TryAppendWarningSwitch("assign-enum");
+                        TryAppendWarningSwitch("completion-handler");
+                        TryAppendWarningSwitch("conditional-uninitialized");
+                        TryAppendWarningSwitch("deprecated");
+                        TryAppendWarningSwitch("extra");
+                        TryAppendWarningSwitch("format-pedantic");
+                        TryAppendWarningSwitch("format-type-confusion");
+                        TryAppendWarningSwitch("implicit-fallthrough");
+                        TryAppendWarningSwitch("keyword-macro");
+                        TryAppendWarningSwitch("loop-analysis");
+                        TryAppendWarningSwitch("over-aligned");
+                        TryAppendWarningSwitch("shadow-all");
+                        TryAppendWarningSwitch("switch-enum");
+
+                        if (isCxx)
+                        {
+                            TryAppendWarningSwitch("inconsistent-missing-destructor-override");
+                            TryAppendWarningSwitch("suggest-destructor-override");
+                            TryAppendWarningSwitch("suggest-override");
+                        }
+
+                        goto case 2;
+                    case 4:
+                    default:
+                        TryAppendWarningSwitch("bad-function-cast");
+                        TryAppendWarningSwitch("compound-token-split");
+                        TryAppendWarningSwitch("covered-switch-default");
+                        TryAppendWarningSwitch("duplicate-decl-specifier");
+                        TryAppendWarningSwitch("duplicate-enum");
+                        TryAppendWarningSwitch("embedded-directive");
+                        TryAppendWarningSwitch("expansion-to-defined");
+                        TryAppendWarningSwitch("extra-semi");
+                        TryAppendWarningSwitch("format=2");
+                        TryAppendWarningSwitch("four-char-constants");
+                        TryAppendWarningSwitch("missing-noreturn");
+                        TryAppendWarningSwitch("redundant-parens");
+                        TryAppendWarningSwitch("undef");
+                        TryAppendWarningSwitch("unreachable-code-aggressive");
+
+                        if (isCxx)
+                        {
+                            TryAppendWarningSwitch("atomic-implicit-seq-cst");
+                            TryAppendWarningSwitch("ctad-maybe-unsupported");
+                            TryAppendWarningSwitch("dtor-name");
+                            TryAppendWarningSwitch("header-hygiene");
+                            TryAppendWarningSwitch("old-style-cast");
+                            TryAppendWarningSwitch("undefined-func-template");
+                            TryAppendWarningSwitch("unsupported-dll-base-class-template");
+                            TryAppendWarningSwitch("unused-exception-parameter");
+                            TryAppendWarningSwitch("unused-member-function");
+                            TryAppendWarningSwitch("unused-template");
+                            TryAppendWarningSwitch("zero-as-null-pointer-constant");
+                        }
+                        else
+                        {
+                            TryAppendWarningSwitch("missing-prototypes");
+                            TryAppendWarningSwitch("missing-variable-declarations");
+                            TryAppendWarningSwitch("strict-prototypes");
+                        }
+
+                        goto case 3;
+                }
+
+                // The following -W flags need to be here because they have to
+                // be enabled regardless of WarningLevel. If they came before
+                // -Wno-everything (when WarningLevel is set to 0), they would
+                // have no effect.
+                builder.AppendSwitch("-Werror=newline-eof");
+
+                if (ConsumptionAnalysis)
+                    builder.AppendSwitch("-Wconsumed");
+
+                if (DocumentationAnalysis)
+                {
+                    builder.AppendSwitch("-Wdocumentation");
+                    builder.AppendSwitch("-Wdocumentation-pedantic");
+                }
+
+                if (!NullabilityAnalysis)
+                {
+                    builder.AppendSwitch("-Wno-nullability");
+                    builder.AppendSwitch("-Wno-nullability-completeness");
+                    builder.AppendSwitch("-Wno-nullability-inferred-on-nested-type");
                 }
                 else
-                    builder.AppendTextUnquoted(" -w");
+                    builder.AppendSwitch("-Wnullable-to-nonnull-conversion");
+
+                if (!TagAnalysis)
+                    builder.AppendSwitch("-Wno-type-safety");
+
+                if (ThreadingAnalysis)
+                {
+                    builder.AppendSwitch("-Wthread-safety");
+                    builder.AppendSwitch("-Wthread-safety-negative");
+                }
 
                 if (Deterministic)
                 {

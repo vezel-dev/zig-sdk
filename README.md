@@ -191,9 +191,30 @@ as sensible for historical reasons.
   Microsoft C/C++ extensions. Defaults to `false`, but note that the compiler
   itself always enables this when targeting Windows as Windows headers require
   it.
+
+#### Static Analysis
+
+* `ConsumptionAnalysis` (`true`, `false`): Enable/disable static analysis with
+  [consumption and type state annotations](https://clang.llvm.org/docs/AttributeReference.html#consumed-annotation-checking)
+  in C/C++ projects. Defaults to `true`.
+* `DocumentationAnalysis` (`true`, `false`): Enable/disable
+  [Doxygen](https://doxygen.nl) documentation comment checking in C/C++
+  projects. Defaults to `false`.
+* `NullabilityAnalysis` (`true`, `false`): Enable/disable static analysis with
+  [nullability annotations](https://clang.llvm.org/docs/analyzer/developer-docs/nullability.html)
+  in C/C++ projects. Defaults to `true`.
+* `TagAnalysis` (`true`, `false`): Enable/disable static analysis with
+  [type tag annotations](https://clang.llvm.org/docs/AttributeReference.html#type-safety-checking)
+  in C/C++ projects. Defaults to `true`.
+* `ThreadingAnalysis` (`true`, `false`): Enable/disable static analysis with
+  [thread safety annotations](https://clang.llvm.org/docs/ThreadSafetyAnalysis.html)
+  in C/C++ projects. Defaults to `true`.
 * `WarningLevel` (`0`-`4`): How aggressively the compiler should analyze C/C++
-  projects for potentially problematic code. `0` disables warnings completely.
-  `4` enables [Doxygen](https://doxygen.nl) comment analysis. Defaults to `3`.
+  projects for potentially problematic code. `0` disables warnings completely;
+  `4` enables all warnings, including a few controversial ones. Defaults to `3`.
+* `DisableWarnings`: A comma-separated list of
+  [warning names](https://clang.llvm.org/docs/DiagnosticsReference.html) (e.g.
+  `cast-align`) to disable in C/C++ projects. Unset by default.
 * `TreatWarningsAsErrors` (`true`, `false`): Enable/disable reporting warnings
   as errors in C/C++ projects. Defaults to `false`.
 
