@@ -307,7 +307,7 @@ namespace Zig.Tasks
                         builder.AppendSwitch("-Wno-everything");
                         break;
                     case 1:
-                        // TODO: Add -Wreserved-identifier for Clang 13.
+                        // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/17
 
                         TryAppendWarningSwitch("alloca");
                         TryAppendWarningSwitch("non-gcc");
@@ -497,7 +497,7 @@ namespace Zig.Tasks
             if (!isZig)
                 builder.AppendSwitchIfNotNull("-include ", PreludeHeaders, " ");
 
-            // TODO: Library references?
+            // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/8
 
             builder.AppendFileNamesIfNotNull(Sources, " ");
             builder.AppendSwitchIfNotNull(isZig ? "-femit-bin=" : "-o ", OutputBinary);

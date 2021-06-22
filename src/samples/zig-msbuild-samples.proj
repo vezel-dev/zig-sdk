@@ -1,7 +1,5 @@
 <Project Sdk="Microsoft.Build.Traversal">
-    <!--
-    FIXME: There seem to be some concurrency issues here...
-    -->
+    <!-- FIXME: https://github.com/alexrp/zig-msbuild-sdk/issues/15 -->
     <PropertyGroup>
         <BuildInParallel>false</BuildInParallel>
     </PropertyGroup>
