@@ -69,7 +69,7 @@
     </Target>
 
     <Target Name="_PackNativeBinary"
-            Outputs="@(_NativeBinary)">
+            Returns="@(_NativeBinary)">
         <MSBuild Projects="$(MSBuildProjectFullPath)"
                  Targets="Build"
                  Condition="'$(NoBuild)' != 'true'" />
