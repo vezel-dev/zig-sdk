@@ -497,7 +497,8 @@ namespace Zig.Tasks
                 builder.AppendSwitchIfNotNull("-I ", include);
 
             if (!isZig)
-                builder.AppendSwitchIfNotNull("-include ", PreludeHeaders, " ");
+                foreach (var prelude in PreludeHeaders)
+                    builder.AppendSwitchIfNotNull("-include ", prelude);
 
             // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/8
 
