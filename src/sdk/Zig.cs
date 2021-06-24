@@ -492,7 +492,9 @@ namespace Zig.Tasks
             }
 
             builder.AppendSwitchIfNotNull("-I ", PublicIncludeDirectory);
-            builder.AppendSwitchIfNotNull("-I ", IncludeDirectories, " ");
+
+            foreach (var include in IncludeDirectories)
+                builder.AppendSwitchIfNotNull("-I ", include);
 
             if (!isZig)
                 builder.AppendSwitchIfNotNull("-include ", PreludeHeaders, " ");
