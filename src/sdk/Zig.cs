@@ -290,7 +290,8 @@ namespace Zig.Tasks
                 builder.AppendSwitchIfNotNull("-I ", include);
 
             if (!isZig)
-                builder.AppendSwitchIfNotNull("-include ", PreludeHeaders, " ");
+                foreach (var prelude in PreludeHeaders)
+                    builder.AppendSwitchIfNotNull("-include ", prelude);
 
             // TODO: Library references?
 
