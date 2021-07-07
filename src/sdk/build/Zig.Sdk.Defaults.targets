@@ -5,7 +5,7 @@
     -->
 
     <PropertyGroup>
-        <CachePath Condition="'$(CachePath)' == ''">$(BaseIntermediateOutputPath)zig-cache</CachePath>
+        <CachePath Condition="'$(CachePath)' == ''">$(IntermediateOutputPath)zig-cache</CachePath>
         <CompilerMode Condition="'$(CompilerMode)' == '' and '$(MSBuildProjectExtension)' == '.cproj'">C</CompilerMode>
         <CompilerMode Condition="'$(CompilerMode)' == '' and '$(MSBuildProjectExtension)' == '.cxxproj'">Cxx</CompilerMode>
         <CompilerMode Condition="'$(CompilerMode)' == ''">Zig</CompilerMode>
