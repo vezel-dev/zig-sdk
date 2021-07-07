@@ -8,6 +8,7 @@
     we will just override the target entirely.
     -->
     <Target Name="VSTest"
+            DependsOnTargets="$(VSTestDependsOn)"
             Condition="'$(CompilerMode)' == 'Zig' and '$(IsTestable)' == 'true'">
         <Message Text="Running tests natively..."
                  Importance="high"

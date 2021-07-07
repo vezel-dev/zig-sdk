@@ -18,10 +18,10 @@ Here are some of the `Zig.Sdk` highlights:
   [Clang](https://clang.llvm.org). So, whichever language you prefer, `Zig.Sdk`
   has you covered.
 * **Cross-compilation:** Thanks to the Zig compiler's excellent cross-targeting
-  support, you can build native code for a variety of target platforms no matter
-  what platform you are on. Gone are the days of having to do overly complicated
-  cross toolchain setup, or resorting to building on multiple platforms for
-  releases. Cross-compilation is a first-class citizen in `Zig.Sdk`.
+  support, cross-compilation is a first-class citizen in `Zig.Sdk`. Gone are the
+  days of having to do overly complicated cross toolchain setup, or resorting to
+  building on multiple platforms for releases - just type `dotnet build` to
+  compile for all targets supported by your project.
 * **Binary emulator support:** When cross-compiling, `Zig.Sdk` will look at the
   host and target platforms and try to pick an appropriate emulator. In the
   majority of cases, this allows you to run and unit test the foreign binary.
@@ -37,10 +37,10 @@ Here are some of the `Zig.Sdk` highlights:
   expected, enabling a rapid development loop.
 * **Sensible NuGet packaging:** Out of the box, `dotnet pack` with `Zig.Sdk`
   will produce NuGet packages containing cross-built binaries for all platforms
-  that your project declares support for. Also, your public C and C++ header
-  files will be bundled, as will your Zig source code. This makes the resulting
-  NuGet package easy to consume both in `Microsoft.NET.Sdk` projects and in
-  other `Zig.Sdk` projects.
+  that your project supports. Also, your public C and C++ header files will be
+  bundled, as will your Zig source code. This makes the resulting NuGet package
+  easy to consume both in `Microsoft.NET.Sdk` projects and in other `Zig.Sdk`
+  projects.
 * **Multi-project solutions:**
   [Soon™.](https://github.com/alexrp/zig-msbuild-sdk/issues/8)
 * **Easy to use:** Just add an entry to your `global.json`, and create a project
@@ -244,10 +244,11 @@ as sensible for historical reasons.
 #### Cross-Compilation
 
 * `RuntimeIdentifier`: Specifies the runtime identifier (i.e. platform) to
-  target. Defaults to the runtime identifier of the current platform. Usually
-  specified by the user as e.g. `dotnet build -r linux-x64`.
+  target. When unset, `Build` and `Clean` will run for all runtime identifiers
+  specified in `RuntimeIdentifiers`. Usually specified by the user as e.g.
+  `dotnet build -r linux-x64`. Unset by default.
 * `RuntimeIdentifiers`: A semicolon-separated list of runtime identifiers that
-  your project supports. All targets on this list will be cross-compiled when
+  the project supports. All targets on this list will be cross-compiled as
   necessary. Defaults to all targets that the Zig compiler has known-good
   support for.
 * `UseEmulator` (`true`, `false`): Enable/disable usage of an appropriate binary

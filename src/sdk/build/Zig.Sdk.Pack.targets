@@ -10,10 +10,6 @@
         </PackDependsOn>
     </PropertyGroup>
 
-    <!--
-    Build all RIDs (or just the current RID) and add native binaries to the
-    appropriate folders in the NuGet package.
-    -->
     <Target Name="_PackNativeAssets">
         <!--
         Since we claim to support netstandard1.0 but do not package any managed
@@ -58,37 +54,15 @@
         <ItemGroup>
             <None Include="@(_NativeBinary)" />
         </ItemGroup>
-
-        <!--
-        Prevent NuGet from doing a pointless current-RID build after us since we
-        have already built all the RIDs the user requested.
-        -->
-        <ItemGroup>
-            <_GenerateNuspecDependsOn Include="$(GenerateNuspecDependsOn)" />
-            <_GenerateNuspecDependsOn Remove="Build" />
-        </ItemGroup>
-
-        <PropertyGroup>
-            <GenerateNuspecDependsOn>@(_GenerateNuspecDependsOn)</GenerateNuspecDependsOn>
-        </PropertyGroup>
     </Target>
 
     <Target Name="_PackNativeBinary"
             Returns="@(_NativeBinary)">
-        <MSBuild Projects="$(MSBuildProjectFullPath)"
-                 Targets="Build"
-                 Condition="'$(NoBuild)' != 'true'" />
-
         <PropertyGroup>
             <_PackageNativePath>runtimes</_PackageNativePath>
             <_PackageNativePath Condition="'$(OutputType)' == 'Exe'">tools</_PackageNativePath>
         </PropertyGroup>
 
-        <!--
-        When NoBuild is set and a build for this RID has not been run, nothing
-        will exist at TargetPath. This will cause NuGet to fail to pack later
-        on, which is the behavior we want. So, do not add a condition here.
-        -->
         <ItemGroup>
             <_NativeBinary Include="$(TargetPath)"
                            Pack="true"

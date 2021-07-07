@@ -7,4 +7,28 @@
     <ItemGroup>
         <Clean Include="$(CachePath)/**" />
     </ItemGroup>
+
+    <PropertyGroup>
+        <_RealOrFanOutClean>_InnerClean</_RealOrFanOutClean>
+        <_RealOrFanOutClean Condition="'$(_BuildCleanFanOut)' == 'true'">_FanOutClean</_RealOrFanOutClean>
+    </PropertyGroup>
+
+    <Target Name="Clean"
+            DependsOnTargets="$(_RealOrFanOutClean)"
+            Condition="'$(_InvalidConfigurationWarning)' != 'true'" />
+
+    <Target Name="_FanOutClean">
+        <ItemGroup>
+            <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
+            <_InnerProjects Include="$(MSBuildProjectFullPath)"
+                            Properties="RuntimeIdentifier=%(_RuntimeIdentifiers.Identity)" />
+        </ItemGroup>
+
+        <MSBuild Projects="@(_InnerProjects)"
+                 Targets="_InnerClean"
+                 BuildInParallel="$(BuildInParallel)" />
+    </Target>
+
+    <Target Name="_InnerClean"
+            DependsOnTargets="$(CleanDependsOn)" />
 </Project>

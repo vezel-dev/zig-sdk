@@ -1,4 +1,29 @@
 <Project>
+    <PropertyGroup>
+        <_RealOrFanOutBuild>_InnerBuild</_RealOrFanOutBuild>
+        <_RealOrFanOutBuild Condition="'$(_BuildCleanFanOut)' == 'true'">_FanOutBuild</_RealOrFanOutBuild>
+    </PropertyGroup>
+
+    <Target Name="Build"
+            DependsOnTargets="$(_RealOrFanOutBuild)"
+            Condition="'$(_InvalidConfigurationWarning)' != 'true'" />
+
+    <Target Name="_FanOutBuild">
+        <ItemGroup>
+            <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
+            <_InnerProjects Include="$(MSBuildProjectFullPath)"
+                            Properties="RuntimeIdentifier=%(_RuntimeIdentifiers.Identity)" />
+        </ItemGroup>
+
+        <MSBuild Projects="@(_InnerProjects)"
+                 Targets="_InnerBuild"
+                 BuildInParallel="$(BuildInParallel)" />
+    </Target>
+
+    <Target Name="_InnerBuild"
+            DependsOnTargets="$(BuildDependsOn)"
+            Returns="@(TargetPathWithTargetPlatformMoniker)" />
+
     <!--
     This is the target that actually compiles source code to a native binary.
     -->
