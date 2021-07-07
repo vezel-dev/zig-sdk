@@ -100,10 +100,11 @@ The convention used by `Zig.Sdk` is that C projects should use a `.c` extension
 for source files and `.h` for header files, while C++ projects should use `.cxx`
 and `.hxx`. Zig projects use `.zig`.
 
-For C++ projects, it does not matter what you name your source and header files-
-Zig projects, on the other hand, expect you to name your root source file the
-same as your project name; that is, if your project file is `myapp.zigproj`,
-your root source file should be `myapp.zig`.
+For C/C++ projects, it does not matter what you name your source and header
+files. For Zig executable projects, your root source file should be named
+`main.zig`. Zig library projects should use the project name for the root source
+file; that is, if your project file is `mylib.zigproj`, your root source file
+should be `mylib.zig`.
 
 Once you have written some code, you can use `dotnet build`, `dotnet run`, etc.
 
