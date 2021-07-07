@@ -4,7 +4,10 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <PackDependsOn>_PackNativeAssets; $(PackDependsOn)</PackDependsOn>
+        <PackDependsOn>
+            _PackNativeAssets;
+            $(PackDependsOn)
+        </PackDependsOn>
     </PropertyGroup>
 
     <!--
@@ -25,7 +28,8 @@
 
         <!--
         Zig projects need to package all source code. C and C++ projects only
-        need to package public header files.
+        need to package public header files. We allow packaging headers with
+        Zig projects, but not Zig sources with C/C++ projects.
         -->
         <ItemGroup>
             <None Include="$(PublicHeadersPath)**/*.h; $(PublicHeadersPath)**/*.hxx"
@@ -36,7 +40,8 @@
             <None Include="**/*.zig"
                   Exclude="$(DefaultItemExcludes)"
                   Pack="true"
-                  PackagePath="zig" />
+                  PackagePath="zig"
+                  Condition="'$(CompilerMode)' == 'Zig'" />
         </ItemGroup>
 
         <ItemGroup>
