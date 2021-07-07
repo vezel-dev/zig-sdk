@@ -4,11 +4,14 @@
     allow users to alter if they wish.
     -->
 
+    <PropertyGroup Condition="'$(CompilerMode)' == ''">
+        <CompilerMode Condition="'$(MSBuildProjectExtension)' == '.cproj'">C</CompilerMode>
+        <CompilerMode Condition="'$(MSBuildProjectExtension)' == '.cxxproj'">Cxx</CompilerMode>
+        <CompilerMode Condition="'$(MSBuildProjectExtension)' == '.zigproj'">Zig</CompilerMode>
+    </PropertyGroup>
+
     <PropertyGroup>
         <CachePath Condition="'$(CachePath)' == ''">$(IntermediateOutputPath)zig-cache</CachePath>
-        <CompilerMode Condition="'$(CompilerMode)' == '' and '$(MSBuildProjectExtension)' == '.cproj'">C</CompilerMode>
-        <CompilerMode Condition="'$(CompilerMode)' == '' and '$(MSBuildProjectExtension)' == '.cxxproj'">Cxx</CompilerMode>
-        <CompilerMode Condition="'$(CompilerMode)' == ''">Zig</CompilerMode>
         <DefaultSources Condition="'$(DefaultSources)' == ''">true</DefaultSources>
         <IsTestable Condition="'$(IsTestable)' == ''">true</IsTestable>
     </PropertyGroup>
@@ -19,14 +22,17 @@
         <PlatformDefines Condition="'$(PlatformDefines)' == ''">true</PlatformDefines>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(LanguageStandard)' == ''">
+        <LanguageStandard Condition="'$(CompilerMode)' == 'C'">gnu2x</LanguageStandard>
+        <LanguageStandard Condition="'$(CompilerMode)' == 'Cxx'">gnu++2b</LanguageStandard>
+        <LanguageStandard Condition="'$(CompilerMode)' == 'Zig'">zig</LanguageStandard>
+    </PropertyGroup>
+
     <PropertyGroup>
         <AccessControl Condition="'$(AccessControl)' == ''">true</AccessControl>
         <BlockExtensions Condition="'$(BlockExtensions)' == ''">false</BlockExtensions>
         <CxxExceptions Condition="'$(CxxExceptions)' == ''">true</CxxExceptions>
         <CxxReflection Condition="'$(CxxReflection)' == ''">true</CxxReflection>
-        <LanguageStandard Condition="'$(CompilerMode)' == 'C' and '$(LanguageStandard)' == ''">gnu2x</LanguageStandard>
-        <LanguageStandard Condition="'$(CompilerMode)' == 'Cxx' and '$(LanguageStandard)' == ''">gnu++2b</LanguageStandard>
-        <LanguageStandard Condition="'$(CompilerMode)' == 'Zig' and '$(LanguageStandard)' == ''">zig</LanguageStandard>
         <MicrosoftExtensions Condition="'$(MicrosoftExtensions)' == ''">false</MicrosoftExtensions>
         <ZigVersion Condition="'$(ZigVersion)' == ''">0.8.0</ZigVersion>
     </PropertyGroup>
