@@ -43,6 +43,8 @@
              SymbolExports="$(SymbolExports)"
              SymbolVisibility="$(SymbolVisibility)"
              TagAnalysis="$(TagAnalysis)"
+             TargetFileName="$(TargetFileName)"
+             TargetRuntimeIdentifier="$(TargetRuntimeIdentifier)"
              TargetTriple="$(TargetTriple)"
              TestFilter="$(VSTestTestCaseFilter)"
              ThreadingAnalysis="$(ThreadingAnalysis)"

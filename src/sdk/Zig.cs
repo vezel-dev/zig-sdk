@@ -116,6 +116,12 @@ namespace Zig.Tasks
         public bool TagAnalysis { get; set; }
 
         [Required]
+        public string TargetFileName { get; set; } = null!;
+
+        [Required]
+        public string TargetRuntimeIdentifier { get; set; } = null!;
+
+        [Required]
         public string TargetTriple { get; set; } = null!;
 
         public string? TestFilter { get; set; }
@@ -185,22 +191,40 @@ namespace Zig.Tasks
             {
                 builder.AppendSwitch(isZig ? "-dynamic" : "-shared");
                 builder.AppendSwitch("-fPIC");
+                builder.AppendSwitchIfNotNull(isZig ? "-fsoname=" : "-Wl,-soname,", TargetFileName);
             }
 
             if (isZig)
             {
-                builder.AppendSwitch((_configuration, _releaseMode) switch
-                {
-                    (ZigConfiguration.Debug, _) => "-O Debug",
-                    (ZigConfiguration.Release, var m) => $"-O Release{m}",
-                    _ => throw new Exception(),
-                });
+                builder.AppendSwitchIfNotNull("-rpath ", "$ORIGIN");
+
+                if (_configuration == ZigConfiguration.Release)
+                    builder.AppendSwitch($"-O Release{_releaseMode}");
 
                 if (!DebugSymbols)
                     builder.AppendSwitch("--strip");
             }
             else
             {
+                builder.AppendSwitchIfNotNull($"-Wl,-rpath,", "$ORIGIN");
+
+                // These exact flags are treated specially by zig cc/c++. They
+                // activate Debug, ReleaseFast, ReleaseSafe, and ReleaseSmall
+                // respectively. This in turns activates a bunch of other
+                // mode-specific flags that we do not have to specify here as a
+                // result.
+                builder.AppendSwitch((_configuration, _releaseMode) switch
+                {
+                    (ZigConfiguration.Debug, _) => "-Og",
+                    (ZigConfiguration.Release, ZigReleaseMode.Fast) => "-O3",
+                    (ZigConfiguration.Release, ZigReleaseMode.Safe) => "-O2 -fsanitize=undefined",
+                    (ZigConfiguration.Release, ZigReleaseMode.Small) => "-Oz",
+                    _ => throw new Exception(),
+                });
+
+                if (DebugSymbols)
+                    builder.AppendSwitch("-g");
+
                 if (_symbolVisibility == ZigSymbolVisibility.Hidden)
                     builder.AppendSwitch("-fvisibility=hidden");
 
@@ -440,23 +464,6 @@ namespace Zig.Tasks
                     builder.AppendSwitch("-no-canonical-prefixes");
                     builder.AppendSwitchIfNotNull("-fdebug-compilation-dir ", GetWorkingDirectory() ?? ".");
                 }
-
-                // These exact flags are treated specially by zig cc/c++. They
-                // activate Debug, ReleaseFast, ReleaseSafe, and ReleaseSmall
-                // respectively. This in turns activates a bunch of other
-                // mode-specific flags that we do not have to specify here as a
-                // result.
-                builder.AppendSwitch((_configuration, _releaseMode) switch
-                {
-                    (ZigConfiguration.Debug, _) => "-Og",
-                    (ZigConfiguration.Release, ZigReleaseMode.Fast) => "-O3",
-                    (ZigConfiguration.Release, ZigReleaseMode.Safe) => "-O2 -fsanitize=undefined",
-                    (ZigConfiguration.Release, ZigReleaseMode.Small) => "-Oz",
-                    _ => throw new Exception(),
-                });
-
-                if (DebugSymbols)
-                    builder.AppendSwitch("-g");
             }
 
             foreach (var item in Sanitizers)
