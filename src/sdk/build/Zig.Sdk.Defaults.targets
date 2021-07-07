@@ -48,22 +48,18 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(RuntimeIdentifiers)' == ''">
-        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/4 -->
-        <_OsxArm64 Condition="'$(OutputType)' == 'Exe'">osx-arm64</_OsxArm64>
-        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/5 -->
-        <_WinX86 Condition="'$(CompilerMode)' != 'Zig' or '$(OutputType)' == 'Exe'">win-x86</_WinX86>
-
         <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/1 -->
-        <!-- TODO https://github.com/alexrp/zig-msbuild-sdk/issues/3 -->
+        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/3 -->
+        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/4 -->
+        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/5 -->
+
         <RuntimeIdentifiers>
             linux-arm64;
             linux-x64;
             linux-musl-arm;
             linux-musl-arm64;
             linux-musl-x64;
-            $(_OsxArm64);
             osx-x64;
-            $(_WinX86);
             win-x64
         </RuntimeIdentifiers>
         <UseEmulator Condition="'$(UseEmulator)' == ''">true</UseEmulator>
