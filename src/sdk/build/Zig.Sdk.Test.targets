@@ -39,6 +39,8 @@
              StandardOutputImportance="high"
              SymbolExports="$(SymbolExports)"
              SymbolVisibility="$(SymbolVisibility)"
+             TargetFileName="$(TargetFileName)"
+             TargetRuntimeIdentifier="$(TargetRuntimeIdentifier)"
              TargetTriple="$(TargetTriple)"
              TestFilter="$(VSTestTestCaseFilter)"
              ToolExe="$(ZigExePath)"

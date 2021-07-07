@@ -28,6 +28,8 @@
              Sources="@(Compile)"
              SymbolExports="$(SymbolExports)"
              SymbolVisibility="$(SymbolVisibility)"
+             TargetFileName="$(TargetFileName)"
+             TargetRuntimeIdentifier="$(TargetRuntimeIdentifier)"
              TargetTriple="$(TargetTriple)"
              TestFilter=""
              ToolExe="$(ZigExePath)"
