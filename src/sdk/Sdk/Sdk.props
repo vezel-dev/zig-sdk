@@ -1,4 +1,11 @@
 <Project>
+    <!--
+    This is the file that gets imported at the beginning of a user's project
+    file when they use the Sdk attribute. Note that if the user has a
+    Directory.Build.props and/or Directory.Solution.props file, those come
+    first.
+    -->
+
     <Import Project="Sdk.props"
             Sdk="Microsoft.NET.Sdk" />
     <Import Project="../build/Zig.Sdk.Core.props" />

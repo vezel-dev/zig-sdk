@@ -1,4 +1,11 @@
 <Project>
+    <!--
+    This is the file that gets imported at the end of a user's project file when
+    they use the Sdk attribute. Note that if the user has a
+    Directory.Build.targets and/or Directory.Solution.targets file, those come
+    last.
+    -->
+
     <Import Project="../build/Zig.Sdk.Overrides.targets" />
     <Import Project="../build/Zig.Sdk.Cross.targets" />
     <Import Project="Sdk.targets"
