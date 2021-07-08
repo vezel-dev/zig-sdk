@@ -1,11 +1,13 @@
 {
   "recommendations": [
+    "augusterame.zls-vscode",
     "codezombiech.gitignore",
     "davidanson.vscode-markdownlint",
     "dotjoshjohnson.xml",
     "editorconfig.editorconfig",
     "github.vscode-pull-request-github",
     "hashhar.gitattributes",
+    "llvm-vs-code-extensions.vscode-clangd",
     "ms-dotnettools.csharp",
     "redhat.vscode-yaml",
     "tintoy.msbuild-project-tools"

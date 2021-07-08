@@ -12,7 +12,9 @@
 
     <PropertyGroup>
         <CachePath Condition="'$(CachePath)' == ''">$(IntermediateOutputPath)zig-cache</CachePath>
+        <CommandsPath Condition="'$(CommandsPath)' == ''">$(IntermediateOutputPath)compile_commands.json</CommandsPath>
         <DefaultSources Condition="'$(DefaultSources)' == ''">true</DefaultSources>
+        <EditorSupport Condition="'$(EditorSupport)' == ''">true</EditorSupport>
         <IsTestable Condition="'$(IsTestable)' == ''">true</IsTestable>
     </PropertyGroup>
 

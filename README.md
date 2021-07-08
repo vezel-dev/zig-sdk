@@ -43,11 +43,16 @@ Here are some of the `Zig.Sdk` highlights:
   projects.
 * **Multi-project solutions:**
   [Soon™.](https://github.com/alexrp/zig-msbuild-sdk/issues/8)
+* **Editor integration:** `Zig.Sdk` can generate files needed by language
+  servers, resulting in an IDE-like experience when editing code. For C/C++,
+  [clangd](https://clangd.llvm.org) is fully supported, while for Zig projects,
+  there is limited [ZLS](https://github.com/zigtools/zls) support. See the
+  [Editor](#editor) section below for more information.
 * **Easy to use:** Just add an entry to your `global.json`, and create a project
   file ending in `.cproj`, `.cxxproj`, or `.zigproj`, with an `Sdk="Zig.Sdk"`
   attribute. Then start writing code and use `dotnet build`, `dotnet run`,
   `dotnet test`, etc as you normally would. See the [Usage](#usage) section
-  below for more information.
+  below to get started.
 
 Please note that `Zig.Sdk` is *not* intended to be a full replacement for
 [Zig's build system](https://ziglearn.org/chapter-3). The goal of `Zig.Sdk` is
@@ -110,6 +115,46 @@ Once you have written some code, you can use `dotnet build`, `dotnet run`, etc.
 
 ## Configuration
 
+### Editor
+
+#### ZLS
+
+Start by
+[installing ZLS](https://github.com/zigtools/zls/blob/master/README.md#installation).
+The
+[Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=AugusteRame.zls-vscode)
+is highly recommended.
+
+At the moment, no further configuration is necessary.
+
+#### clangd
+
+Start by
+[installing clangd](https://clangd.llvm.org/installation). The
+[Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd)
+is highly recommended.
+
+You have to tell clangd where to find the `compile_commands.json` compilation
+database. `Zig.Sdk` creates these files in `IntermediateOutputPath`, i.e.
+`obj/Debug/linux-x64` if you build with `Configuration=Debug` and
+`RuntimeIdentifier=linux-x64`. Due to the nature of C/C++ compilation, these
+compilation databases have to be dependent on build flags. So, you will have to
+pick one of them to use for your editing experience. The good news is that you
+can change which compilation database you use at any point if you need to.
+
+To tell clangd where to find the compilation database, create a file called
+`.clangd` in your project directory with the following contents:
+
+```yaml
+CompileFlags:
+    CompilationDatabase: obj/Debug/linux-x64
+```
+
+(You may want to add this file to `.gitignore`.)
+
+You can now restart the clangd language server. You should start to see rich
+editor features like code completion, hover widgets, navigation, etc.
+
 ### Properties
 
 These properties can all be set in `PropertyGroup`s in your project file. Most
@@ -137,6 +182,9 @@ as sensible for historical reasons.
   other things, this will try to prevent the compiler from using absolute paths
   and will prevent usage of certain problematic language features like
   `__TIME__`. Defaults to `true`.
+* `EditorSupport` (`true`, `false`): Enable/disable editor support. For C/C++
+  projects, this means generating a `compile_commands.json` compilation database
+  in `IntermediateOutputPath`. Defaults to `true`.
 
 #### Package Information
 

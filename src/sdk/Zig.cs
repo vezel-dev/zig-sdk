@@ -19,6 +19,8 @@ namespace Zig.Tasks
         [Required]
         public bool BlockExtensions { get; set; }
 
+        public ITaskItem? CommandFragmentsDirectory { get; set; }
+
         [Required]
         public string CompilerMode
         {
@@ -83,7 +85,7 @@ namespace Zig.Tasks
         [Required]
         public ITaskItem[] PreludeHeaders { get; set; } = null!;
 
-        public string? PublicIncludeDirectory { get; set; }
+        public ITaskItem? PublicIncludeDirectory { get; set; }
 
         [Required]
         public string ReleaseMode
@@ -511,6 +513,9 @@ namespace Zig.Tasks
 
             builder.AppendFileNamesIfNotNull(Sources, " ");
             builder.AppendSwitchIfNotNull(isZig ? "-femit-bin=" : "-o ", OutputBinary);
+
+            if (!isZig)
+                builder.AppendSwitchIfNotNull("-gen-cdb-fragment-path ", CommandFragmentsDirectory);
 
             if (isTest)
                 builder.AppendSwitchIfNotNull("--test-filter ", TestFilter);
