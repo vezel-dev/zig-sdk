@@ -10,7 +10,7 @@
 
     <PropertyGroup>
         <_RealOrFanOutClean>_InnerClean</_RealOrFanOutClean>
-        <_RealOrFanOutClean Condition="'$(_BuildCleanFanOut)' == 'true'">_FanOutClean</_RealOrFanOutClean>
+        <_RealOrFanOutClean Condition="'$(_RidFanOut)' == 'true'">_FanOutClean</_RealOrFanOutClean>
     </PropertyGroup>
 
     <Target Name="Clean"

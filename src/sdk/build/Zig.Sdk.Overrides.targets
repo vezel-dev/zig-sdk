@@ -17,14 +17,14 @@
     </PropertyGroup>
 
     <!--
-    If a RuntimeIdentifier value has not been set, it means the Build and Clean
-    targets should fan out and run for every RID supported by the project. That
-    said, for running and testing, we still need to run natively by default, so
-    we still have to set a default RID. We use _BuildCleanFanOut to indicate
-    whether the fan-out behavior is required.
+    If a RuntimeIdentifier value has not been set, it means the Build, Clean,
+    and Publish targets should fan out and run for every RID supported by the
+    project. That said, for running and testing, we still need to run natively
+    by default, so we still have to set a default RID. We use _RidFanOut to
+    indicate whether the fan-out behavior is required.
     -->
     <PropertyGroup Condition="'$(RuntimeIdentifier)' == ''">
         <RuntimeIdentifier>$(NETCoreSdkPortableRuntimeIdentifier)</RuntimeIdentifier>
-        <_BuildCleanFanOut>true</_BuildCleanFanOut>
+        <_RidFanOut>true</_RidFanOut>
     </PropertyGroup>
 </Project>
