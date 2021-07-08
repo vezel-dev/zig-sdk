@@ -53,13 +53,12 @@
         <SymbolVisibility Condition="'$(SymbolVisibility)' == ''">Default</SymbolVisibility>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(RuntimeIdentifiers)' == ''">
+    <PropertyGroup>
         <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/1 -->
         <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/3 -->
         <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/4 -->
         <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/5 -->
-
-        <RuntimeIdentifiers>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == ''">
             linux-arm64;
             linux-x64;
             linux-musl-arm;
