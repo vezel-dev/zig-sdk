@@ -1,0 +1,66 @@
+<Project>
+    <PropertyGroup>
+        <_CommandFragmentsPath>$(IntermediateOutputPath)cdb</_CommandFragmentsPath>
+    </PropertyGroup>
+
+    <!--
+    The inputs here are very important: Because generating compile_commands.json
+    is a fairly expensive operation (see the comment about the Zig cache below),
+    we only want to do so when the set of source files has actually changed.
+    Fortunately, MSBuild's _GenerateCompileDependencyCache target has us covered
+    by generating a file containing a hash of all Compile items. This file is
+    only written when the resulting hash is different, so we can use it as an
+    input here.
+    -->
+    <Target Name="_CheckCompileCommands"
+            Inputs="$(MSBuildAllProjects); $(IntermediateOutputPath)$(MSBuildProjectFile).CoreCompileInputs.cache"
+            Outputs="$(CommandsPath)"
+            Condition="'$(CompilerMode)' != 'Zig' and '$(EditorSupport)' == 'true'">
+        <CreateProperty Value="true">
+            <Output TaskParameter="ValueSetByTask"
+                    PropertyName="_RefreshCompileCommands" />
+        </CreateProperty>
+    </Target>
+
+    <Target Name="_PrepareCompileCommands"
+            Condition="'$(_RefreshCompileCommands)' == 'true'">
+        <RemoveDir Directories="$(_CommandFragmentsPath)"
+                   Condition="Exists('$(_CommandFragmentsPath)')" />
+        <MakeDir Directories="$(_CommandFragmentsPath)" />
+
+        <!--
+        The Zig compiler will not emit a new compilation database fragment for a
+        given source file if it has not actually changed. This unfortunately
+        means that we have to clean the entire Zig cache when we need to refresh
+        compile_commands.json. Fun.
+        -->
+        <RemoveDir Directories="$(CachePath)"
+                   Condition="Exists('$(CachePath)')" />
+    </Target>
+
+    <!--
+    Read in all the compilation database fragments, remove the trailing comma
+    from each, join them into a valid JSON array, and finally write the
+    compile_commands.json file.
+    -->
+    <Target Name="_GatherCompileCommands"
+            Condition="'$(_RefreshCompileCommands)' == 'true'">
+        <ItemGroup>
+            <_CdbFragments Include="$(_CommandFragmentsPath)/*.json" />
+            <_CdbFragments Update="@(_CdbFragments)"
+                           Json="$([System.IO.File]::ReadAllText('%(FullPath)').Trim().TrimEnd(','))" />
+        </ItemGroup>
+
+        <PropertyGroup>
+            <_CompileCommands>
+                <![CDATA[
+[ @(_CdbFragments->'%(Json)', ', ') ]
+                ]]>
+            </_CompileCommands>
+        </PropertyGroup>
+
+        <WriteLinesToFile File="$(CommandsPath)"
+                          Lines="$(_CompileCommands)"
+                          Overwrite="true" />
+    </Target>
+</Project>

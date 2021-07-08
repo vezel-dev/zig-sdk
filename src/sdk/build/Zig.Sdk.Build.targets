@@ -29,8 +29,11 @@
     -->
     <Target Name="CoreCompile"
             DependsOnTargets="$(CoreCompileDependsOn)">
+        <CallTarget Targets="_PrepareCompileCommands" />
+
         <Zig AccessControl="$(AccessControl)"
              BlockExtensions="$(BlockExtensions)"
+             CommandFragmentsDirectory="$(_CommandFragmentsPath)"
              CompilerMode="$(CompilerMode)"
              ConsumptionAnalysis="$(ConsumptionAnalysis)"
              Configuration="$(Configuration)"
@@ -65,5 +68,7 @@
              ToolExe="$(ZigExePath)"
              TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
              WarningLevel="$(WarningLevel)" />
+
+        <CallTarget Targets="_GatherCompileCommands" />
     </Target>
 </Project>

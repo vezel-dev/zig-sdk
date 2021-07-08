@@ -1,11 +1,7 @@
 <Project>
-    <!--
-    Ensure that we clean the Zig cache. This is particularly important since Zig
-    will not recompile files that have not changed, leading to situations where
-    warnings will be printed on a first build, but not on a second build.
-    -->
     <ItemGroup>
         <Clean Include="$(CachePath)/**" />
+        <Clean Include="$(_CommandFragmentsPath)/**" />
     </ItemGroup>
 
     <PropertyGroup>
