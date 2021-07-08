@@ -1,3 +1,38 @@
 <Project>
+    <PropertyGroup>
+        <_RealOrFanOutPublish>_InnerPublish</_RealOrFanOutPublish>
+        <_RealOrFanOutPublish Condition="'$(_RidFanOut)' == 'true'">_FanOutPublish</_RealOrFanOutPublish>
+    </PropertyGroup>
+
+    <Target Name="Publish"
+            DependsOnTargets="$(_RealOrFanOutPublish)"
+            Condition="'$(_InvalidConfigurationWarning)' != 'true'" />
+
+    <Target Name="_FanOutPublish">
+        <ItemGroup>
+            <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
+            <_InnerProjects Include="$(MSBuildProjectFullPath)"
+                            Properties="RuntimeIdentifier=%(_RuntimeIdentifiers.Identity)" />
+        </ItemGroup>
+
+        <MSBuild Projects="@(_InnerProjects)"
+                 Targets="_InnerPublish"
+                 BuildInParallel="$(BuildInParallel)" />
+    </Target>
+
+    <!--
+    Unfortunately, the publish logic in the .NET SDK is not factored as well as
+    the build and clean logic in MSBuild, so we have to duplicate some of the
+    logic in the default Publish target here.
+    -->
+    <Target Name="_InnerPublish"
+            DependsOnTargets="_PublishBuildAlternative; _PublishNoBuildAlternative">
+        <Message Text="$(MSBuildProjectName) -> $([System.IO.Path]::GetFullPath('$(PublishDir)'))"
+                 Importance="high" />
+
+        <AllowEmptyTelemetry EventName="PublishProperties"
+                             EventData="PublishReadyToRun=$(PublishReadyToRun); PublishTrimmed=$(PublishTrimmed); PublishSingleFile=$(PublishSingleFile)" />
+    </Target>
+
     <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/16 -->
 </Project>

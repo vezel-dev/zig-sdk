@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <_RealOrFanOutBuild>_InnerBuild</_RealOrFanOutBuild>
-        <_RealOrFanOutBuild Condition="'$(_BuildCleanFanOut)' == 'true'">_FanOutBuild</_RealOrFanOutBuild>
+        <_RealOrFanOutBuild Condition="'$(_RidFanOut)' == 'true'">_FanOutBuild</_RealOrFanOutBuild>
     </PropertyGroup>
 
     <Target Name="Build"
