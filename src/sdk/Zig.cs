@@ -205,6 +205,11 @@ namespace Zig.Tasks
             {
                 builder.AppendSwitchIfNotNull("-rpath ", "$ORIGIN");
 
+                // When building Zig code, the compiler links to libc statically
+                // by default. We do not want that behavior when building code
+                // that might be loaded in a .NET process.
+                builder.AppendSwitch("-lc");
+
                 if (_configuration == ZigConfiguration.Release)
                     builder.AppendSwitch($"-O Release{_releaseMode}");
 
