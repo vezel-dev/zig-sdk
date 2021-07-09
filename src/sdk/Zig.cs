@@ -263,7 +263,6 @@ namespace Zig.Tasks
                     builder.AppendSwitch("-fexceptions");
 
                 builder.AppendSwitch("-fno-strict-aliasing");
-                builder.AppendSwitch("-fno-strict-overflow");
 
                 if (FastMath)
                     builder.AppendSwitch("-ffast-math");
