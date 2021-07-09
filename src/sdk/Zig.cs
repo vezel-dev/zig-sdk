@@ -193,7 +193,9 @@ namespace Zig.Tasks
             {
                 builder.AppendSwitch(isZig ? "-dynamic" : "-shared");
                 builder.AppendSwitch("-fPIC");
-                builder.AppendSwitchIfNotNull(isZig ? "-fsoname=" : "-Wl,-soname,", TargetFileName);
+
+                if (!isZig)
+                    builder.AppendSwitchIfNotNull("-Wl,-soname,", TargetFileName);
             }
 
             if (isZig)
