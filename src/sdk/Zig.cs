@@ -194,20 +194,25 @@ namespace Zig.Tasks
             }
             else
             {
-                builder.AppendSwitch(isZig ? "-dynamic" : "-shared");
                 builder.AppendSwitch("-fPIC");
 
                 if (!isZig)
+                {
+                    builder.AppendSwitch("-shared");
                     builder.AppendSwitchIfNotNull("-Wl,-soname,", TargetFileName);
+                }
             }
 
             if (isZig)
             {
-                builder.AppendSwitchIfNotNull("-rpath ", "$ORIGIN");
+                // The compiler uses static linking by default when building Zig
+                // code. We want dynamic linking in all cases.
+                builder.AppendSwitch("-dynamic");
 
-                // When building Zig code, the compiler links to libc statically
-                // by default. We do not want that behavior when building code
-                // that might be loaded in a .NET process.
+                // When building Zig code, by default, the compiler links
+                // statically to a platform-appropriate libc. We absolutely do
+                // not want that behavior when building code that might be
+                // loaded in a .NET process.
                 builder.AppendSwitch("-lc");
 
                 if (_configuration == ZigConfiguration.Release)
@@ -218,8 +223,6 @@ namespace Zig.Tasks
             }
             else
             {
-                builder.AppendSwitchIfNotNull($"-Wl,-rpath,", "$ORIGIN");
-
                 // These exact flags are treated specially by zig cc/c++. They
                 // activate Debug, ReleaseFast, ReleaseSafe, and ReleaseSmall
                 // respectively. This in turns activates a bunch of other
@@ -525,6 +528,8 @@ namespace Zig.Tasks
             if (!isZig)
                 foreach (var prelude in PreludeHeaders)
                     builder.AppendSwitchIfNotNull("-include ", prelude);
+
+            builder.AppendSwitchIfNotNull(isZig ? "-rpath " : "-Wl,-rpath,", "$ORIGIN");
 
             // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/8
 
