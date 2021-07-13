@@ -11,7 +11,7 @@
             ZIG_MAJOR=$(ZigVersion.Split('.')[0]);
             ZIG_MINOR=$(ZigVersion.Split('.')[1]);
             ZIG_PATCH=$(ZigVersion.Split('.')[2]);
-            ZIG_VERSION="$(ZigVersion)"
+            ZIG_VERSION=\"$(ZigVersion)\"
         </DefineConstants>
     </PropertyGroup>
 
@@ -24,27 +24,27 @@
             ZIG_OS_$(TargetSystem.ToUpperInvariant());
             ZIG_ABI_$(TargetAbi.ToUpperInvariant());
             ZIG_LIB_$(TargetLibrary.ToUpperInvariant());
-            ZIG_RID="$(TargetRuntimeIdentifier.ToLowerInvariant())";
-            ZIG_CPU="$(TargetArchitecture.ToLowerInvariant())";
+            ZIG_RID=\"$(TargetRuntimeIdentifier.ToLowerInvariant())\";
+            ZIG_CPU=\"$(TargetArchitecture.ToLowerInvariant())\";
             ZIG_BIT=$(TargetBits);
-            ZIG_OS="$(TargetSystem.ToLowerInvariant())";
-            ZIG_ABI="$(TargetAbi.ToLowerInvariant())";
-            ZIG_LIB="$(TargetLibrary.ToLowerInvariant())"
+            ZIG_OS=\"$(TargetSystem.ToLowerInvariant())\";
+            ZIG_ABI=\"$(TargetAbi.ToLowerInvariant())\";
+            ZIG_LIB=\"$(TargetLibrary.ToLowerInvariant())\"
         </DefineConstants>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(PackageDefines)' == 'true'">
         <DefineConstants>
             $(DefineConstants);
-            ZIG_PKG_AUTHORS="$(Authors)";
-            ZIG_PKG_COPYRIGHT="$(Copyright)";
-            ZIG_PKG_DESCRIPTION="$(Description)";
-            ZIG_PKG_LICENSE="$(PackageLicenseExpression)";
-            ZIG_PKG_NAME="$(AssemblyName)";
-            ZIG_PKG_PRODUCT="$(Product)";
-            ZIG_PKG_REPOSITORY="$(RepositoryUrl)";
-            ZIG_PKG_VERSION="$(Version)";
-            ZIG_PKG_WEBSITE="$(PackageProjectUrl)"
+            ZIG_PKG_AUTHORS=\"$(Authors)\";
+            ZIG_PKG_COPYRIGHT=\"$(Copyright)\";
+            ZIG_PKG_DESCRIPTION=\"$(Description)\";
+            ZIG_PKG_LICENSE=\"$(PackageLicenseExpression)\";
+            ZIG_PKG_NAME=\"$(AssemblyName)\";
+            ZIG_PKG_PRODUCT=\"$(Product)\";
+            ZIG_PKG_REPOSITORY=\"$(RepositoryUrl)\";
+            ZIG_PKG_VERSION=\"$(Version)\";
+            ZIG_PKG_WEBSITE=\"$(PackageProjectUrl)\"
         </DefineConstants>
     </PropertyGroup>
 </Project>
