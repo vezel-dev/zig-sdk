@@ -505,8 +505,10 @@ namespace Zig.Tasks
             {
                 var trimmed = define.Trim();
 
-                if (!string.IsNullOrEmpty(trimmed))
-                    builder.AppendSwitch($"-D{trimmed}");
+                if (string.IsNullOrEmpty(trimmed))
+                    continue;
+
+                builder.AppendSwitchIfNotNull("-D ", trimmed);
             }
 
             builder.AppendSwitchIfNotNull("-I ", PublicIncludeDirectory);
