@@ -2,5 +2,5 @@
 
 int main()
 {
-    std::cout << "Hello World" << std::endl;
+    std::cout << "Hello World: " << ZIG_VERSION << std::endl;
 }
