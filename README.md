@@ -213,11 +213,14 @@ as sensible for historical reasons.
   These macros are passed to the compiler with the `-D` flag. Note that this
   applies to Zig as well, not just C/C++.
 * `CompilerDefines` (`true`, `false`): Enable/disable adding some implicit
-  `DefineConstants` macros that describe the Zig compiler version.
+  `DefineConstants` macros that describe the Zig compiler version. Defaults to
+  `true`.
 * `PlatformDefines` (`true`, `false`): Enable/disable adding some implicit
   `DefineConstants` macros that describe the target platform characteristics.
+  Defaults to `true`.
 * `PackageDefines` (`true`, `false`): Enable/disable adding some implicit
-  `DefineConstants` macros that describe the project being built.
+  `DefineConstants` macros that describe the project being built. Defaults to
+  `true`.
 
 #### Language Features
 
