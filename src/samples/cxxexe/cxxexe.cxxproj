@@ -1,5 +1,9 @@
 <Project Sdk="Zig.Sdk">
     <PropertyGroup>
+        <Authors>Alex Rønne Petersen</Authors>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <OutputType>Exe</OutputType>
     </PropertyGroup>
 </Project>
