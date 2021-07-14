@@ -60,7 +60,7 @@ This package contains the main SDK used to build Zig, C, and C++ projects.
         <add key="globalPackagesFolder" value="$(PackageRestorePath)" />
     </config>
     <packageSources>
-        <add key="foo-sdk" value="$(PackageOutputPath)" />
+        <add key="zig-msbuild-sdk" value="$(PackageOutputPath)" />
     </packageSources>
 </configuration>
                 ]]>
