@@ -519,6 +519,7 @@ namespace Zig.Tasks
                 builder.AppendSwitchIfNotNull("-D ", trimmed);
             }
 
+            builder.AppendSwitchIfNotNull("-I ", GetWorkingDirectory() ?? ".");
             builder.AppendSwitchIfNotNull("-I ", PublicIncludeDirectory);
 
             foreach (var include in IncludeDirectories)
