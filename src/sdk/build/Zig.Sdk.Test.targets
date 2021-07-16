@@ -44,7 +44,7 @@
              TagAnalysis="$(TagAnalysis)"
              TargetFileName="$(TargetFileName)"
              TargetRuntimeIdentifier="$(TargetRuntimeIdentifier)"
-             TargetTriple="$(TargetTriple)"
+             TargetTriple="$(FullTargetTriple)"
              TestFilter="$(VSTestTestCaseFilter)"
              ThreadingAnalysis="$(ThreadingAnalysis)"
              ToolExe="$(ZigExePath)"

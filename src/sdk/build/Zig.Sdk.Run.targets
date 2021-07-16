@@ -17,7 +17,7 @@
     <Target Name="_UnableToRun">
         <Error Text="A project with output type '$(OutputType)' cannot be executed"
                Condition="'$(OutputType)' != 'Exe'" />
-        <Error Text="A suitable binary emulator is not available for '$(HostTriple)' -> '$(TargetTriple)'"
+        <Error Text="A suitable binary emulator is not available for '$(HostRuntimeIdentifier)' -> '$(TargetRuntimeIdentifier)'"
                Condition="'$(EmulatorCommand)' == ''" />
     </Target>
 </Project>
