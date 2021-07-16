@@ -46,6 +46,7 @@
         <NullabilityAnalysis Condition="'$(NullabilityAnalysis)' == ''">true</NullabilityAnalysis>
         <TagAnalysis Condition="'$(TagAnalysis)' == ''">true</TagAnalysis>
         <ThreadingAnalysis Condition="'$(ThreadingAnalysis)' == ''">true</ThreadingAnalysis>
+        <TrustAnalysis Condition="'$(TrustAnalysis)' == ''">true</TrustAnalysis>
         <WarningLevel Condition="'$(WarningLevel)' == ''">3</WarningLevel>
     </PropertyGroup>
 
