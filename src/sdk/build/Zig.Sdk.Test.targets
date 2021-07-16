@@ -12,7 +12,7 @@
             Condition="'$(CompilerMode)' == 'Zig' and '$(IsTestable)' == 'true'">
         <Message Text="Running tests natively..."
                  Importance="high"
-                 Condition="'$(EmulatorCommand)' == ''" />
+                 Condition="'$(IsCrossExecuting)' == 'false'" />
 
         <Zig AccessControl="$(AccessControl)"
              BlockExtensions="$(BlockExtensions)"
@@ -39,8 +39,6 @@
              ReleaseMode="$(ReleaseMode)"
              Sanitizers="$(Sanitizers)"
              Sources="@(Compile)"
-             StandardErrorImportance="high"
-             StandardOutputImportance="high"
              SymbolExports="$(SymbolExports)"
              SymbolVisibility="$(SymbolVisibility)"
              TagAnalysis="$(TagAnalysis)"
@@ -59,5 +57,9 @@
 
         <Exec Command="$(EmulatorCommand) $(EmulatorArgumentPrefix)&quot;@(TestAssembly)&quot;$(EmulatorArgumentSuffix) &quot;$(ZigExePath)&quot;"
               Condition="'$(EmulatorCommand)' != ''" />
+
+        <Message Text="A suitable binary emulator is not available for '$(HostRuntimeIdentifier)' -> '$(TargetRuntimeIdentifier)'"
+                 Importance="high"
+                 Condition="'$(IsCrossExecuting)' == 'true' and '$(EmulatorCommand)' == ''" />
     </Target>
 </Project>
