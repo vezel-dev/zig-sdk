@@ -49,6 +49,7 @@
              ThreadingAnalysis="$(ThreadingAnalysis)"
              ToolExe="$(ZigExePath)"
              TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+             TrustAnalysis="$(TrustAnalysis)"
              WarningLevel="$(WarningLevel)" />
 
         <Message Text="Running tests with binary emulator '$(EmulatorName)'..."

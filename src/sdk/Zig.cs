@@ -135,6 +135,9 @@ namespace Zig.Tasks
         public bool TreatWarningsAsErrors { get; set; }
 
         [Required]
+        public bool TrustAnalysis { get; set; }
+
+        [Required]
         public int WarningLevel { get; set; }
 
         protected override string ToolName =>
@@ -307,6 +310,8 @@ namespace Zig.Tasks
                     else if (trimmed.StartsWith("nullability", Comparison) ||
                         trimmed.StartsWith("nullable", Comparison))
                         property = nameof(NullabilityAnalysis);
+                    else if (trimmed.StartsWith("tcb-enforcement", Comparison))
+                        property = nameof(TrustAnalysis);
                     else if (trimmed.StartsWith("type-safety", Comparison))
                         property = nameof(TagAnalysis);
                     else if (trimmed.StartsWith("thread-safety", Comparison))
@@ -468,6 +473,9 @@ namespace Zig.Tasks
                     builder.AppendSwitch("-Wthread-safety");
                     builder.AppendSwitch("-Wthread-safety-negative");
                 }
+
+                if (!TrustAnalysis)
+                    builder.AppendSwitch("-Wno-tcb-enforcement");
 
                 if (Deterministic)
                 {

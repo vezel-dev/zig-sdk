@@ -261,6 +261,9 @@ as sensible for historical reasons.
 * `ThreadingAnalysis` (`true`, `false`): Enable/disable static analysis with
   [thread safety annotations](https://clang.llvm.org/docs/ThreadSafetyAnalysis.html)
   in C/C++ projects. Defaults to `true`.
+* `TrustAnalysis` (`true`, `false`): Enable/disable static analysis with
+  [trusted computing base annotations](https://clang.llvm.org/docs/AttributeReference.html#enforce-tcb)
+  in C/C++ projects. Defaults to `true`.
 * `WarningLevel` (`0`-`4`): How aggressively the compiler should analyze C/C++
   projects for potentially problematic code. `0` disables warnings completely;
   `4` enables all warnings, including a few controversial ones. Defaults to `3`.

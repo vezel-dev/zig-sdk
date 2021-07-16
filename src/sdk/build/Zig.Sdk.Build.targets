@@ -67,6 +67,7 @@
              ThreadingAnalysis="$(ThreadingAnalysis)"
              ToolExe="$(ZigExePath)"
              TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+             TrustAnalysis="$(TrustAnalysis)"
              WarningLevel="$(WarningLevel)" />
 
         <CallTarget Targets="_GatherCompileCommands" />
