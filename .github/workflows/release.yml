@@ -37,4 +37,4 @@ jobs:
                   dotnet build --no-restore
             - name: Upload NuGet packages
               run: |
-                  dotnet nuget push pkg/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+                  dotnet nuget push pkg/feed/*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json

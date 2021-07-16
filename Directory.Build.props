@@ -25,8 +25,8 @@
         <Nullable>enable</Nullable>
         <PackageIcon>zig.png</PackageIcon>
         <PackageLicenseExpression>ISC</PackageLicenseExpression>
-        <PackageOutputPath>$(MSBuildThisFileDirectory)pkg/</PackageOutputPath>
-        <PackageRestorePath>$(PackageOutputPath)cache/</PackageRestorePath>
+        <PackageOutputPath>$(MSBuildThisFileDirectory)pkg/feed/</PackageOutputPath>
+        <PackageRestorePath>$(MSBuildThisFileDirectory)pkg/cache/</PackageRestorePath>
         <PackageProjectUrl>https://ziglang.org</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
