@@ -20,10 +20,19 @@
         <TargetBits Condition="$(TargetArchitecture.EndsWith('64'))">64</TargetBits>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <TargetSystem Condition="$(TargetRuntimeIdentifier.StartsWith('linux-'))">linux</TargetSystem>
-        <TargetSystem Condition="$(TargetRuntimeIdentifier.StartsWith('osx-'))">macos</TargetSystem>
-        <TargetSystem Condition="$(TargetRuntimeIdentifier.StartsWith('win-'))">windows</TargetSystem>
+    <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('linux-'))">
+        <TargetSystem>linux</TargetSystem>
+        <TargetSystemVersion>3.10</TargetSystemVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('osx-'))">
+        <TargetSystem>macos</TargetSystem>
+        <TargetSystemVersion>10.14</TargetSystemVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('win-'))">
+        <TargetSystem>windows</TargetSystem>
+        <TargetSystemVersion>win7</TargetSystemVersion>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -37,10 +46,14 @@
         <TargetLibrary Condition="'$(TargetSystem)' == 'macos'">libsystem</TargetLibrary>
         <TargetLibrary Condition="'$(TargetSystem)' == 'windows'">msvcrt</TargetLibrary>
         <TargetLibrary Condition="$(TargetAbi.StartsWith('musl'))">musl</TargetLibrary>
+        <TargetLibraryVersion Condition="'$(TargetLibrary)' == 'glibc'">2.17</TargetLibraryVersion>
     </PropertyGroup>
 
     <PropertyGroup>
+        <_TargetSystemSuffix Condition="'$(TargetSystemVersion)' != ''">.$(TargetSystemVersion)</_TargetSystemSuffix>
+        <_TargetLibrarySuffix Condition="'$(TargetLibraryVersion)' != ''">.$(TargetLibraryVersion)</_TargetLibrarySuffix>
         <TargetTriple>$(TargetArchitecture)-$(TargetSystem)-$(TargetAbi)</TargetTriple>
+        <FullTargetTriple>$(TargetArchitecture)-$(TargetSystem)$(_TargetSystemSuffix)-$(TargetAbi)$(_TargetLibrarySuffix)</FullTargetTriple>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetSystem)' == 'linux'">
