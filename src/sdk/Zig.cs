@@ -457,10 +457,7 @@ namespace Zig.Tasks
                     builder.AppendSwitch("-Wno-type-safety");
 
                 if (ThreadingAnalysis)
-                {
                     builder.AppendSwitch("-Wthread-safety");
-                    builder.AppendSwitch("-Wthread-safety-negative");
-                }
 
                 if (Deterministic)
                 {
