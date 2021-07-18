@@ -503,8 +503,8 @@ namespace Zig.Tasks
                 }
             }
 
-            if (_configuration != ZigConfiguration.Debug)
-                builder.AppendSwitch("-flto");
+            // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/33
+            builder.AppendSwitch("-fno-lto");
 
             foreach (var define in (DefineConstants ?? string.Empty).Split(new[] { ';' }, SplitOptions))
             {
