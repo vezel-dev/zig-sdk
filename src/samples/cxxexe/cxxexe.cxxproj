@@ -1,6 +1,7 @@
 <Project Sdk="Zig.Sdk">
     <PropertyGroup>
         <Authors>alexrp</Authors>
+        <Deterministic>false</Deterministic>
     </PropertyGroup>
 
     <PropertyGroup>
