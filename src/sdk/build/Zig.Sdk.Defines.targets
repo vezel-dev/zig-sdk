@@ -33,6 +33,16 @@
         </DefineConstants>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(ConfigurationDefines)' == 'true'">
+        <_BuildMode>$(Configuration)</_BuildMode>
+        <_BuildMode Condition="'$(Configuration)' == 'Release'">$(_BuildMode)$(ReleaseMode)</_BuildMode>
+        <DefineConstants>
+            $(DefineConstants);
+            ZIG_MODE_$(_BuildMode.ToUpperInvariant());
+            ZIG_MODE="$(_BuildMode)"
+        </DefineConstants>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(PackageDefines)' == 'true'">
         <DefineConstants>
             $(DefineConstants);

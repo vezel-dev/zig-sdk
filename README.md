@@ -218,6 +218,9 @@ as sensible for historical reasons.
 * `PlatformDefines` (`true`, `false`): Enable/disable adding some implicit
   `DefineConstants` macros that describe the target platform characteristics.
   Defaults to `true`.
+* `ConfigurationDefines` (`true`, `false`): Enable/disable adding some implicit
+  `DefineConstants` macros that describe the build configuration (`Debug`,
+  `ReleaseFast`, etc). Defaults to `true`.
 * `PackageDefines` (`true`, `false`): Enable/disable adding some implicit
   `DefineConstants` macros that describe the project being built. Defaults to
   `true`.
