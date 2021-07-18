@@ -67,6 +67,7 @@
             linux-musl-arm64;
             linux-musl-x64;
             osx-x64;
+            win-x86;
             win-x64
         </RuntimeIdentifiers>
         <UseEmulator Condition="'$(UseEmulator)' == ''">true</UseEmulator>
