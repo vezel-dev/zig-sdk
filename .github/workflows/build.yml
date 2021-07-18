@@ -56,10 +56,10 @@ jobs:
                   dotnet test src/samples --no-restore
             - name: Pack samples
               run: |
-                  dotnet pack src/samples
+                  dotnet pack src/samples --no-build
             - name: Publish samples
               run: |
-                  dotnet publish src/samples
+                  dotnet publish src/samples --no-build
             - name: Clean samples
               run: |
                   dotnet clean src/samples
