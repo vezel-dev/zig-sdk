@@ -1,4 +1,8 @@
 <Project Sdk="Zig.Sdk">
+    <PropertyGroup>
+        <DisableWarnings>parentheses</DisableWarnings>
+    </PropertyGroup>
+
     <ItemGroup>
         <IncludeDirectory Include="include" />
     </ItemGroup>
