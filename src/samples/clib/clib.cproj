@@ -1,6 +1,9 @@
 <Project Sdk="Zig.Sdk">
     <PropertyGroup>
-        <DisableWarnings>parentheses</DisableWarnings>
+        <DisableWarnings>
+            $(DisableWarnings);
+            parentheses
+        </DisableWarnings>
     </PropertyGroup>
 
     <ItemGroup>

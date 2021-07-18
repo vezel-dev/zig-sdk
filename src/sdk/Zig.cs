@@ -273,59 +273,61 @@ namespace Zig.Tasks
                 if (TreatWarningsAsErrors)
                     builder.AppendSwitch("-Werror");
 
-                var disabledWarnings = (DisableWarnings ?? string.Empty).Split(new[] { ';' }, SplitOptions).Where(w =>
-                {
-                    var trimmed = w.Trim();
-
-                    if (string.IsNullOrEmpty(trimmed))
-                        return false;
-
-                    if (trimmed.StartsWith("no-", Comparison))
+                var disabledWarnings = (DisableWarnings ?? string.Empty)
+                    .Split(new[] { ';' }, SplitOptions)
+                    .Select(w => w.Trim())
+                    .Where(w =>
                     {
-                        Log.LogWarning("The 'no-' prefix on warning '{0}' is invalid",
-                            trimmed.Substring(3));
-                        return false;
-                    }
+                        if (string.IsNullOrEmpty(w))
+                            return false;
 
-                    if (trimmed.StartsWith("error=", Comparison))
-                    {
-                        Log.LogWarning("Changing specific warning '{0}' to error is not supported",
-                            trimmed.Substring(6));
-                        return false;
-                    }
+                        if (w.StartsWith("no-", Comparison))
+                        {
+                            Log.LogWarning("The 'no-' prefix on warning '{0}' is invalid",
+                                w.Substring(3));
+                            return false;
+                        }
 
-                    if (trimmed == "error")
-                    {
-                        Log.LogWarning("Changing all warnings to errors should be done with '{0}'",
-                            nameof(TreatWarningsAsErrors));
-                        return false;
-                    }
+                        if (w.StartsWith("error=", Comparison))
+                        {
+                            Log.LogWarning("Changing specific warning '{0}' to error is not supported",
+                                w.Substring(6));
+                            return false;
+                        }
 
-                    string? property = null;
+                        if (w == "error")
+                        {
+                            Log.LogWarning("Changing all warnings to errors should be done with '{0}'",
+                                nameof(TreatWarningsAsErrors));
+                            return false;
+                        }
 
-                    if (trimmed.StartsWith("consumed", Comparison))
-                        property = nameof(ConsumptionAnalysis);
-                    else if (trimmed.StartsWith("documentation", Comparison))
-                        property = nameof(DocumentationAnalysis);
-                    else if (trimmed.StartsWith("nullability", Comparison) ||
-                        trimmed.StartsWith("nullable", Comparison))
-                        property = nameof(NullabilityAnalysis);
-                    else if (trimmed.StartsWith("tcb-enforcement", Comparison))
-                        property = nameof(TrustAnalysis);
-                    else if (trimmed.StartsWith("type-safety", Comparison))
-                        property = nameof(TagAnalysis);
-                    else if (trimmed.StartsWith("thread-safety", Comparison))
-                        property = nameof(ThreadingAnalysis);
+                        string? property = null;
 
-                    if (property != null)
-                    {
-                        Log.LogWarning("The '{0}' warning is controlled by '{1}'",
-                            trimmed, property);
-                        return false;
-                    }
+                        if (w.StartsWith("consumed", Comparison))
+                            property = nameof(ConsumptionAnalysis);
+                        else if (w.StartsWith("documentation", Comparison))
+                            property = nameof(DocumentationAnalysis);
+                        else if (w.StartsWith("nullability", Comparison) ||
+                            w.StartsWith("nullable", Comparison))
+                            property = nameof(NullabilityAnalysis);
+                        else if (w.StartsWith("tcb-enforcement", Comparison))
+                            property = nameof(TrustAnalysis);
+                        else if (w.StartsWith("type-safety", Comparison))
+                            property = nameof(TagAnalysis);
+                        else if (w.StartsWith("thread-safety", Comparison))
+                            property = nameof(ThreadingAnalysis);
 
-                    return true;
-                }).ToHashSet();
+                        if (property != null)
+                        {
+                            Log.LogWarning("The '{0}' warning is controlled by '{1}'",
+                                w, property);
+                            return false;
+                        }
+
+                        return true;
+                    })
+                    .ToHashSet();
 
                 void TryAppendWarningSwitch(string name)
                 {
