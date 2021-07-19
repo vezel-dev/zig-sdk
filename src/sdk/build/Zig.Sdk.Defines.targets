@@ -35,11 +35,11 @@
 
     <PropertyGroup Condition="'$(ConfigurationDefines)' == 'true'">
         <_BuildMode>$(Configuration)</_BuildMode>
-        <_BuildMode Condition="'$(Configuration)' == 'Release'">$(_BuildMode)$(ReleaseMode)</_BuildMode>
+        <_BuildMode Condition="'$(Configuration)' == 'Release'">$(_BuildMode)_$(ReleaseMode)</_BuildMode>
         <DefineConstants>
             $(DefineConstants);
             ZIG_MODE_$(_BuildMode.ToUpperInvariant());
-            ZIG_MODE="$(_BuildMode)"
+            ZIG_MODE="$(_BuildMode.Replace('_', ''))"
         </DefineConstants>
     </PropertyGroup>
 
