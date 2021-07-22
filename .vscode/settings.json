@@ -2,10 +2,10 @@
   "files.exclude": {
     "**/.idea": true,
     "**/.vs": true,
+    "pkg/cache/*[!_._]": true,
+    "pkg/feed/*.nupkg": true,
     "src/samples/global.json": true,
-    "src/samples/nuget.config": true,
     "**/bin": true,
-    "**/obj": true,
-    "**/pkg": true
+    "**/obj": true
   }
 }

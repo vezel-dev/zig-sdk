@@ -1,8 +1,8 @@
 .idea
 .vs
 *.user
+/pkg/cache/*/*
+/pkg/feed/*.nupkg
 /src/samples/global.json
-/src/samples/nuget.config
 bin
 obj
-pkg

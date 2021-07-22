@@ -35,10 +35,10 @@ This package contains the main SDK used to build Zig, C, and C++ projects.
     </ItemGroup>
 
     <!--
-    This target writes some shared files into src/samples which ensure that all
-    the sample projects will use the SDK package we just built.
+    This target writes a global.json into src/samples which ensures that all the
+    sample projects will use the SDK package version we just built.
     -->
-    <Target Name="_WriteSharedFiles"
+    <Target Name="_WriteGlobalJson"
             DependsOnTargets="GetBuildVersion"
             AfterTargets="Build">
         <PropertyGroup>
@@ -53,42 +53,11 @@ This package contains the main SDK used to build Zig, C, and C++ projects.
 }
                 ]]>
             </_GlobalJson>
-            <_NuGetConfig>
-                <![CDATA[
-<configuration>
-    <config>
-        <add key="globalPackagesFolder" value="$(PackageRestorePath)" />
-    </config>
-    <packageSources>
-        <add key="zig-msbuild-sdk" value="$(PackageOutputPath)" />
-    </packageSources>
-</configuration>
-                ]]>
-            </_NuGetConfig>
         </PropertyGroup>
 
         <WriteLinesToFile File="../samples/global.json"
                           Lines="$(_GlobalJson)"
                           Overwrite="true"
                           WriteOnlyWhenDifferent="true" />
-        <WriteLinesToFile File="../samples/nuget.config"
-                          Lines="$(_NuGetConfig)"
-                          Overwrite="true"
-                          WriteOnlyWhenDifferent="true" />
-    </Target>
-
-    <!--
-    This target removes the restored SDK package used by the sample project,
-    thus ensuring that NuGet will not use a stale package because the version
-    did not change.
-    -->
-    <Target Name="_ClearPackageCache"
-            AfterTargets="Build">
-        <PropertyGroup>
-            <_PackageDirectory>$(PackageRestorePath)$(PackageId.ToLowerInvariant())</_PackageDirectory>
-        </PropertyGroup>
-
-        <RemoveDir Directories="$(_PackageDirectory)"
-                   Condition="Exists('$(_PackageDirectory)')" />
     </Target>
 </Project>

@@ -19,4 +19,19 @@
             <PackageReleaseNotes>https://github.com/alexrp/zig-msbuild-sdk/releases/tag/v$(Version)</PackageReleaseNotes>
         </PropertyGroup>
     </Target>
+
+    <!--
+    This target removes the restored packages used by the sample projects, thus
+    ensuring that NuGet will not use stale packages because the version did not
+    change.
+    -->
+    <Target Name="_ClearPackageCache"
+            AfterTargets="Build"
+            Condition="'$(IsPackable)' == 'true'">
+        <ItemGroup>
+            <_CachedFiles Include="$(NuGetPackageRoot)$(PackageId.ToLowerInvariant())/**" />
+        </ItemGroup>
+
+        <Delete Files="@(_CachedFiles)" />
+    </Target>
 </Project>
