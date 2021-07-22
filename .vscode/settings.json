@@ -3,6 +3,7 @@
     "**/.idea": true,
     "**/.vs": true,
     "src/samples/global.json": true,
+    "src/samples/nuget.config": true,
     "**/bin": true,
     "**/obj": true,
     "**/pkg": true
