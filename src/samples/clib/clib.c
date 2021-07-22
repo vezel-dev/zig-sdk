@@ -1,5 +1,15 @@
 #include "clib.h"
 
+typedef struct
+{
+    int y;
+} test1;
+
+typedef struct
+{
+    test1;
+} test2;
+
 int x;
 
 __attribute__((visibility("default")))

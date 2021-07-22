@@ -4,6 +4,8 @@
             $(DisableWarnings);
             parentheses
         </DisableWarnings>
+        <MicrosoftExtensions>true</MicrosoftExtensions>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 
     <ItemGroup>

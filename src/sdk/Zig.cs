@@ -249,7 +249,12 @@ namespace Zig.Tasks
                     builder.AppendSwitch("-fblocks");
 
                 if (MicrosoftExtensions)
+                {
                     builder.AppendSwitch("-fms-extensions");
+
+                    builder.AppendSwitch("-Wno-microsoft-anon-tag");
+                    builder.AppendSwitch("-Wno-microsoft-union-member-reference");
+                }
 
                 if (isCxx)
                 {
@@ -308,6 +313,8 @@ namespace Zig.Tasks
                             property = nameof(ConsumptionAnalysis);
                         else if (w.StartsWith("documentation", Comparison))
                             property = nameof(DocumentationAnalysis);
+                        else if (w.StartsWith("microsoft", Comparison))
+                            property = nameof(MicrosoftExtensions);
                         else if (w.StartsWith("nullability", Comparison) ||
                             w.StartsWith("nullable", Comparison))
                             property = nameof(NullabilityAnalysis);
