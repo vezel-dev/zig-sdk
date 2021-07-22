@@ -483,6 +483,7 @@ namespace Zig.Tasks
                 if (!TrustAnalysis)
                     builder.AppendSwitch("-Wno-tcb-enforcement");
 
+                // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/38
                 if (Deterministic)
                 {
                     builder.AppendSwitch("-Werror=date-time");
