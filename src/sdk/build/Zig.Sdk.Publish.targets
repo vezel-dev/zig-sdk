@@ -21,9 +21,9 @@
     </Target>
 
     <!--
-    Unfortunately, the publish logic in the .NET SDK is not factored as well as
-    the build and clean logic in MSBuild, so we have to duplicate some of the
-    logic in the default Publish target here.
+    Unfortunately, the publish logic in Microsoft.NET.Sdk is not factored as
+    well as the build and clean logic in MSBuild, so we have to duplicate some
+    of the logic in the default Publish target here.
     -->
     <Target Name="_InnerPublish"
             DependsOnTargets="_PublishBuildAlternative; _PublishNoBuildAlternative">
