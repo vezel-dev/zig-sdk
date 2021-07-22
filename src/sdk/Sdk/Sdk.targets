@@ -8,6 +8,7 @@
 
     <Import Project="../build/Zig.Sdk.Overrides.targets" />
     <Import Project="../build/Zig.Sdk.Cross.targets" />
+    <Import Project="../build/Zig.Sdk.Symbols.targets" />
     <Import Project="Sdk.targets"
             Sdk="Microsoft.NET.Sdk" />
     <Import Project="../build/Zig.Sdk.Hacks.targets" />

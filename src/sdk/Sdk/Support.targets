@@ -1,6 +1,6 @@
 <Project>
     <!--
-    This file is meant to be imported in regular .NET SDK projects. It injects
-    some build logic to make ZigReference items work as expected.
+    This file is meant to be imported in regular Microsoft.NET.Sdk projects. It
+    injects some build logic to make ZigReference items work as expected.
     -->
 </Project>

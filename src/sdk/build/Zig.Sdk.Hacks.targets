@@ -1,7 +1,7 @@
 <Project>
     <!--
-    The .NET SDK unconditionally sets TargetExt to force a .dll suffix. We work
-    around that nonsense here.
+    Microsoft.NET.Sdk unconditionally sets TargetExt to force a .dll suffix. We
+    work around that nonsense here.
     -->
     <PropertyGroup>
         <TargetExt>$(TargetSuffix)</TargetExt>

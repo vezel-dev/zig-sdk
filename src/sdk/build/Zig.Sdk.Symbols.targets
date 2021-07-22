@@ -1,0 +1,17 @@
+<Project>
+    <!--
+    We need to set these properties up here since Microsoft.NET.Sdk defaults
+    them very early and sets _DebugSymbolsProduced to indicate whether a
+    separate PDB file is produced.
+    -->
+
+    <PropertyGroup Condition="'$(DebugSymbols)' == ''">
+        <DebugSymbols>false</DebugSymbols>
+        <DebugSymbols Condition="'$(Configuration)' == 'Debug'">true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(DebugSymbols)' == 'true'">
+        <DebugType>embedded</DebugType>
+        <DebugType Condition="'$(TargetSystem)' == 'windows'">full</DebugType>
+    </PropertyGroup>
+</Project>

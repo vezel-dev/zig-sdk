@@ -4,8 +4,8 @@
     </ItemGroup>
 
     <!--
-    Most of the test logic in the .NET SDK is superfluous for our purposes, so
-    we will just override the target entirely.
+    Most of the test logic in Microsoft.NET.Sdk is superfluous for our purposes,
+    so we will just override the target entirely.
     -->
     <Target Name="VSTest"
             DependsOnTargets="$(VSTestDependsOn)"
