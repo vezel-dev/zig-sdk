@@ -234,18 +234,18 @@ as sensible for historical reasons.
   version that `ZigVersion` defaults to.
 * `AccessControl` (`true`, `false`): Enable/disable access control in C++
   projects. Defaults to `true`.
-* `BlockExtensions` (`true`, `false`): Enables/disables Clang's block language
+* `BlockExtensions` (`true`, `false`): Enable/disable Clang's block language
   extensions. Defaults to `false`.
-* `CxxExceptions` (`true`, `false`): Enables/disables C++ exceptions. In C
+* `CxxExceptions` (`true`, `false`): Enable/disable C++ exceptions. In C
   projects, this controls whether the C code will be unwindable by C++
   exceptions. Defaults to `true`.
-* `CxxReflection` (`true`, `false`): Enables/disables generating C++ run-time
-  type information. This feature is required for some uses of `dynamic_cast`.
+* `CxxReflection` (`true`, `false`): Enable/disable generating C++ run-time type
+  information. This feature is required for some uses of `dynamic_cast`.
   Defaults to `true`.
-* `MicrosoftExtensions` (`true`, `false`): Enables/disables a variety of
+* `MicrosoftExtensions` (`true`, `false`): Enable/disable a variety of
   Microsoft C/C++ extensions. Defaults to `false`, but note that the compiler
-  itself always enables this when targeting Windows as Windows headers require
-  it.
+  itself always enables some parts of this when targeting Windows as Windows
+  headers require it.
 
 #### Static Analysis
 
@@ -281,9 +281,13 @@ as sensible for historical reasons.
 * `Configuration` (`Debug`, `Release`): Specifies the overarching configuration.
   When `Release` is specified, `ReleaseMode` comes into effect. Defaults to
   `Debug`. Usually specified by the user as e.g. `dotnet build -c Release`.
-* `FastMath` (`true`, `false`): Enables/disables certain lossy floating point
+* `FastMath` (`true`, `false`): Enable/disable certain lossy floating point
   optimizations that may not be standards-compliant. Defaults to `false`.
-* `DebugSymbols` (`true`, `false`): Enables/disables emitting debug symbols.
+* `LinkTimeOptimization` (`true`, `false`): Enable/disable link-time
+  optimization when `Configuration` is set to `Release`. Note that link-time
+  optimization is known not to work well on some targets and so should be used
+  selectively. Defaults to `false`.
+* `DebugSymbols` (`true`, `false`): Enable/disable emitting debug symbols.
   Defaults to `true` if `Configuration` is `Debug`; otherwise, `false`.
 * `ReleaseMode` (`Fast`, `Safe`, `Small`): The
   [build mode](https://ziglang.org/documentation/master/#Build-Mode) to use when
