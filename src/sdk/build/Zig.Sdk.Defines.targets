@@ -40,8 +40,8 @@
         <_BuildMode Condition="'$(Configuration)' == 'Release'">$(_BuildMode)_$(ReleaseMode)</_BuildMode>
         <DefineConstants>
             $(DefineConstants);
-            ZIG_MODE_$(_BuildMode.ToUpperInvariant());
-            ZIG_MODE="$(_BuildMode.Replace('_', ''))"
+            ZIG_CFG_$(_BuildMode.ToUpperInvariant());
+            ZIG_CFG="$(_BuildMode.Replace('_', ''))"
         </DefineConstants>
     </PropertyGroup>
 
