@@ -30,6 +30,7 @@
              FastMath="$(FastMath)"
              IncludeDirectories="@(IncludeDirectory)"
              LanguageStandard="$(LanguageStandard)"
+             LinkTimeOptimization="$(LinkTimeOptimization)"
              MicrosoftExtensions="$(MicrosoftExtensions)"
              NullabilityAnalysis="$(NullabilityAnalysis)"
              OutputBinary="@(TestAssembly)"

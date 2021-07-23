@@ -67,6 +67,9 @@ namespace Zig.Tasks
         public string LanguageStandard { get; set; } = null!;
 
         [Required]
+        public bool LinkTimeOptimization { get; set; }
+
+        [Required]
         public bool MicrosoftExtensions { get; set; }
 
         [Required]
@@ -506,8 +509,8 @@ namespace Zig.Tasks
                 }
             }
 
-            // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/33
-            builder.AppendSwitch("-fno-lto");
+            if (!LinkTimeOptimization)
+                builder.AppendSwitch("-fno-lto");
 
             foreach (var define in (DefineConstants ?? string.Empty).Split(new[] { ';' }, SplitOptions))
             {

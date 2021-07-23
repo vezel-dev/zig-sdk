@@ -52,6 +52,8 @@
 
     <PropertyGroup>
         <FastMath Condition="'$(FastMath)' == ''">false</FastMath>
+        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/33 -->
+        <LinkTimeOptimization Condition="'$(LinkTimeOptimization)' == ''">false</LinkTimeOptimization>
         <ReleaseMode Condition="'$(ReleaseMode)' == ''">Fast</ReleaseMode>
         <SymbolExports Condition="'$(SymbolExports)' == ''">Used</SymbolExports>
         <SymbolVisibility Condition="'$(SymbolVisibility)' == ''">Default</SymbolVisibility>
