@@ -5,13 +5,9 @@
     separate PDB file is produced.
     -->
 
-    <PropertyGroup Condition="'$(DebugSymbols)' == ''">
-        <DebugSymbols>false</DebugSymbols>
-        <DebugSymbols Condition="'$(Configuration)' == 'Debug'">true</DebugSymbols>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(DebugSymbols)' == 'true'">
+    <PropertyGroup>
         <DebugType>embedded</DebugType>
         <DebugType Condition="'$(TargetSystem)' == 'windows'">full</DebugType>
+        <DebugType Condition="'$(DebugSymbols)' == 'false'">none</DebugType>
     </PropertyGroup>
 </Project>
