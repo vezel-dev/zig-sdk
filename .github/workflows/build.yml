@@ -71,10 +71,10 @@ jobs:
                   dotnet test src/samples -c ${{ matrix.cfg }} --no-restore -p:ReleaseMode=${{ matrix.mode }}
             - name: Pack samples
               run: |
-                  dotnet pack src/samples -c ${{ matrix.cfg }}
+                  dotnet pack src/samples -c ${{ matrix.cfg }} --no-build
             - name: Publish samples
               run: |
-                  dotnet publish src/samples -c ${{ matrix.cfg }}
+                  dotnet publish src/samples -c ${{ matrix.cfg }} --no-build
             - name: Clean samples
               run: |
                   dotnet clean src/samples -c ${{ matrix.cfg }}
