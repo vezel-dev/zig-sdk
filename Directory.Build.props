@@ -19,6 +19,7 @@
         <EnforceCodeStyleInBuild Condition="'$(DesignTimeBuild)' != 'true'">true</EnforceCodeStyleInBuild>
         <GenerateDependencyFile>false</GenerateDependencyFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IsPackable>false</IsPackable>
         <IsPublishable>false</IsPublishable>
         <LangVersion>preview</LangVersion>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>

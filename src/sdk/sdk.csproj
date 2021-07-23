@@ -2,6 +2,7 @@
     <PropertyGroup>
         <AssemblyName>Zig.Tasks</AssemblyName>
         <BuildOutputTargetFolder>tools</BuildOutputTargetFolder>
+        <IsPackable>true</IsPackable>
         <NoWarn>$(NoWarn); NU5129</NoWarn>
         <NoWarn Condition="'$(TargetFramework)' == 'net472'">$(NoWarn); nullable</NoWarn>
         <PackageDescription>

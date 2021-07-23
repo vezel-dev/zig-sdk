@@ -29,7 +29,7 @@
             AfterTargets="Build"
             Condition="'$(IsPackable)' == 'true'">
         <ItemGroup>
-            <_CachedFiles Include="$(NuGetPackageRoot)$(PackageId.ToLowerInvariant())/**" />
+            <_CachedFiles Include="$(NuGetPackageRoot)/$(PackageId.ToLowerInvariant())/**" />
         </ItemGroup>
 
         <Delete Files="@(_CachedFiles)" />
