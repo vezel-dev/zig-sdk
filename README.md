@@ -300,7 +300,7 @@ as sensible for historical reasons.
   `Default` (the default 😉) means public, while `Hidden` means private.
 * `Sanitizers`: A semicolon-separated list of
   [sanitizers](https://github.com/google/sanitizers) to instrument code with.
-  For Zig projects, only `thread` is supported. Unset by default.
+  Currently, only `thread` is supported. Unset by default.
 
 #### Cross-Compilation
 

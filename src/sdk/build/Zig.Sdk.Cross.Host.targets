@@ -33,6 +33,10 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <HostEndian>little</HostEndian>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <HostLibrary Condition="'$(HostSystem)' == 'linux'">glibc</HostLibrary>
         <HostLibrary Condition="'$(HostSystem)' == 'macos'">libsystem</HostLibrary>
         <HostLibrary Condition="'$(HostSystem)' == 'windows'">msvcrt</HostLibrary>

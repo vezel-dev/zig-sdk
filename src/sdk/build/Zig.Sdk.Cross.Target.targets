@@ -42,6 +42,10 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <TargetEndian>little</TargetEndian>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <TargetLibrary Condition="'$(TargetSystem)' == 'linux'">glibc</TargetLibrary>
         <TargetLibrary Condition="'$(TargetSystem)' == 'macos'">libsystem</TargetLibrary>
         <TargetLibrary Condition="'$(TargetSystem)' == 'windows'">msvcrt</TargetLibrary>

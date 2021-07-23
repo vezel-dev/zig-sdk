@@ -23,12 +23,14 @@
             ZIG_BIT_$(TargetBits);
             ZIG_OS_$(TargetSystem.ToUpperInvariant());
             ZIG_ABI_$(TargetAbi.ToUpperInvariant());
+            ZIG_BO_$(TargetEndian.ToUpperInvariant());
             ZIG_LIB_$(TargetLibrary.ToUpperInvariant());
             ZIG_RID="$(TargetRuntimeIdentifier.ToLowerInvariant())";
             ZIG_CPU="$(TargetArchitecture.ToLowerInvariant())";
             ZIG_BIT=$(TargetBits);
             ZIG_OS="$(TargetSystem.ToLowerInvariant())";
             ZIG_ABI="$(TargetAbi.ToLowerInvariant())";
+            ZIG_BO="$(TargetEndian.ToLowerInvariant())";
             ZIG_LIB="$(TargetLibrary.ToLowerInvariant())"
         </DefineConstants>
     </PropertyGroup>
