@@ -84,10 +84,11 @@ This package contains the main SDK used to build Zig, C, and C++ projects.
     -->
     <Target Name="_ClearPackageCache"
             AfterTargets="Build">
-        <ItemGroup>
-            <_CachedFiles Include="$(PackageRestorePath)$(PackageId.ToLowerInvariant())/**" />
-        </ItemGroup>
+        <PropertyGroup>
+            <_PackageDirectory>$(PackageRestorePath)$(PackageId.ToLowerInvariant())</_PackageDirectory>
+        </PropertyGroup>
 
-        <Delete Files="@(_CachedFiles)" />
+        <RemoveDir Directories="$(_PackageDirectory)"
+                   Condition="Exists('$(_PackageDirectory)')" />
     </Target>
 </Project>
