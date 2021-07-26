@@ -1,0 +1,16 @@
+<Project>
+    <Target Name="_CheckFormat"
+            Condition="'$(CompilerMode)' == 'Zig'">
+        <ZigFormat FormatterMode="Check"
+                   Sources="@(ZigSource)"
+                   StandardOutputImportance="high"
+                   ToolExe="$(ZigExePath)" />
+    </Target>
+
+    <Target Name="Format"
+            Condition="'$(CompilerMode)' == 'Zig'">
+        <ZigFormat FormatterMode="Execute"
+                   Sources="@(ZigSource)"
+                   ToolExe="$(ZigExePath)" />
+    </Target>
+</Project>

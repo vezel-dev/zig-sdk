@@ -15,6 +15,7 @@
         <CommandsPath Condition="'$(CommandsPath)' == ''">$(IntermediateOutputPath)compile_commands.json</CommandsPath>
         <DefaultSources Condition="'$(DefaultSources)' == ''">true</DefaultSources>
         <EditorSupport Condition="'$(EditorSupport)' == ''">true</EditorSupport>
+        <FormatOnBuild Condition="'$(FormatOnBuild)' == ''">false</FormatOnBuild>
         <IsTestable Condition="'$(IsTestable)' == ''">true</IsTestable>
     </PropertyGroup>
 

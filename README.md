@@ -185,6 +185,8 @@ as sensible for historical reasons.
 * `EditorSupport` (`true`, `false`): Enable/disable editor support. For C/C++
   projects, this means generating a `compile_commands.json` compilation database
   in `IntermediateOutputPath`. Defaults to `true`.
+* `FormatOnBuild` (`true`, `false`): Enable/disable formatting source code into
+  canonical style on build in Zig projects. Defaults to `false`.
 
 #### Package Information
 
@@ -227,8 +229,9 @@ as sensible for historical reasons.
 
 #### Language Features
 
-* `ZigVersion` (`x.y.z`): The version of the Zig compiler toolset to use.
-  Defaults to the latest version known to the `Zig.Sdk` package that is in use.
+* `ZigVersion` (`major.minor.patch`): The version of the Zig compiler toolset to
+  use. Defaults to the latest version known to the `Zig.Sdk` package that is in
+  use.
 * `LanguageStandard`: The language standard used for C/C++ projects. Passed to
   Clang's `-std` flag. Defaults to the latest standards known to the compiler
   version that `ZigVersion` defaults to.
@@ -249,6 +252,9 @@ as sensible for historical reasons.
 
 #### Static Analysis
 
+* `EnforceCodeStyleInBuild` (`true`, `false`): Enable/disable checking that
+  source code is in the canonical style during build in Zig projects. Defaults
+  to `false`.
 * `ConsumptionAnalysis` (`true`, `false`): Enable/disable static analysis with
   [consumption and type state annotations](https://clang.llvm.org/docs/AttributeReference.html#consumed-annotation-checking)
   in C/C++ projects. Defaults to `true`.

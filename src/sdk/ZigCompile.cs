@@ -1,13 +1,11 @@
 using System;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Tasks;
-using Microsoft.Build.Utilities;
 
 namespace Zig.Tasks
 {
-    public sealed class Zig : ToolTask
+    public sealed class ZigCompile : ZigToolTask
     {
         const StringSplitOptions SplitOptions = StringSplitOptions.RemoveEmptyEntries;
 
@@ -143,9 +141,6 @@ namespace Zig.Tasks
         [Required]
         public int WarningLevel { get; set; }
 
-        protected override string ToolName =>
-            RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "zig.exe" : "zig";
-
         ZigCompilerMode _compilerMode;
 
         ZigConfiguration _configuration;
@@ -157,11 +152,6 @@ namespace Zig.Tasks
         ZigSymbolExports _symbolExports;
 
         ZigSymbolVisibility _symbolVisibility;
-
-        protected override string GenerateFullPathToTool()
-        {
-            return ToolExe;
-        }
 
         protected override string GenerateCommandLineCommands()
         {

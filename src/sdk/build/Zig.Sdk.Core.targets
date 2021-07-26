@@ -16,6 +16,8 @@
         <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)../tools/net472/Zig.Tasks.dll</_ZigTasksPath>
     </PropertyGroup>
 
-    <UsingTask TaskName="Zig"
+    <UsingTask TaskName="ZigCompile"
+               AssemblyFile="$(_ZigTasksPath)" />
+    <UsingTask TaskName="ZigFormat"
                AssemblyFile="$(_ZigTasksPath)" />
 </Project>

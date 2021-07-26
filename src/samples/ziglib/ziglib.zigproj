@@ -1,5 +1,6 @@
 <Project Sdk="Zig.Sdk">
     <PropertyGroup>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <IsTestable>false</IsTestable>
     </PropertyGroup>
 </Project>
