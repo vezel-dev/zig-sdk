@@ -26,7 +26,8 @@
     of the logic in the default Publish target here.
     -->
     <Target Name="_InnerPublish"
-            DependsOnTargets="_PublishBuildAlternative; _PublishNoBuildAlternative">
+            DependsOnTargets="_PublishBuildAlternative; _PublishNoBuildAlternative"
+            Condition="'$(IsPublishable)' == 'true'">
         <Message Text="$(MSBuildProjectName) -> $([System.IO.Path]::GetFullPath('$(PublishDir)'))"
                  Importance="high" />
 
