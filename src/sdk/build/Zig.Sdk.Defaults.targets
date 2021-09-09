@@ -38,7 +38,7 @@
         <CxxExceptions Condition="'$(CxxExceptions)' == ''">true</CxxExceptions>
         <CxxReflection Condition="'$(CxxReflection)' == ''">true</CxxReflection>
         <MicrosoftExtensions Condition="'$(MicrosoftExtensions)' == ''">false</MicrosoftExtensions>
-        <ZigVersion Condition="'$(ZigVersion)' == ''">0.8.0</ZigVersion>
+        <ZigVersion Condition="'$(ZigVersion)' == ''">0.8.1</ZigVersion>
     </PropertyGroup>
 
     <PropertyGroup>
