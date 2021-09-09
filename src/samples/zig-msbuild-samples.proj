@@ -1,9 +1,4 @@
 <Project Sdk="Microsoft.Build.Traversal">
-    <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/15 -->
-    <PropertyGroup>
-        <BuildInParallel>false</BuildInParallel>
-    </PropertyGroup>
-
     <ItemGroup>
         <ProjectReference Include="*/*.*proj" />
     </ItemGroup>
