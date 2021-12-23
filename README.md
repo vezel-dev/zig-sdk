@@ -346,3 +346,7 @@ as sensible for historical reasons.
 ### References
 
 [Soon™.](https://github.com/alexrp/zig-msbuild-sdk/issues/8)
+
+## Statistics
+
+![Repobeats](https://repobeats.axiom.co/api/embed/56d1f4cda2c680fe93627ab2f884a3ce78c7d1d6.svg)
