@@ -349,7 +349,7 @@ namespace Zig.Tasks
                         builder.AppendSwitch("-Wno-everything");
                         break;
                     case 1:
-                        // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/17
+                        // TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/17
 
                         TryAppendWarningSwitch("alloca");
                         TryAppendWarningSwitch("non-gcc");
@@ -476,7 +476,7 @@ namespace Zig.Tasks
                 if (!TrustAnalysis)
                     builder.AppendSwitch("-Wno-tcb-enforcement");
 
-                // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/38
+                // TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/38
                 if (Deterministic)
                 {
                     builder.AppendSwitch("-Werror=date-time");
@@ -531,7 +531,7 @@ namespace Zig.Tasks
 
             builder.AppendSwitchIfNotNull(isZig ? "-rpath " : "-Wl,-rpath,", "$ORIGIN");
 
-            // TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/8
+            // TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/8
 
             builder.AppendFileNamesIfNotNull(Sources, " ");
             builder.AppendSwitchIfNotNull(isZig ? "-femit-bin=" : "-o ", OutputBinary);

@@ -53,7 +53,7 @@
 
     <PropertyGroup>
         <FastMath Condition="'$(FastMath)' == ''">false</FastMath>
-        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/33 -->
+        <!-- TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/33 -->
         <LinkTimeOptimization Condition="'$(LinkTimeOptimization)' == ''">false</LinkTimeOptimization>
         <ReleaseMode Condition="'$(ReleaseMode)' == ''">Fast</ReleaseMode>
         <SymbolExports Condition="'$(SymbolExports)' == ''">Used</SymbolExports>
@@ -61,10 +61,10 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/1 -->
-        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/3 -->
-        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/4 -->
-        <!-- TODO: https://github.com/alexrp/zig-msbuild-sdk/issues/5 -->
+        <!-- TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/1 -->
+        <!-- TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/3 -->
+        <!-- TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/4 -->
+        <!-- TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/5 -->
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == ''">
             linux-arm64;
             linux-x64;

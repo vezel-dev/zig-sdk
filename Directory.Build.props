@@ -30,7 +30,7 @@
         <PackageProjectUrl>https://ziglang.org</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <RepositoryUrl>https://github.com/alexrp/zig-msbuild-sdk.git</RepositoryUrl>
+        <RepositoryUrl>https://github.com/vezel-dev/zig-msbuild-sdk.git</RepositoryUrl>
         <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
         <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>

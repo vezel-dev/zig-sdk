@@ -1,7 +1,7 @@
 # Zig MSBuild SDK
 
 [![Zig.Sdk](https://img.shields.io/nuget/v/Zig.Sdk.svg?label=Zig.Sdk)](https://www.nuget.org/packages/Zig.Sdk)
-[![Build Status](https://github.com/alexrp/zig-msbuild-sdk/actions/workflows/build.yml/badge.svg)](https://github.com/alexrp/zig-msbuild-sdk/actions/workflows/build.yml)
+[![Build Status](https://github.com/vezel-dev/zig-msbuild-sdk/actions/workflows/build.yml/badge.svg)](https://github.com/vezel-dev/zig-msbuild-sdk/actions/workflows/build.yml)
 
 `Zig.Sdk` is an
 [MSBuild SDK](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-use-project-sdk)
@@ -42,7 +42,7 @@ Here are some of the `Zig.Sdk` highlights:
   easy to consume both in `Microsoft.NET.Sdk` projects and in other `Zig.Sdk`
   projects.
 * **Multi-project solutions:**
-  [Soon™.](https://github.com/alexrp/zig-msbuild-sdk/issues/8)
+  [Soon™.](https://github.com/vezel-dev/zig-msbuild-sdk/issues/8)
 * **Editor integration:** `Zig.Sdk` can generate files needed by language
   servers, resulting in an IDE-like experience when editing code. For C/C++,
   [clangd](https://clangd.llvm.org) is fully supported, while for Zig projects,
@@ -345,7 +345,7 @@ as sensible for historical reasons.
 
 ### References
 
-[Soon™.](https://github.com/alexrp/zig-msbuild-sdk/issues/8)
+[Soon™.](https://github.com/vezel-dev/zig-msbuild-sdk/issues/8)
 
 ## Statistics
 

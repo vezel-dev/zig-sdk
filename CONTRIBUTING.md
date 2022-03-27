@@ -5,10 +5,10 @@ document to familiarize yourself with the development process.
 
 ## Issue Tracker
 
-The [issue tracker](https://github.com/alexrp/zig-msbuild-sdk/issues) is where
-all bug reports and feature requests should be posted. Other community areas are
-not appropriate for these as issues raised there are likely to be lost or
-forgotten.
+The [issue tracker](https://github.com/vezel-dev/zig-msbuild-sdk/issues) is
+where all bug reports and feature requests should be posted. Other community
+areas are not appropriate for these as issues raised there are likely to be lost
+or forgotten.
 
 Please respect the following points when posting on the issue tracker:
 
@@ -26,7 +26,7 @@ being enacted.
 ### Labels
 
 We use labels to organize issues on the GitHub issue tracker. A full list of
-labels can be found [here](https://github.com/alexrp/zig-msbuild-sdk/labels),
+labels can be found [here](https://github.com/vezel-dev/zig-msbuild-sdk/labels),
 along with descriptions of each. Here are a few guidelines for how issue labels
 are to be applied:
 
@@ -50,7 +50,7 @@ have its milestone changed if the initial guesstimation turned out to be
 inaccurate (in either direction).
 
 A full list of milestones can be found
-[here](https://github.com/alexrp/zig-msbuild-sdk/milestones).
+[here](https://github.com/vezel-dev/zig-msbuild-sdk/milestones).
 
 ### Bug Reports
 
@@ -93,10 +93,10 @@ feature is a welcome addition.
 
 ## Pull Requests
 
-[Pull requests](https://github.com/alexrp/zig-msbuild-sdk/pulls) are a great way
-to contribute, whether it be code or documentation improvements. It is a good
-idea to check the issue tracker to see if someone else is already working on
-something before you start work on it. For feature additions, it is also
+[Pull requests](https://github.com/vezel-dev/zig-msbuild-sdk/pulls) are a great
+way to contribute, whether it be code or documentation improvements. It is a
+good idea to check the issue tracker to see if someone else is already working
+on something before you start work on it. For feature additions, it is also
 important to open a feature request on the issue tracker to see if the
 development team is actually interested in merging it.
 
@@ -145,7 +145,7 @@ Once you have a forked repository, clone and set it up locally:
 git clone git@github.com:<your-name>/zig-msbuild-sdk.git
 cd zig-msbuild-sdk
 # Set up a remote pointing to the upstream repository.
-git remote add upstream git@github.com:alexrp/zig-msbuild-sdk.git
+git remote add upstream git@github.com:vezel-dev/zig-msbuild-sdk.git
 ```
 
 Whenever you need to update your fork, do something like this:
