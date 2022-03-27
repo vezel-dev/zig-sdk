@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 154 154">
+    <title>Zig</title>
+
+    <g transform="matrix(1.0065 .0026973 0 1.1028 0 -.4046)"
+       fill="#f7a41d">
+        <polygon points="19 30 46 22 28 44" />
+        <polygon points="31 95 20 100 12 117 0 117 0 22 46 22 33 33 28 44 22 44 22 95"
+                 shape-rendering="crispEdges"/>
+        <polygon points="4 106 31 95 12 117" />
+
+        <polygon points="37 44 56 22 62 36" />
+        <polygon points="56 22 111 22 111 44 37 44 56 32"
+                 shape-rendering="crispEdges"/>
+        <polygon points="90 104 116 95 97 117" />
+        <polygon points="116 95 100 104 97 117 42 117 42 95"
+                 shape-rendering="crispEdges" />
+        <polygon points="52 117 3 140 101 22 150 0" />
+
+        <polygon points="122 45 141 22 140 40" />
+        <polygon points="131 95 131 45 122 45 132 36 141 22 153 22 153 117 106 117 120 105 125 95"
+                 shape-rendering="crispEdges" />
+        <polygon points="106 117 125 95 130 110" />
+    </g>
+</svg>
