@@ -346,7 +346,3 @@ as sensible for historical reasons.
 ### References
 
 [Soon™.](https://github.com/vezel-dev/zig-msbuild-sdk/issues/8)
-
-## Statistics
-
-![Repobeats](https://repobeats.axiom.co/api/embed/5447a479543c88b416f3f5b4ab772a6c371e7aea.svg)
