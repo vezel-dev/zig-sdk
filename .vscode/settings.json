@@ -1,6 +1,5 @@
 {
   "files.exclude": {
-    "**/.idea": true,
     "**/.vs": true,
     "pkg/cache/*[!_._]": true,
     "pkg/feed/*.nupkg": true,

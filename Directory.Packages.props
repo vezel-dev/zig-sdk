@@ -3,10 +3,10 @@
         <PackageVersion Include="Microsoft.Build.Tasks.Core"
                         Version="16.10.0" />
         <PackageVersion Include="Microsoft.SourceLink.GitHub"
-                        Version="1.1.0-beta-20204-02" />
+                        Version="1.1.1" />
         <PackageVersion Include="Nerdbank.GitVersioning"
-                        Version="3.4.220" />
+                        Version="3.5.86-alpha" />
         <PackageVersion Include="StyleCop.Analyzers"
-                        Version="1.2.0-beta.354" />
+                        Version="1.2.0-beta.406" />
     </ItemGroup>
 </Project>

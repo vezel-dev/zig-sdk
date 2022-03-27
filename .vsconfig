@@ -3,7 +3,6 @@
   "version": "1.0",
   "components": [
     "Microsoft.VisualStudio.Workload.CoreEditor",
-    "Microsoft.VisualStudio.Workload.ManagedDesktop",
-    "Microsoft.VisualStudio.Workload.NetCoreTools"
+    "Microsoft.VisualStudio.Workload.ManagedDesktop"
   ]
 }

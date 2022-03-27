@@ -35,31 +35,16 @@ jobs:
         runs-on: ${{ matrix.os }}
         steps:
             - name: Clone repository
-              uses: actions/checkout@v2.3.4
+              uses: actions/checkout@v3.0.0
               with:
                   fetch-depth: 0
                   submodules: recursive
-            - name: Extract .NET version
-              id: dotnet
-              run: |
-                  echo ::set-output name=version::$(jq .sdk.version global.json -r)
             - name: Set up .NET
-              uses: actions/setup-dotnet@v1.8.0
-              with:
-                  dotnet-version: ${{ steps.dotnet.outputs.version }}
-            - name: Restore SDK
-              run: |
-                  dotnet tool restore
-                  dotnet restore
-            - name: Format SDK
-              run: |
-                  dotnet format --check -f
+              uses: actions/setup-dotnet@v2.0.0
             - name: Build SDK
               run: |
-                  dotnet build --no-restore
-            - name: Clean SDK
-              run: |
-                  dotnet clean
+                  dotnet tool restore
+                  dotnet build
             - name: Restore samples
               run: |
                   dotnet restore src/samples
