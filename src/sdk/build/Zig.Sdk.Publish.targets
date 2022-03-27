@@ -34,6 +34,4 @@
         <AllowEmptyTelemetry EventName="PublishProperties"
                              EventData="PublishReadyToRun=$(PublishReadyToRun); PublishTrimmed=$(PublishTrimmed); PublishSingleFile=$(PublishSingleFile)" />
     </Target>
-
-    <!-- TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/16 -->
 </Project>
