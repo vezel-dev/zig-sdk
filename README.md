@@ -14,7 +14,7 @@
 
 <div align="center">
 
-[![License](https://img.shields.io/github/license/vezel-dev/zig-msbuild-sdk?color=brown)](LICENSE.md)
+[![License](https://img.shields.io/badge/license-0BSD-brown)](LICENSE.md)
 [![Commits](https://img.shields.io/github/commit-activity/m/vezel-dev/zig-msbuild-sdk/master?label=commits&color=slateblue)](https://github.com/vezel-dev/zig-msbuild-sdk/commits/master)
 [![Build](https://img.shields.io/github/workflow/status/vezel-dev/zig-msbuild-sdk/Build/master)](https://github.com/vezel-dev/zig-msbuild-sdk/actions/workflows/build.yml)
 [![Discussions](https://img.shields.io/github/discussions/vezel-dev/zig-msbuild-sdk?color=teal)](https://github.com/vezel-dev/zig-msbuild-sdk/discussions)
