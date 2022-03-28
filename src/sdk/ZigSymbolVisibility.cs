@@ -1,8 +1,7 @@
-namespace Zig.Tasks
+namespace Zig.Tasks;
+
+public enum ZigSymbolVisibility
 {
-    public enum ZigSymbolVisibility
-    {
-        Default,
-        Hidden,
-    }
+    Default,
+    Hidden,
 }

@@ -1,38 +1,41 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
         <AssemblyName>Zig.Tasks</AssemblyName>
         <BuildOutputTargetFolder>tools</BuildOutputTargetFolder>
+        <DevelopmentDependency>true</DevelopmentDependency>
         <IsPackable>true</IsPackable>
         <NoWarn>$(NoWarn); NU5129</NoWarn>
         <NoWarn Condition="'$(TargetFramework)' == 'net472'">$(NoWarn); nullable</NoWarn>
         <PackageDescription>
-$(Description)
+$(PackageDescription)
 
-This package contains the main SDK used to build Zig, C, and C++ projects.
+This package provides the MSBuild SDK and associated tasks.
         </PackageDescription>
         <PackageId>Zig.Sdk</PackageId>
         <PackageType>MSBuildSdk</PackageType>
         <RootNamespace>Zig.Tasks</RootNamespace>
+        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
         <TargetFrameworks>net6.0; net472</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="content/**"
-                 Pack="true"
-                 PackagePath="%(Identity)" />
+        <Using Include="System.Diagnostics.CodeAnalysis" />
+        <Using Include="System.Runtime.InteropServices" />
+    </ItemGroup>
+
+    <ItemGroup>
         <None Include="build/**; Sdk/**"
               Pack="true"
               PackagePath="%(Identity)" />
     </ItemGroup>
 
     <ItemGroup>
-        <Watch Include="build/**; content/**; Sdk/**" />
+        <Watch Include="build/**; Sdk/**" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Build.Tasks.Core" />
-        <PackageReference Include="StyleCop.Analyzers"
-                          PrivateAssets="all" />
     </ItemGroup>
 
     <!--
@@ -41,14 +44,14 @@ This package contains the main SDK used to build Zig, C, and C++ projects.
     -->
     <Target Name="_WriteGlobalJson"
             DependsOnTargets="GetBuildVersion"
-            AfterTargets="Build">
+            AfterTargets="Pack">
         <PropertyGroup>
             <_GlobalJson>
                 <![CDATA[
 {
   "$schema": "https://json.schemastore.org/global.json",
   "msbuild-sdks": {
-    "Microsoft.Build.Traversal": "3.0.23",
+    "Microsoft.Build.Traversal": "3.1.6",
     "Zig.Sdk": "$(Version)"
   }
 }

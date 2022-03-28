@@ -1,50 +1,74 @@
 # Zig MSBuild SDK
 
-[![Zig.Sdk](https://img.shields.io/nuget/v/Zig.Sdk.svg?label=Zig.Sdk)](https://www.nuget.org/packages/Zig.Sdk)
-[![Build Status](https://github.com/vezel-dev/zig-msbuild-sdk/actions/workflows/build.yml/badge.svg)](https://github.com/vezel-dev/zig-msbuild-sdk/actions/workflows/build.yml)
+<div align="center">
+    <img src="zig.svg"
+         width="128" />
+</div>
 
-`Zig.Sdk` is an
+<p align="center">
+    <strong>
+        An MSBuild SDK for building Zig, C, and C++ projects using the Zig
+        compiler.
+    </strong>
+</p>
+
+<div align="center">
+
+[![License](https://img.shields.io/github/license/vezel-dev/zig-msbuild-sdk?color=brown)](LICENSE.md)
+[![Commits](https://img.shields.io/github/commit-activity/m/vezel-dev/zig-msbuild-sdk/master?label=commits&color=slateblue)](https://github.com/vezel-dev/zig-msbuild-sdk/commits/master)
+[![Build](https://img.shields.io/github/workflow/status/vezel-dev/zig-msbuild-sdk/Build/master)](https://github.com/vezel-dev/zig-msbuild-sdk/actions/workflows/build.yml)
+[![Discussions](https://img.shields.io/github/discussions/vezel-dev/zig-msbuild-sdk?color=teal)](https://github.com/vezel-dev/zig-msbuild-sdk/discussions)
+
+</div>
+
+---
+
+Zig.Sdk is an
 [MSBuild SDK](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-use-project-sdk)
-that makes it trivial to author native components as part of your .NET project
-through the power of [Zig](https://ziglang.org).
+that augments the .NET SDK with the ability to build Zig, C, and C++ projects.
+
+With support for multiple programming languages, cross-compilation, NuGet
+packaging, and more, Zig.Sdk makes it trivial to author native components as
+part of your .NET solution - without all the hassle that is usually part and
+parcel of building and packaging native code.
 
 ## Features
 
-Here are some of the `Zig.Sdk` highlights:
+Here are some of the Zig.Sdk highlights:
 
 * **Multiple programming languages:** Although Zig is a modern and pleasant
   systems programming language, you might prefer to use C or C++ instead.
   As it happens, the Zig compiler also embds a full C and C++ compiler - namely,
-  [Clang](https://clang.llvm.org). So, whichever language you prefer, `Zig.Sdk`
+  [Clang](https://clang.llvm.org). So, whichever language you prefer, Zig.Sdk
   has you covered.
 * **Cross-compilation:** Thanks to the Zig compiler's excellent cross-targeting
-  support, cross-compilation is a first-class citizen in `Zig.Sdk`. Gone are the
+  support, cross-compilation is a first-class citizen in Zig.Sdk. Gone are the
   days of having to do overly complicated cross toolchain setup, or resorting to
   building on multiple platforms for releases - just type `dotnet build` to
   compile for all targets supported by your project.
-* **Binary emulator support:** When cross-compiling, `Zig.Sdk` will look at the
+* **Binary emulator support:** When cross-compiling, Zig.Sdk will look at the
   host and target platforms and try to pick an appropriate emulator. In the
   majority of cases, this allows you to run and unit test the foreign binary.
   [Darling](https://darlinghq.org), [QEMU](https://qemu.org),
   [Wine](https://winehq.org), and
   [WSL](https://docs.microsoft.com/en-us/windows/wsl) are recognized.
 * **Unit testing:** The Zig language provides built-in unit testing constructs.
-  `Zig.Sdk` allows you to run your project's unit tests with the familiar
+  Zig.Sdk allows you to run your project's unit tests with the familiar
   `dotnet test` command. Test name filters are supported - e.g.
   `dotnet test --filter foo`.
-* **Code change monitoring:** `Zig.Sdk` integrates with `dotnet watch` so that
+* **Code change monitoring:** Zig.Sdk integrates with `dotnet watch` so that
   e.g. `dotnet watch build`, `dotnet watch run`, and `dotnet watch test` work as
   expected, enabling a rapid development loop.
-* **Sensible NuGet packaging:** Out of the box, `dotnet pack` with `Zig.Sdk`
-  will produce NuGet packages containing cross-built binaries for all platforms
-  that your project supports. Also, your public C and C++ header files will be
+* **Sensible NuGet packaging:** Out of the box, `dotnet pack` with Zig.Sdk will
+  produce NuGet packages containing cross-built binaries for all platforms that
+  your project supports. Also, your public C and C++ header files will be
   bundled, as will your Zig source code. This makes the resulting NuGet package
-  easy to consume both in `Microsoft.NET.Sdk` projects and in other `Zig.Sdk`
+  easy to consume both in `Microsoft.NET.Sdk` projects and in other Zig.Sdk
   projects.
 * **Multi-project solutions:**
   [Soon™.](https://github.com/vezel-dev/zig-msbuild-sdk/issues/8)
-* **Editor integration:** `Zig.Sdk` can generate files needed by language
-  servers, resulting in an IDE-like experience when editing code. For C/C++,
+* **Editor integration:** Zig.Sdk can generate files needed by language servers,
+  resulting in an IDE-like experience when editing code. For C/C++,
   [clangd](https://clangd.llvm.org) is fully supported, while for Zig projects,
   there is limited [ZLS](https://github.com/zigtools/zls) support. See the
   [Editor](#editor) section below for more information.
@@ -54,17 +78,29 @@ Here are some of the `Zig.Sdk` highlights:
   `dotnet test`, etc as you normally would. See the [Usage](#usage) section
   below to get started.
 
-Please note that `Zig.Sdk` is *not* intended to be a full replacement for
-[Zig's build system](https://ziglearn.org/chapter-3). The goal of `Zig.Sdk` is
+Please note that Zig.Sdk is *not* intended to be a full replacement for
+[Zig's build system](https://ziglearn.org/chapter-3). The goal of Zig.Sdk is
 specifically to make it simple to integrate Zig, C, and C++ components into the
-.NET ecosystem. For that reason, `Zig.Sdk` has no support for platforms that
-Zig supports but that .NET does not (yet) run on, such as `linux-riscv64`. The
-level of configuration that is possible for C and C++ is also somewhat limited
+.NET ecosystem. For that reason, Zig.Sdk has no support for platforms that Zig
+supports but that .NET does not (yet) run on, such as `linux-riscv64`. The level
+of configuration that is possible for C and C++ is also somewhat limited
 compared to most build systems that support those languages.
 
 ## Usage
 
-First, make sure you have the
+This project offers the following packages:
+
+| Package | Description | Downloads |
+| -: | - | :- |
+| [![Zig.Sdk][sdk-img]][sdk-pkg] | Provides the MSBuild SDK and associated tasks. | ![Downloads][sdk-dls] |
+
+[sdk-pkg]: https://www.nuget.org/packages/Zig.Sdk
+
+[sdk-img]: https://img.shields.io/nuget/v/Zig.Sdk?label=Zig.Sdk
+
+[sdk-dls]: https://img.shields.io/nuget/dt/Zig.Sdk?label=
+
+To use the Zig MSBuild SDK, first make sure that you have the
 [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) (or later)
 installed.
 
@@ -101,7 +137,7 @@ An executable project looks like:
 The project file extension determines the language your code will be compiled
 as - `.cproj` for C, `.cxxproj` for C++, and `.zigproj` for Zig.
 
-The convention used by `Zig.Sdk` is that C projects should use a `.c` extension
+The convention used by Zig.Sdk is that C projects should use a `.c` extension
 for source files and `.h` for header files, while C++ projects should use `.cxx`
 and `.hxx`. Zig projects use `.zig`.
 
@@ -135,7 +171,7 @@ Start by
 is highly recommended.
 
 You have to tell clangd where to find the `compile_commands.json` compilation
-database. `Zig.Sdk` creates these files in `IntermediateOutputPath`, i.e.
+database. Zig.Sdk creates these files in `IntermediateOutputPath`, i.e.
 `obj/Debug/linux-x64` if you build with `Configuration=Debug` and
 `RuntimeIdentifier=linux-x64`. Due to the nature of C/C++ compilation, these
 compilation databases have to be dependent on build flags. So, you will have to
@@ -230,7 +266,7 @@ as sensible for historical reasons.
 #### Language Features
 
 * `ZigVersion` (`major.minor.patch`): The version of the Zig compiler toolset to
-  use. Defaults to the latest version known to the `Zig.Sdk` package that is in
+  use. Defaults to the latest version known to the Zig.Sdk package that is in
   use.
 * `LanguageStandard`: The language standard used for C/C++ projects. Passed to
   Clang's `-std` flag. Defaults to the latest standards known to the compiler
@@ -323,25 +359,25 @@ as sensible for historical reasons.
 
 ### Items
 
-* `Compile`: Source code files passed to the Zig compiler. By default, `Zig.Sdk`
+* `Compile`: Source code files passed to the Zig compiler. By default, Zig.Sdk
   will populate this item type according to the project type.
 * `IncludeDirectory`: Header include directories passed to the compiler with the
   `-I` flag. Note that this applies to Zig as well, not just C/C++.
 * `PreludeHeader`: C/C++ header files that will be automatically `#include`d in
   every C/C++ source file by way of Clang's `-include` flag.
-* `CHeader`: Prepopulated by `Zig.Sdk` with all files in the project directory
+* `CHeader`: Prepopulated by Zig.Sdk with all files in the project directory
   ending in `.h`.
-* `CSource`: Prepopulated by `Zig.Sdk` with all files in the project directory
+* `CSource`: Prepopulated by Zig.Sdk with all files in the project directory
   ending in `.c`.
-* `CxxHeader`: Prepopulated by `Zig.Sdk` with all files in the project directory
+* `CxxHeader`: Prepopulated by Zig.Sdk with all files in the project directory
   ending in `.hxx`.
-* `CxxHeader`: Prepopulated by `Zig.Sdk` with all files in the project directory
+* `CxxHeader`: Prepopulated by Zig.Sdk with all files in the project directory
   ending in `.cxx`.
-* `ZigSource`: Prepopulated by `Zig.Sdk` with all files in the project directory
+* `ZigSource`: Prepopulated by Zig.Sdk with all files in the project directory
   ending in `.zig`.
-* `Watch`: Files that are monitored by `dotnet watch` for code changes.
-  `Zig.Sdk` will automatically populate this with all C, C++, and Zig source and
-  header files in the project directory.
+* `Watch`: Files that are monitored by `dotnet watch` for code changes. Zig.Sdk
+  will automatically populate this with all C, C++, and Zig source and header
+  files in the project directory.
 
 ### References
 

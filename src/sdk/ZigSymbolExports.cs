@@ -1,8 +1,7 @@
-namespace Zig.Tasks
+namespace Zig.Tasks;
+
+public enum ZigSymbolExports
 {
-    public enum ZigSymbolExports
-    {
-        Used,
-        All,
-    }
+    Used,
+    All,
 }

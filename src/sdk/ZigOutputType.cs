@@ -1,8 +1,7 @@
-namespace Zig.Tasks
+namespace Zig.Tasks;
+
+public enum ZigOutputType
 {
-    public enum ZigOutputType
-    {
-        Exe,
-        Library,
-    }
+    Exe,
+    Library,
 }

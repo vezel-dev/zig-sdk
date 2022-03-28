@@ -1,8 +1,7 @@
-namespace Zig.Tasks
+namespace Zig.Tasks;
+
+public enum ZigFormatterMode
 {
-    public enum ZigFormatterMode
-    {
-        Check,
-        Execute,
-    }
+    Check,
+    Execute,
 }

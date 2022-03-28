@@ -1,38 +1,39 @@
 <Project>
     <PropertyGroup>
         <Product>Zig MSBuild SDK</Product>
-        <Authors>Alex Rønne Petersen</Authors>
-        <Description>An MSBuild SDK for building Zig, C, and C++ projects using the Zig compiler.</Description>
+        <Description>Zig.Sdk is an MSBuild SDK for building Zig, C, and C++ projects using the Zig compiler.</Description>
+        <Authors>The $(Product) Maintainers</Authors>
+        <Copyright>Copyright © $(Authors)</Copyright>
     </PropertyGroup>
 
     <PropertyGroup>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <AnalysisLevel>preview</AnalysisLevel>
-        <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+        <AnalysisLevel>latest-all</AnalysisLevel>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <Configuration>Release</Configuration>
         <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
-        <Copyright>Copyright © $(Authors)</Copyright>
         <DebugSymbols>true</DebugSymbols>
         <DebugType>embedded</DebugType>
-        <DevelopmentDependency>true</DevelopmentDependency>
         <EmbedAllSources>true</EmbedAllSources>
-        <EnforceCodeStyleInBuild Condition="'$(DesignTimeBuild)' != 'true'">true</EnforceCodeStyleInBuild>
-        <GenerateDependencyFile>false</GenerateDependencyFile>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <EnablePackageValidation>true</EnablePackageValidation>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <ImplicitUsings>true</ImplicitUsings>
         <IsPackable>false</IsPackable>
         <IsPublishable>false</IsPublishable>
         <LangVersion>preview</LangVersion>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
         <Nullable>enable</Nullable>
-        <PackageIcon>zig.png</PackageIcon>
+        <PackageDescription>$(Description)
+
+With support for multiple programming languages, cross-compilation, NuGet
+packaging, and more, Zig.Sdk makes it trivial to author native components as
+part of your .NET solution - without all the hassle that is usually part and
+parcel of building and packaging native code.</PackageDescription>
         <PackageLicenseExpression>0BSD</PackageLicenseExpression>
         <PackageOutputPath>$(MSBuildThisFileDirectory)pkg/feed/</PackageOutputPath>
         <PackageProjectUrl>https://ziglang.org</PackageProjectUrl>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RepositoryUrl>https://github.com/vezel-dev/zig-msbuild-sdk.git</RepositoryUrl>
-        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-        <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 </Project>

@@ -1,10 +1,9 @@
-namespace Zig.Tasks
+namespace Zig.Tasks;
+
+public enum ZigCompilerMode
 {
-    public enum ZigCompilerMode
-    {
-        C,
-        Cxx,
-        Zig,
-        Test,
-    }
+    C,
+    Cxx,
+    Zig,
+    Test,
 }

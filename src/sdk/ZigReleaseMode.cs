@@ -1,9 +1,8 @@
-namespace Zig.Tasks
+namespace Zig.Tasks;
+
+public enum ZigReleaseMode
 {
-    public enum ZigReleaseMode
-    {
-        Fast,
-        Safe,
-        Small,
-    }
+    Fast,
+    Safe,
+    Small,
 }

@@ -1,8 +1,7 @@
-namespace Zig.Tasks
+namespace Zig.Tasks;
+
+public enum ZigConfiguration
 {
-    public enum ZigConfiguration
-    {
-        Debug,
-        Release,
-    }
+    Debug,
+    Release,
 }

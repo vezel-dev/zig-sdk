@@ -1,32 +1,46 @@
 <Project>
-    <ItemGroup Condition="$(IsPackable) == 'true'">
-        <None Include="$(MSBuildThisFileDirectory)*.md; $(MSBuildThisFileDirectory)zig.png"
-              Pack="true"
-              PackagePath="" />
-    </ItemGroup>
+    <Choose>
+        <When Condition="'$(IsPackable)' == 'true'">
+            <PropertyGroup>
+                <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+                <PackageIcon>zig.png</PackageIcon>
+                <PackageReadmeFile>PACKAGE.md</PackageReadmeFile>
+            </PropertyGroup>
+
+            <ItemGroup>
+                <None Include="$(MSBuildThisFileDirectory)PACKAGE.md; $(MSBuildThisFileDirectory)zig.png"
+                      Pack="true"
+                      PackagePath=""
+                      Visible="false" />
+            </ItemGroup>
+        </When>
+    </Choose>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.SourceLink.GitHub"
                           PrivateAssets="all" />
         <PackageReference Include="Nerdbank.GitVersioning"
                           PrivateAssets="all" />
+        <PackageReference Include="StyleCop.Analyzers"
+                          PrivateAssets="all" />
     </ItemGroup>
 
     <Target Name="_SetReleaseNotes"
             DependsOnTargets="GetBuildVersion"
-            BeforeTargets="GenerateNuspec">
+            BeforeTargets="GenerateNuspec"
+            Condition="'$(IsPackable)' == 'true'">
         <PropertyGroup>
             <PackageReleaseNotes>https://github.com/vezel-dev/zig-msbuild-sdk/releases/tag/v$(Version)</PackageReleaseNotes>
         </PropertyGroup>
     </Target>
 
     <!--
-    This target removes the restored packages used by the sample projects, thus
-    ensuring that NuGet will not use stale packages because the version did not
-    change.
+    Get rid of the restored package(s) in the repository's local package cache.
+    This ensures that people will not have to fiddle around with removing these
+    manually when iterating on changes locally.
     -->
     <Target Name="_ClearPackageCache"
-            AfterTargets="Build"
+            AfterTargets="Clean; Pack"
             Condition="'$(IsPackable)' == 'true'">
         <ItemGroup>
             <_CachedFiles Include="$(NuGetPackageRoot)/$(PackageId.ToLowerInvariant())/**" />
