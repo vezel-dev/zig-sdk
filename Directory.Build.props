@@ -2,7 +2,8 @@
     <PropertyGroup>
         <Product>Zig MSBuild SDK</Product>
         <Description>Zig.Sdk is an MSBuild SDK for building Zig, C, and C++ projects using the Zig compiler.</Description>
-        <Authors>The $(Product) Maintainers</Authors>
+        <Company>Vezel</Company>
+        <Authors>$(Company) Maintainers</Authors>
         <Copyright>Copyright © $(Authors)</Copyright>
     </PropertyGroup>
 
