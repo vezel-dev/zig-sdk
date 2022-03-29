@@ -7,11 +7,9 @@
         <IsPackable>true</IsPackable>
         <NoWarn>$(NoWarn); NU5129</NoWarn>
         <NoWarn Condition="'$(TargetFramework)' == 'net472'">$(NoWarn); nullable</NoWarn>
-        <PackageDescription>
-$(PackageDescription)
+        <PackageDescription>$(PackageDescription)
 
-This package provides the MSBuild SDK and associated tasks.
-        </PackageDescription>
+This package provides the MSBuild SDK and associated tasks.</PackageDescription>
         <PackageId>Zig.Sdk</PackageId>
         <PackageType>MSBuildSdk</PackageType>
         <RootNamespace>Zig.Tasks</RootNamespace>
