@@ -23,7 +23,7 @@ This package provides the MSBuild SDK and associated tasks.</PackageDescription>
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="build/**; Sdk/**"
+        <None Include="build/**; content/**; Sdk/**"
               Pack="true"
               PackagePath="%(Identity)" />
     </ItemGroup>
