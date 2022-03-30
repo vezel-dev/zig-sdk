@@ -63,3 +63,14 @@ jobs:
             - name: Clean samples
               run: |
                   dotnet clean src/samples -c ${{ matrix.cfg }} -v:d
+            - name: Upload GitHub packages
+              if: github.event_name == 'push' && github.repository == 'vezel-dev/zig-msbuild-sdk' && github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-latest' && matrix.cfg == 'Debug'
+              run: |
+                  dotnet tool run gpr push pkg/feed/*.nupkg -k ${{ secrets.GITHUB_TOKEN }}
+            - name: Prune GitHub packages
+              if: github.event_name == 'push' && github.repository == 'vezel-dev/zig-msbuild-sdk' && github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-latest' && matrix.cfg == 'Debug'
+              uses: SmartsquareGmbH/delete-old-packages@v0.4.0
+              with:
+                  names: |
+                      Zig.Sdk
+                  keep: 5
