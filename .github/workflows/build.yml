@@ -49,18 +49,23 @@ jobs:
               run: |
                   dotnet restore src/samples
             - name: Build samples
+              if: matrix.os != 'macos-latest'
               run: |
                   dotnet build src/samples -c ${{ matrix.cfg }} --no-restore -p:ReleaseMode=${{ matrix.mode }} -v:d
             - name: Test samples
+              if: matrix.os != 'macos-latest'
               run: |
                   dotnet test src/samples -c ${{ matrix.cfg }} --no-restore -p:ReleaseMode=${{ matrix.mode }} -v:d
             - name: Pack samples
+              if: matrix.os != 'macos-latest'
               run: |
                   dotnet pack src/samples -c ${{ matrix.cfg }} --no-build -v:d
             - name: Publish samples
+              if: matrix.os != 'macos-latest'
               run: |
                   dotnet publish src/samples -c ${{ matrix.cfg }} --no-build -v:d
             - name: Clean samples
+              if: matrix.os != 'macos-latest'
               run: |
                   dotnet clean src/samples -c ${{ matrix.cfg }} -v:d
             - name: Upload GitHub packages
