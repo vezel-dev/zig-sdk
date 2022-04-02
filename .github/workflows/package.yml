@@ -33,4 +33,4 @@ jobs:
               with:
                   names: |
                       Zig.Sdk
-                  keep: 5
+                  keep: 25
