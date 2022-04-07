@@ -356,10 +356,9 @@ public sealed class ZigCompile : ZigToolTask
                     builder.AppendSwitch("-Wno-everything");
                     break;
                 case 1:
-                    // TODO: https://github.com/vezel-dev/zig-sdk/issues/17
-
                     TryAppendWarningSwitch("alloca");
                     TryAppendWarningSwitch("non-gcc");
+                    TryAppendWarningSwitch("reserved-identifier");
                     TryAppendWarningSwitch("signed-enum-bitfield");
 
                     if (isCxx)
