@@ -246,6 +246,7 @@ public sealed class ZigCompile : ZigToolTask
             {
                 builder.AppendSwitch("-fms-extensions");
 
+                builder.AppendSwitch("-Wno-microsoft-abstract");
                 builder.AppendSwitch("-Wno-microsoft-anon-tag");
                 builder.AppendSwitch("-Wno-microsoft-union-member-reference");
             }

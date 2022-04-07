@@ -1,6 +1,6 @@
 #include "cxxlib.h"
 
-union test
+union test abstract
 {
     int& i;
 };
