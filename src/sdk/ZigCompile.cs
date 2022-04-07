@@ -1,7 +1,7 @@
 using Microsoft.Build.Framework;
 using Microsoft.Build.Tasks;
 
-namespace Zig.Tasks;
+namespace Vezel.Zig.Tasks;
 
 [SuppressMessage("", "CA1819")]
 public sealed class ZigCompile : ZigToolTask
@@ -355,7 +355,7 @@ public sealed class ZigCompile : ZigToolTask
                     builder.AppendSwitch("-Wno-everything");
                     break;
                 case 1:
-                    // TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/17
+                    // TODO: https://github.com/vezel-dev/zig-sdk/issues/17
 
                     TryAppendWarningSwitch("alloca");
                     TryAppendWarningSwitch("non-gcc");
@@ -482,7 +482,7 @@ public sealed class ZigCompile : ZigToolTask
             if (!TrustAnalysis)
                 builder.AppendSwitch("-Wno-tcb-enforcement");
 
-            // TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/38
+            // TODO: https://github.com/vezel-dev/zig-sdk/issues/38
             if (Deterministic)
             {
                 builder.AppendSwitch("-Werror=date-time");
@@ -542,7 +542,7 @@ public sealed class ZigCompile : ZigToolTask
 
         builder.AppendSwitchIfNotNull(isZig ? "-rpath " : "-Wl,-rpath,", "$ORIGIN");
 
-        // TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/8
+        // TODO: https://github.com/vezel-dev/zig-sdk/issues/8
 
         builder.AppendFileNamesIfNotNull(Sources, " ");
         builder.AppendSwitchIfNotNull(isZig ? "-femit-bin=" : "-o ", OutputBinary);

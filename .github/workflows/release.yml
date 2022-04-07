@@ -13,7 +13,7 @@ env:
     DOTNET_NOLOGO: true
 jobs:
     release:
-        if: github.repository == 'vezel-dev/zig-msbuild-sdk'
+        if: github.repository == 'vezel-dev/zig-sdk'
         runs-on: ubuntu-latest
         steps:
             - name: Clone repository

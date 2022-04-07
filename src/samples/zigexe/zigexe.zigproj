@@ -1,4 +1,4 @@
-<Project Sdk="Zig.Sdk">
+<Project Sdk="Vezel.Zig.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
     </PropertyGroup>

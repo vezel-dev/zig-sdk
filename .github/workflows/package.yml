@@ -11,7 +11,7 @@ env:
     DOTNET_NOLOGO: true
 jobs:
     package:
-        if: github.repository == 'vezel-dev/zig-msbuild-sdk' && github.ref == 'refs/heads/master'
+        if: github.repository == 'vezel-dev/zig-sdk' && github.ref == 'refs/heads/master'
         runs-on: ubuntu-latest
         steps:
             - name: Clone repository
@@ -32,5 +32,5 @@ jobs:
               uses: SmartsquareGmbH/delete-old-packages@v0.4.0
               with:
                   names: |
-                      Zig.Sdk
+                      Vezel.Zig.Sdk
                   keep: 25

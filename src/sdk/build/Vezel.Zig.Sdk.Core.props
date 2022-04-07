@@ -1,9 +1,9 @@
 <Project>
     <!--
     We set this so that third-party build logic can determine whether it is
-    running in the context of a Zig.Sdk-based project.
+    running in the context of a Vezel.Zig.Sdk-based project.
     -->
     <PropertyGroup>
-        <UsingZigSdk>true</UsingZigSdk>
+        <UsingVezelZigSdk>true</UsingVezelZigSdk>
     </PropertyGroup>
 </Project>

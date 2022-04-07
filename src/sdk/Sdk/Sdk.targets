@@ -6,23 +6,23 @@
     last.
     -->
 
-    <Import Project="../build/Zig.Sdk.Overrides.targets" />
-    <Import Project="../build/Zig.Sdk.Cross.targets" />
-    <Import Project="../build/Zig.Sdk.Symbols.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Overrides.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Cross.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Symbols.targets" />
     <Import Project="Sdk.targets"
             Sdk="Microsoft.NET.Sdk" />
-    <Import Project="../build/Zig.Sdk.Hacks.targets" />
-    <Import Project="../build/Zig.Sdk.Defaults.targets" />
-    <Import Project="../build/Zig.Sdk.Defines.targets" />
-    <Import Project="../build/Zig.Sdk.Core.targets" />
-    <Import Project="../build/Zig.Sdk.Emulator.targets" />
-    <Import Project="../build/Zig.Sdk.Editor.targets" />
-    <Import Project="../build/Zig.Sdk.Format.targets" />
-    <Import Project="../build/Zig.Sdk.Build.targets" />
-    <Import Project="../build/Zig.Sdk.Clean.targets" />
-    <Import Project="../build/Zig.Sdk.Run.targets" />
-    <Import Project="../build/Zig.Sdk.Test.targets" />
-    <Import Project="../build/Zig.Sdk.Pack.targets" />
-    <Import Project="../build/Zig.Sdk.Publish.targets" />
-    <Import Project="../build/Zig.Sdk.Watch.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Hacks.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Defaults.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Defines.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Core.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Emulator.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Editor.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Format.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Build.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Clean.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Run.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Test.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Pack.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Publish.targets" />
+    <Import Project="../build/Vezel.Zig.Sdk.Watch.targets" />
 </Project>

@@ -18,7 +18,7 @@
         <_EmulatorArgumentSuffix>`"</_EmulatorArgumentSuffix>
     </PropertyGroup>
 
-    <!-- TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/6 -->
+    <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/6 -->
     <PropertyGroup Condition="'$(TargetSystem)' == 'macos' and '$(HostSystem)' == 'linux' and '$(IsCrossCompilingArchitecture)' == 'false'">
         <_EmulatorName>darling</_EmulatorName>
         <_EmulatorCommand>darling</_EmulatorCommand>

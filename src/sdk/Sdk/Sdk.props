@@ -8,7 +8,7 @@
 
     <Import Project="Sdk.props"
             Sdk="Microsoft.NET.Sdk" />
-    <Import Project="../build/Zig.Sdk.Core.props" />
-    <Import Project="../build/Zig.Sdk.Items.props" />
-    <Import Project="../build/Zig.Sdk.Build.props" />
+    <Import Project="../build/Vezel.Zig.Sdk.Core.props" />
+    <Import Project="../build/Vezel.Zig.Sdk.Items.props" />
+    <Import Project="../build/Vezel.Zig.Sdk.Build.props" />
 </Project>

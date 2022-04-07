@@ -1,4 +1,4 @@
-namespace Zig.Tasks;
+namespace Vezel.Zig.Tasks;
 
 public enum ZigConfiguration
 {

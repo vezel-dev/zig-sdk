@@ -4,10 +4,8 @@
     for, such as platform triple, library name pattern, executable suffix, etc.
     -->
 
-    <!-- TODO: https://github.com/vezel-dev/zig-msbuild-sdk/issues/7 -->
-
-    <Import Project="Zig.Sdk.Cross.Host.targets" />
-    <Import Project="Zig.Sdk.Cross.Target.targets" />
+    <Import Project="Vezel.Zig.Sdk.Cross.Host.targets" />
+    <Import Project="Vezel.Zig.Sdk.Cross.Target.targets" />
 
     <PropertyGroup>
         <IsCrossCompiling>false</IsCrossCompiling>

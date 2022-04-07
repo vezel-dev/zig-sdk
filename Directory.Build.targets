@@ -30,7 +30,7 @@
             BeforeTargets="GenerateNuspec"
             Condition="'$(IsPackable)' == 'true'">
         <PropertyGroup>
-            <PackageReleaseNotes>https://github.com/vezel-dev/zig-msbuild-sdk/releases/tag/v$(Version)</PackageReleaseNotes>
+            <PackageReleaseNotes>https://github.com/vezel-dev/zig-sdk/releases/tag/v$(Version)</PackageReleaseNotes>
         </PropertyGroup>
     </Target>
 

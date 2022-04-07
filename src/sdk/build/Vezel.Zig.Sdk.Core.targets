@@ -5,15 +5,15 @@
     -->
 
     <ItemGroup>
-       <PackageReference Include="Zig.Toolset.$(HostRuntimeIdentifier)"
+       <PackageReference Include="Vezel.Zig.Toolsets.$(HostRuntimeIdentifier)"
                          Version="$(ZigVersion).*"
                          PrivateAssets="all"
                          IsImplicitlyDefined="true" />
     </ItemGroup>
 
     <PropertyGroup>
-        <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)../tools/net6.0/Zig.Tasks.dll</_ZigTasksPath>
-        <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)../tools/net472/Zig.Tasks.dll</_ZigTasksPath>
+        <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)../tools/net6.0/Vezel.Zig.Tasks.dll</_ZigTasksPath>
+        <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)../tools/net472/Vezel.Zig.Tasks.dll</_ZigTasksPath>
     </PropertyGroup>
 
     <UsingTask TaskName="ZigCompile"

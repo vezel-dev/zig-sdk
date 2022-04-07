@@ -1,6 +1,6 @@
 using Microsoft.Build.Utilities;
 
-namespace Zig.Tasks;
+namespace Vezel.Zig.Tasks;
 
 public abstract class ZigToolTask : ToolTask
 {

@@ -1,7 +1,7 @@
 using Microsoft.Build.Framework;
 using Microsoft.Build.Tasks;
 
-namespace Zig.Tasks;
+namespace Vezel.Zig.Tasks;
 
 [SuppressMessage("", "CA1819")]
 public sealed class ZigFormat : ZigToolTask

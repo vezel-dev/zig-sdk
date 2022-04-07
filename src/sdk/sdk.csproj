@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
-        <AssemblyName>Zig.Tasks</AssemblyName>
+        <AssemblyName>Vezel.Zig.Tasks</AssemblyName>
         <BuildOutputTargetFolder>tools</BuildOutputTargetFolder>
         <DevelopmentDependency>true</DevelopmentDependency>
         <IsPackable>true</IsPackable>
@@ -10,9 +10,9 @@
         <PackageDescription>$(PackageDescription)
 
 This package provides the MSBuild SDK and associated tasks.</PackageDescription>
-        <PackageId>Zig.Sdk</PackageId>
+        <PackageId>Vezel.Zig.Sdk</PackageId>
         <PackageType>MSBuildSdk</PackageType>
-        <RootNamespace>Zig.Tasks</RootNamespace>
+        <RootNamespace>Vezel.Zig.Tasks</RootNamespace>
         <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
         <TargetFrameworks>net6.0; net472</TargetFrameworks>
     </PropertyGroup>
@@ -50,7 +50,7 @@ This package provides the MSBuild SDK and associated tasks.</PackageDescription>
   "$schema": "https://json.schemastore.org/global.json",
   "msbuild-sdks": {
     "Microsoft.Build.Traversal": "3.1.6",
-    "Zig.Sdk": "$(Version)"
+    "Vezel.Zig.Sdk": "$(Version)"
   }
 }
                 ]]>

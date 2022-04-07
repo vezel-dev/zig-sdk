@@ -12,7 +12,7 @@ is no need to run `dotnet nbgv prepare-release` in this case.
 Before tagging a release, build the release branch locally on all platforms that
 you have access to and try the [sample projects](src/samples). Verify that
 nothing has regressed. Also, ensure that the release branch builds and tests
-successfully on [CI](https://github.com/vezel-dev/zig-msbuild-sdk/actions).
+successfully on [CI](https://github.com/vezel-dev/zig-sdk/actions).
 
 Next, run `dotnet nbgv tag` from the release branch to create a release tag,
 followed by `git tag <tag> <tag> -f -m <tag> -s` to sign it, and then push it
@@ -22,7 +22,7 @@ something goes wrong on CI, you can run `git tag -d <tag>` and
 then repeat this step.
 
 Finally, to actually publish the release, go to the
-[releases page](https://github.com/vezel-dev/zig-msbuild-sdk/releases) to create
-a release from the tag you pushed, ideally with some well-written release notes.
+[releases page](https://github.com/vezel-dev/zig-sdk/releases) to create a
+release from the tag you pushed, ideally with some well-written release notes.
 Once the release is published, a workflow will build and publish NuGet packages
 from the tag.
