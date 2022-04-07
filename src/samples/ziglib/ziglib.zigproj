@@ -1,6 +1,5 @@
 <Project Sdk="Vezel.Zig.Sdk">
     <PropertyGroup>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-        <IsTestable>false</IsTestable>
     </PropertyGroup>
 </Project>

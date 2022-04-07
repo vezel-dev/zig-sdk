@@ -552,7 +552,10 @@ public sealed class ZigCompile : ZigToolTask
             builder.AppendSwitchIfNotNull("-gen-cdb-fragment-path ", CommandFragmentsDirectory);
 
         if (isTest)
+        {
+            builder.AppendSwitch("--test-no-exec");
             builder.AppendSwitchIfNotNull("--test-filter ", TestFilter);
+        }
 
         return builder.ToString();
     }

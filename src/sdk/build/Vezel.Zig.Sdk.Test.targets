@@ -10,9 +10,11 @@
     <Target Name="VSTest"
             DependsOnTargets="$(VSTestDependsOn)"
             Condition="'$(CompilerMode)' == 'Zig' and '$(IsTestable)' == 'true'">
-        <Message Text="Running tests natively..."
-                 Importance="high"
-                 Condition="'$(IsCrossExecuting)' == 'false'" />
+        <!--
+        We might be run before an actual build, in which case the intermediate
+        output path will not exist.
+        -->
+        <MakeDir Directories="$(IntermediateOutputPath)" />
 
         <ZigCompile AccessControl="$(AccessControl)"
                     BlockExtensions="$(BlockExtensions)"
@@ -52,6 +54,13 @@
                     TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
                     TrustAnalysis="$(TrustAnalysis)"
                     WarningLevel="$(WarningLevel)" />
+
+        <Message Text="Running tests natively..."
+                 Importance="high"
+                 Condition="'$(IsCrossExecuting)' == 'false'" />
+
+        <Exec Command="&quot;@(TestAssembly)&quot; &quot;$(ZigExePath)&quot;"
+              Condition="'$(IsCrossExecuting)' == 'false'" />
 
         <Message Text="Running tests with binary emulator '$(EmulatorName)'..."
                  Importance="high"
