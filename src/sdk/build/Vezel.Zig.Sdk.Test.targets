@@ -26,7 +26,7 @@
                     Deterministic="$(Deterministic)"
                     DisableWarnings="$(DisableWarnings)"
                     DocumentationAnalysis="$(DocumentationAnalysis)"
-                    EnvironmentVariables="ZIG_LOCAL_CACHE_DIR=$(CachePath)"
+                    EnvironmentVariables="ZIG_GLOBAL_CACHE_DIR=$(CachePath)/global; ZIG_LOCAL_CACHE_DIR=$(CachePath)/local"
                     FastMath="$(FastMath)"
                     IncludeDirectories="@(IncludeDirectory)"
                     LanguageStandard="$(LanguageStandard)"
