@@ -55,6 +55,12 @@ public sealed class ZigCompile : ZigToolTask
     public bool DocumentationAnalysis { get; set; }
 
     [Required]
+    public bool EagerBinding { get; set; }
+
+    [Required]
+    public bool ExecutableStack { get; set; }
+
+    [Required]
     public bool FastMath { get; set; }
 
     [Required]
@@ -93,6 +99,9 @@ public sealed class ZigCompile : ZigToolTask
         get => _releaseMode.ToString();
         set => _releaseMode = (ZigReleaseMode)Enum.Parse(typeof(ZigReleaseMode), value);
     }
+
+    [Required]
+    public bool RelocationHardening { get; set; }
 
     [Required]
     public ITaskItem[] Sanitizers { get; set; } = null!;
@@ -540,6 +549,16 @@ public sealed class ZigCompile : ZigToolTask
             foreach (var prelude in PreludeHeaders)
                 builder.AppendSwitchIfNotNull("-include ", prelude);
 
+        if (EagerBinding)
+            builder.AppendSwitch(isZig ? "-z now" : "-Wl,-z,now");
+
+        if (RelocationHardening)
+            builder.AppendSwitch(isZig ? "-z relro" : "-Wl,-z,relro");
+
+        if (!ExecutableStack)
+            builder.AppendSwitch(isZig ? "-z noexecstack" : "-Wl,-z,noexecstack");
+
+        builder.AppendSwitch(isZig ? "-z origin" : "-Wl,-z,origin");
         builder.AppendSwitchIfNotNull(isZig ? "-rpath " : "-Wl,-rpath,", "$ORIGIN");
 
         // TODO: https://github.com/vezel-dev/zig-sdk/issues/8

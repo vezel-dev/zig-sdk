@@ -325,23 +325,33 @@ as sensible for historical reasons.
 * `Configuration` (`Debug`, `Release`): Specifies the overarching configuration.
   When `Release` is specified, `ReleaseMode` comes into effect. Defaults to
   `Debug`. Usually specified by the user as e.g. `dotnet build -c Release`.
-* `FastMath` (`true`, `false`): Enable/disable certain lossy floating point
-  optimizations that may not be standards-compliant. Defaults to `false`.
-* `LinkTimeOptimization` (`true`, `false`): Enable/disable link-time
-  optimization when `Configuration` is set to `Release`. Note that link-time
-  optimization is known not to work well on some targets and so should be used
-  selectively. Defaults to `false`.
 * `DebugSymbols` (`true`, `false`): Enable/disable emitting debug symbols.
   Defaults to `true` if `Configuration` is `Debug`; otherwise, `false`.
 * `ReleaseMode` (`Fast`, `Safe`, `Small`): The
   [build mode](https://ziglang.org/documentation/master/#Build-Mode) to use when
   `Configuration` is set to `Release`. Defaults to `Fast`.
+* `FastMath` (`true`, `false`): Enable/disable certain lossy floating point
+  optimizations that may not be standards-compliant. Defaults to `false`.
+* `LinkTimeOptimization` (`true`, `false`): Enable/disable link-time
+  optimization. Note that link-time optimization is known not to work well on
+  some targets and so should be used selectively. Defaults to `false`.
 * `SymbolExports` (`Used`, `All`): Specifies whether to export all public
   symbols or only those that are needed to link successfully. This only applies
   when building executables. Defaults to `Used`.
 * `SymbolVisibility` (`Default`, `Hidden`): Specifies the symbol visibility in
   C/C++ projects when `__attribute__((visibility(...)))` is not specified.
   `Default` (the default 😉) means public, while `Hidden` means private.
+* `ExecutableStack` (`true`, `false`): Enables/disables marking the stack as
+  executable for the resulting binary. Executable stack memory is a significant
+  security risk. Defaults to `false`.
+* `EagerBinding` (`true`, `false`): Enables/disables eager binding of symbols
+  when performing dynamic linking at run time. Eager binding has security
+  benefits, especially in combination with `RelocationHardening`. It is also
+  more reliable if calling external functions from signal handlers. Defaults to
+  `true`.
+* `RelocationHardening` (`true`, `false`): Enables/disables marking relocations
+  as read-only. This has security benefits, especially in combination with
+  `EagerBinding`. Defaults to `true`.
 * `Sanitizers`: A semicolon-separated list of
   [sanitizers](https://github.com/google/sanitizers) to instrument code with.
   Currently, only `thread` is supported. Unset by default.

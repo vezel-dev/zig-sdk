@@ -52,10 +52,13 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <EagerBinding Condition="'$(EagerBinding)' == ''">true</EagerBinding>
+        <ExecutableStack Condition="'$(ExecutableStack)' == ''">false</ExecutableStack>
         <FastMath Condition="'$(FastMath)' == ''">false</FastMath>
         <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/33 -->
         <LinkTimeOptimization Condition="'$(LinkTimeOptimization)' == ''">false</LinkTimeOptimization>
         <ReleaseMode Condition="'$(ReleaseMode)' == ''">Fast</ReleaseMode>
+        <RelocationHardening Condition="'$(RelocationHardening)' == ''">true</RelocationHardening>
         <SymbolExports Condition="'$(SymbolExports)' == ''">Used</SymbolExports>
         <SymbolVisibility Condition="'$(SymbolVisibility)' == ''">Default</SymbolVisibility>
     </PropertyGroup>

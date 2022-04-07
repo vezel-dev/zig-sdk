@@ -1,5 +1,6 @@
 <Project Sdk="Vezel.Zig.Sdk">
     <PropertyGroup>
+        <ExecutableStack>true</ExecutableStack>
         <OutputType>Exe</OutputType>
     </PropertyGroup>
 
