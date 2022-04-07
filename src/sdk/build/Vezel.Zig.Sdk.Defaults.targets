@@ -71,6 +71,7 @@
             linux-musl-arm;
             linux-musl-arm64;
             linux-musl-x64;
+            osx-arm64;
             osx-x64;
             win-x86;
             win-x64
