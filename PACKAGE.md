@@ -13,3 +13,6 @@ This project offers the following packages:
 
 * [Vezel.Zig.Sdk](https://www.nuget.org/packages/Vezel.Zig.Sdk): Provides the
   MSBuild SDK and associated tasks.
+
+For more information, please visit the
+[project page](https://github.com/vezel-dev/zig-sdk).
