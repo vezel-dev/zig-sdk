@@ -1,9 +1,11 @@
 # Support
 
-The project has a [GitHub Discussions](https://docs.github.com/en/discussions) forum:
-[![GitHub Discussions](https://img.shields.io/github/discussions/vezel-dev/zig-sdk)](https://github.com/vezel-dev/zig-sdk/discussions)
+Please use of the following channels for support requests:
 
-Please do *not* use the
+[![Discussions](https://img.shields.io/github/discussions/vezel-dev/zig-sdk?color=teal)](https://github.com/vezel-dev/zig-sdk/discussions/categories/questions)
+[![Discord](https://img.shields.io/discord/960716713136095232?color=peru&label=discord)](https://discord.gg/bk5T2s9zFg)
+
+Do *not* use the
 [issue tracker](https://github.com/vezel-dev/zig-sdk/issues) for support
 requests.
 
