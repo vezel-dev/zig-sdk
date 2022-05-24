@@ -21,7 +21,7 @@
         <ImplicitUsings>true</ImplicitUsings>
         <IsPackable>false</IsPackable>
         <IsPublishable>false</IsPublishable>
-        <LangVersion>preview</LangVersion>
+        <LangVersion>latest</LangVersion>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
         <Nullable>enable</Nullable>
         <PackageDescription>$(Description)
