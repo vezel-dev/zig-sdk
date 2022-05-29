@@ -15,4 +15,4 @@ This project offers the following packages:
   MSBuild SDK and associated tasks.
 
 For more information, please visit the
-[project page](https://github.com/vezel-dev/zig-sdk).
+[project home page](https://docs.vezel.dev/zig-sdk).

@@ -32,7 +32,7 @@ part of your .NET solution - without all the hassle that is usually part and
 parcel of building and packaging native code.</PackageDescription>
         <PackageLicenseExpression>0BSD</PackageLicenseExpression>
         <PackageOutputPath>$(MSBuildThisFileDirectory)pkg/feed/</PackageOutputPath>
-        <PackageProjectUrl>https://ziglang.org</PackageProjectUrl>
+        <PackageProjectUrl>https://docs.vezel.dev/zig-sdk</PackageProjectUrl>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RepositoryUrl>https://github.com/vezel-dev/zig-sdk.git</RepositoryUrl>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
