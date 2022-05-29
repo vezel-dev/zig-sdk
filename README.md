@@ -14,7 +14,7 @@
 
 <div align="center">
 
-[![License](https://img.shields.io/badge/license-0BSD-brown)](LICENSE.md)
+[![License](https://img.shields.io/badge/license-0BSD-brown)](LICENSE-0BSD)
 [![Commits](https://img.shields.io/github/commit-activity/m/vezel-dev/zig-sdk/master?label=commits&color=slateblue)](https://github.com/vezel-dev/zig-sdk/commits/master)
 [![Build](https://img.shields.io/github/workflow/status/vezel-dev/zig-sdk/Build/master)](https://github.com/vezel-dev/zig-sdk/actions/workflows/build.yml)
 [![Discussions](https://img.shields.io/github/discussions/vezel-dev/zig-sdk?color=teal)](https://github.com/vezel-dev/zig-sdk/discussions)
@@ -395,3 +395,11 @@ as sensible for historical reasons.
 ### References
 
 [Soon™.](https://github.com/vezel-dev/zig-sdk/issues/8)
+
+## License
+
+This project is licensed under the terms found in
+[`LICENSE-0BSD`](LICENSE-0BSD).
+
+The Zig logo is licensed under the terms found in
+[`LICENSE-CC-BY-SA-4.0`](LICENSE-CC-BY-SA-4.0).
