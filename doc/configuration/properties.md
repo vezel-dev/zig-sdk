@@ -149,9 +149,6 @@ historical reasons.
 * `SymbolVisibility` (`Default`, `Hidden`): Specifies the symbol visibility in
   C/C++ projects when `__attribute__((visibility(...)))` is not specified.
   `Default` (the default 😉) means public, while `Hidden` means private.
-* `ExecutableStack` (`true`, `false`): Enables/disables marking the stack as
-  executable for the resulting binary. Executable stack memory is a significant
-  security risk. Defaults to `false`.
 * `EagerBinding` (`true`, `false`): Enables/disables eager binding of symbols
   when performing dynamic linking at run time. Eager binding has security
   benefits, especially in combination with `RelocationHardening`. It is also

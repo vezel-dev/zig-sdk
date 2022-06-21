@@ -53,7 +53,6 @@
 
     <PropertyGroup>
         <EagerBinding Condition="'$(EagerBinding)' == ''">true</EagerBinding>
-        <ExecutableStack Condition="'$(ExecutableStack)' == ''">false</ExecutableStack>
         <FastMath Condition="'$(FastMath)' == ''">false</FastMath>
         <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/33 -->
         <LinkTimeOptimization Condition="'$(LinkTimeOptimization)' == ''">false</LinkTimeOptimization>
