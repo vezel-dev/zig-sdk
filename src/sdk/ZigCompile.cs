@@ -58,9 +58,6 @@ public sealed class ZigCompile : ZigToolTask
     public bool EagerBinding { get; set; }
 
     [Required]
-    public bool ExecutableStack { get; set; }
-
-    [Required]
     public bool FastMath { get; set; }
 
     [Required]
@@ -557,9 +554,6 @@ public sealed class ZigCompile : ZigToolTask
 
         if (RelocationHardening)
             builder.AppendSwitch(isZig ? "-z relro" : "-Wl,-z,relro");
-
-        if (!ExecutableStack)
-            builder.AppendSwitch(isZig ? "-z noexecstack" : "-Wl,-z,noexecstack");
 
         builder.AppendSwitch(isZig ? "-z origin" : "-Wl,-z,origin");
         builder.AppendSwitchIfNotNull(isZig ? "-rpath " : "-Wl,-rpath,", "$ORIGIN");

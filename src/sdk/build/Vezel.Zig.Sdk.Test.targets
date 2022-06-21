@@ -30,7 +30,6 @@
                     DocumentationAnalysis="$(DocumentationAnalysis)"
                     EagerBinding="$(EagerBinding)"
                     EnvironmentVariables="ZIG_GLOBAL_CACHE_DIR=$(CachePath)/global; ZIG_LOCAL_CACHE_DIR=$(CachePath)/local"
-                    ExecutableStack="$(ExecutableStack)"
                     FastMath="$(FastMath)"
                     IncludeDirectories="@(IncludeDirectory)"
                     LanguageStandard="$(LanguageStandard)"
