@@ -10,6 +10,9 @@ are used by the Zig SDK:
   every C/C++ source file by way of Clang's `-include` flag.
 * `IncludeDirectory`: Header include directories passed to the compiler with the
   `-I` flag. Note that this applies to Zig as well, not just C/C++.
+* `LibraryIncludeDirectory`: Header include directories passed to the compiler
+  with the `-isystem` flag. Note that this applies to Zig as well, not just
+  C/C++.
 * `LibraryReference`: Native libraries that should be linked to. These can be
   either static or dynamic. For multi-platform projects, additions to this item
   should be conditioned on the value of `RuntimeIdentifier` (or similar).
