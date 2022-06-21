@@ -33,6 +33,7 @@
                     FastMath="$(FastMath)"
                     IncludeDirectories="@(IncludeDirectory)"
                     LanguageStandard="$(LanguageStandard)"
+                    LibraryIncludeDirectories="@(LibraryIncludeDirectory)"
                     LibraryReferences="@(LibraryReference)"
                     LinkTimeOptimization="$(LinkTimeOptimization)"
                     MicrosoftExtensions="$(MicrosoftExtensions)"

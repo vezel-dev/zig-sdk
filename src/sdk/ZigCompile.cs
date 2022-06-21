@@ -67,6 +67,9 @@ public sealed class ZigCompile : ZigToolTask
     public string LanguageStandard { get; set; } = null!;
 
     [Required]
+    public ITaskItem[] LibraryIncludeDirectories { get; set; } = null!;
+
+    [Required]
     public ITaskItem[] LibraryReferences { get; set; } = null!;
 
     [Required]
@@ -541,6 +544,9 @@ public sealed class ZigCompile : ZigToolTask
 
         builder.AppendSwitchIfNotNull("-I ", GetWorkingDirectory() ?? ".");
         builder.AppendSwitchIfNotNull("-I ", PublicIncludeDirectory);
+
+        foreach (var include in LibraryIncludeDirectories)
+            builder.AppendSwitchIfNotNull("-isystem ", include);
 
         foreach (var include in IncludeDirectories)
             builder.AppendSwitchIfNotNull("-I ", include);
