@@ -70,6 +70,9 @@ public sealed class ZigCompile : ZigToolTask
     public string LanguageStandard { get; set; } = null!;
 
     [Required]
+    public ITaskItem[] LibraryReferences { get; set; } = null!;
+
+    [Required]
     public bool LinkTimeOptimization { get; set; }
 
     [Required]
@@ -564,6 +567,7 @@ public sealed class ZigCompile : ZigToolTask
         // TODO: https://github.com/vezel-dev/zig-sdk/issues/8
 
         builder.AppendFileNamesIfNotNull(Sources, " ");
+        builder.AppendFileNamesIfNotNull(LibraryReferences, " ");
         builder.AppendSwitchIfNotNull(isZig ? "-femit-bin=" : "-o ", OutputBinary);
 
         if (!isZig)

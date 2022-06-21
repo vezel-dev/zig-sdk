@@ -6,10 +6,13 @@ are used by the Zig SDK:
 
 * `Compile`: Source code files passed to the Zig compiler. By default, the Zig
   SDK will populate this item type according to the project type.
-* `IncludeDirectory`: Header include directories passed to the compiler with the
-  `-I` flag. Note that this applies to Zig as well, not just C/C++.
 * `PreludeHeader`: C/C++ header files that will be automatically `#include`d in
   every C/C++ source file by way of Clang's `-include` flag.
+* `IncludeDirectory`: Header include directories passed to the compiler with the
+  `-I` flag. Note that this applies to Zig as well, not just C/C++.
+* `LibraryReference`: Native libraries that should be linked to. These can be
+  either static or dynamic. For multi-platform projects, additions to this item
+  should be conditioned on the value of `RuntimeIdentifier` (or similar).
 * `CHeader`: Prepopulated by the Zig SDK with all files in the project directory
   ending in `.h`.
 * `CSource`: Prepopulated by the Zig SDK with all files in the project directory

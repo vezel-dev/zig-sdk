@@ -58,6 +58,7 @@
                     FastMath="$(FastMath)"
                     IncludeDirectories="@(IncludeDirectory)"
                     LanguageStandard="$(LanguageStandard)"
+                    LibraryReferences="@(LibraryReference)"
                     LinkTimeOptimization="$(LinkTimeOptimization)"
                     MicrosoftExtensions="$(MicrosoftExtensions)"
                     NullabilityAnalysis="$(NullabilityAnalysis)"
