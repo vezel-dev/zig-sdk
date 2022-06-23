@@ -59,6 +59,8 @@
                     LanguageStandard="$(LanguageStandard)"
                     LibraryIncludeDirectories="@(LibraryIncludeDirectory)"
                     LibraryReferences="@(LibraryReference)"
+                    LinkerDirectories="@(LinkerDirectory)"
+                    LinkerReferences="@(LinkerReference)"
                     LinkTimeOptimization="$(LinkTimeOptimization)"
                     MicrosoftExtensions="$(MicrosoftExtensions)"
                     NullabilityAnalysis="$(NullabilityAnalysis)"
