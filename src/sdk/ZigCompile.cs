@@ -73,6 +73,12 @@ public sealed class ZigCompile : ZigToolTask
     public ITaskItem[] LibraryReferences { get; set; } = null!;
 
     [Required]
+    public ITaskItem[] LinkerDirectories { get; set; } = null!;
+
+    [Required]
+    public ITaskItem[] LinkerReferences { get; set; } = null!;
+
+    [Required]
     public bool LinkTimeOptimization { get; set; }
 
     [Required]
@@ -545,15 +551,15 @@ public sealed class ZigCompile : ZigToolTask
         builder.AppendSwitchIfNotNull("-I ", GetWorkingDirectory() ?? ".");
         builder.AppendSwitchIfNotNull("-I ", PublicIncludeDirectory);
 
-        foreach (var include in LibraryIncludeDirectories)
-            builder.AppendSwitchIfNotNull("-isystem ", include);
+        foreach (var directory in LibraryIncludeDirectories)
+            builder.AppendSwitchIfNotNull("-isystem ", directory);
 
-        foreach (var include in IncludeDirectories)
-            builder.AppendSwitchIfNotNull("-I ", include);
+        foreach (var directory in IncludeDirectories)
+            builder.AppendSwitchIfNotNull("-I ", directory);
 
         if (!isZig)
-            foreach (var prelude in PreludeHeaders)
-                builder.AppendSwitchIfNotNull("-include ", prelude);
+            foreach (var header in PreludeHeaders)
+                builder.AppendSwitchIfNotNull("-include ", header);
 
         if (EagerBinding)
             builder.AppendSwitch(isZig ? "-z now" : "-Wl,-z,now");
@@ -568,6 +574,13 @@ public sealed class ZigCompile : ZigToolTask
 
         builder.AppendFileNamesIfNotNull(Sources, " ");
         builder.AppendFileNamesIfNotNull(LibraryReferences, " ");
+
+        foreach (var directory in LinkerDirectories)
+            builder.AppendSwitchIfNotNull("-L ", directory);
+
+        foreach (var library in LinkerReferences)
+            builder.AppendSwitchIfNotNull("-l ", library);
+
         builder.AppendSwitchIfNotNull(isZig ? "-femit-bin=" : "-o ", OutputBinary);
 
         if (!isZig)

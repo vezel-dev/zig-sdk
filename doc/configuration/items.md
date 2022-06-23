@@ -13,9 +13,13 @@ are used by the Zig SDK:
 * `LibraryIncludeDirectory`: Header include directories passed to the compiler
   with the `-isystem` flag. Note that this applies to Zig as well, not just
   C/C++.
-* `LibraryReference`: Native libraries that should be linked to. These can be
-  either static or dynamic. For multi-platform projects, additions to this item
-  should be conditioned on the value of `RuntimeIdentifier` (or similar).
+* `LinkerDirectory`: Library search directories passed to the linker with the
+  `-L` flag.
+* `LinkerReference`: Names of native libraries that should be linked using the
+  `-l` flag. These can be either static or dynamic.
+* `LibraryReference`: Direct paths to native library files that should be
+  linked, ignoring library search directories. These can be either static or
+  dynamic.
 * `CHeader`: Prepopulated by the Zig SDK with all files in the project directory
   ending in `.h`.
 * `CSource`: Prepopulated by the Zig SDK with all files in the project directory
