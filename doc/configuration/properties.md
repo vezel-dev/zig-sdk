@@ -149,13 +149,12 @@ historical reasons.
 * `SymbolVisibility` (`Default`, `Hidden`): Specifies the symbol visibility in
   C/C++ projects when `__attribute__((visibility(...)))` is not specified.
   `Default` (the default 😉) means public, while `Hidden` means private.
-* `EagerBinding` (`true`, `false`): Enables/disables eager binding of symbols
-  when performing dynamic linking at run time. Eager binding has security
-  benefits, especially in combination with `RelocationHardening`. It is also
-  more reliable if calling external functions from signal handlers. Defaults to
-  `true`.
-* `RelocationHardening` (`true`, `false`): Enables/disables marking relocations
-  as read-only. This has security benefits, especially in combination with
+* `EagerBinding` (`true`, `false`): Enable/disable eager binding of symbols when
+  performing dynamic linking at run time. Eager binding has security benefits,
+  especially in combination with `RelocationHardening`. It is also more reliable
+  if calling external functions from signal handlers. Defaults to `true`.
+* `RelocationHardening` (`true`, `false`): Enable/disable marking relocations as
+  read-only. This has security benefits, especially in combination with
   `EagerBinding`. Defaults to `true`.
 * `Sanitizers`: A semicolon-separated list of
   [sanitizers](https://github.com/google/sanitizers) to instrument code with.
@@ -168,8 +167,13 @@ historical reasons.
   specified in `RuntimeIdentifiers`. Usually specified by the user as e.g.
   `dotnet build -r linux-x64`. Unset by default.
 * `RuntimeIdentifiers`: A semicolon-separated list of runtime identifiers that
-  the project supports. All targets on this list will be cross-compiled as
+  the project supports. All targets in this list will be cross-compiled as
   necessary. Defaults to all targets that the Zig compiler has known-good
   support for.
+* `UseMicrosoftAbi` (`true`, `false`): Enable/disable using the Microsoft ABI
+  when targeting Windows. This may be necessary when linking to static libraries
+  containing C++ code that was compiled for the Microsoft ABI. Note that it is
+  currently not possible to cross-compile from non-Windows platforms when using
+  the Microsoft ABI. Unset by default.
 * `UseEmulator` (`true`, `false`): Enable/disable usage of an appropriate binary
   emulator when cross-compiling. Defaults to `true`.
