@@ -1,7 +1,7 @@
 <Project>
     <ItemGroup>
         <PackageVersion Include="Microsoft.Build.Tasks.Core"
-                        Version="17.0.0" />
+                        Version="17.2.0" />
         <PackageVersion Include="Microsoft.SourceLink.GitHub"
                         Version="1.1.1" />
         <PackageVersion Include="Nerdbank.GitVersioning"
