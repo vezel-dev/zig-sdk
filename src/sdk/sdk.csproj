@@ -14,7 +14,10 @@ This package provides the MSBuild SDK and associated tasks.</PackageDescription>
         <PackageType>MSBuildSdk</PackageType>
         <RootNamespace>Vezel.Zig.Tasks</RootNamespace>
         <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-        <TargetFrameworks>net6.0; net472</TargetFrameworks>
+        <TargetFrameworks>
+            net472;
+            net6.0
+        </TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
