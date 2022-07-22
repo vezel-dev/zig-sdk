@@ -6,7 +6,7 @@ installed.
 
 Next, create a
 [`global.json`](https://docs.microsoft.com/en-us/dotnet/core/tools/global-json)
-in the root of your repository and add the `Vezel.Zig.Sdk` entry under the
+file in the root of your repository and add the `Vezel.Zig.Sdk` entry under the
 `msbuild-sdks` property:
 
 ```json
