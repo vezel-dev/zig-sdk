@@ -5,8 +5,14 @@
         <BuildOutputTargetFolder>tools</BuildOutputTargetFolder>
         <DevelopmentDependency>true</DevelopmentDependency>
         <IsPackable>true</IsPackable>
-        <NoWarn>$(NoWarn); NU5129</NoWarn>
-        <NoWarn Condition="'$(TargetFramework)' == 'net472'">$(NoWarn); nullable</NoWarn>
+        <NoWarn>
+            $(NoWarn);
+            NU5129
+        </NoWarn>
+        <NoWarn Condition="'$(TargetFramework)' == 'net472'">
+            $(NoWarn);
+            nullable
+        </NoWarn>
         <PackageDescription>$(PackageDescription)
 
 This package provides the MSBuild SDK and associated tasks.</PackageDescription>

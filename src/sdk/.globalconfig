@@ -1,0 +1,3 @@
+global_level = 1
+
+dotnet_diagnostic.IDE0057.severity = none

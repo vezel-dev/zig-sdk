@@ -6,9 +6,9 @@ namespace Vezel.Zig.Tasks;
 [SuppressMessage("", "CA1819")]
 public sealed class ZigCompile : ZigToolTask
 {
-    const StringSplitOptions SplitOptions = StringSplitOptions.RemoveEmptyEntries;
+    private const StringSplitOptions SplitOptions = StringSplitOptions.RemoveEmptyEntries;
 
-    const StringComparison Comparison = StringComparison.InvariantCulture;
+    private const StringComparison Comparison = StringComparison.InvariantCulture;
 
     [Required]
     public bool AccessControl { get; set; }
@@ -158,17 +158,17 @@ public sealed class ZigCompile : ZigToolTask
     [Required]
     public int WarningLevel { get; set; }
 
-    ZigCompilerMode _compilerMode;
+    private ZigCompilerMode _compilerMode;
 
-    ZigConfiguration _configuration;
+    private ZigConfiguration _configuration;
 
-    ZigOutputType _outputType;
+    private ZigOutputType _outputType;
 
-    ZigReleaseMode _releaseMode;
+    private ZigReleaseMode _releaseMode;
 
-    ZigSymbolExports _symbolExports;
+    private ZigSymbolExports _symbolExports;
 
-    ZigSymbolVisibility _symbolVisibility;
+    private ZigSymbolVisibility _symbolVisibility;
 
     [SuppressMessage("", "CA2201")]
     [SuppressMessage("", "CA1308")]

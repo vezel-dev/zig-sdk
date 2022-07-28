@@ -1,4 +1,8 @@
 <Project>
+    <ItemGroup>
+        <AdditionalFiles Include="$(MSBuildThisFileDirectory).stylecop.json" />
+    </ItemGroup>
+
     <Choose>
         <When Condition="'$(IsPackable)' == 'true'">
             <PropertyGroup>

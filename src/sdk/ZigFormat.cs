@@ -16,7 +16,7 @@ public sealed class ZigFormat : ZigToolTask
     [Required]
     public ITaskItem[] Sources { get; set; } = null!;
 
-    ZigFormatterMode _formatterMode;
+    private ZigFormatterMode _formatterMode;
 
     protected override string GenerateCommandLineCommands()
     {
