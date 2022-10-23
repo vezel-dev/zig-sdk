@@ -48,10 +48,6 @@ Here are some of the **Zig SDK** highlights:
   servers, resulting in an IDE-like experience when editing code. For C/C++,
   [clangd](https://clangd.llvm.org) is fully supported, while for Zig projects,
   there is limited [ZLS](https://github.com/zigtools/zls) support.
-* **Easy to use:** Just add an entry to your `global.json`, and create a project
-  file ending in `.cproj`, `.cxxproj`, or `.zigproj`, with an
-  `Sdk="Vezel.Zig.Sdk"` attribute. Then start writing code and use
-  `dotnet build`, `dotnet run`, `dotnet test`, etc as you normally would.
 
 Please note that the **Zig SDK** is *not* intended to be a full replacement for
 [Zig's build system](https://ziglearn.org/chapter-3). The goal of the
