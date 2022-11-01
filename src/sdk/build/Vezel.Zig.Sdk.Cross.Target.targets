@@ -27,7 +27,7 @@
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('osx-'))">
         <TargetSystem>macos</TargetSystem>
-        <TargetSystemVersion>10.14</TargetSystemVersion>
+        <TargetSystemVersion>11.7</TargetSystemVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('win-'))">
