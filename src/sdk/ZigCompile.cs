@@ -550,11 +550,11 @@ public sealed class ZigCompile : ZigToolTask
             foreach (var header in PreludeHeaders)
                 builder.AppendSwitchIfNotNull("-include ", header);
 
-        if (EagerBinding)
-            builder.AppendSwitch(isZig ? "-z now" : "-Wl,-z,now");
+        if (!EagerBinding)
+            builder.AppendSwitch(isZig ? "-z lazy" : "-Wl,-z,lazy");
 
-        if (RelocationHardening)
-            builder.AppendSwitch(isZig ? "-z relro" : "-Wl,-z,relro");
+        if (!RelocationHardening)
+            builder.AppendSwitch(isZig ? "-z norelro" : "-Wl,-z,norelro");
 
         builder.AppendSwitch(isZig ? "-z origin" : "-Wl,-z,origin");
         builder.AppendSwitchIfNotNull(isZig ? "-rpath " : "-Wl,-rpath,", "$ORIGIN");
