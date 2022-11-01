@@ -241,10 +241,10 @@ public sealed class ZigCompile : ZigToolTask
             // result.
             builder.AppendSwitch((_configuration, _releaseMode) switch
             {
-                (ZigConfiguration.Debug, _) => "-Og",
-                (ZigConfiguration.Release, ZigReleaseMode.Fast) => "-O3",
+                (ZigConfiguration.Debug, _) => "-O0",
+                (ZigConfiguration.Release, ZigReleaseMode.Fast) => "-O2",
                 (ZigConfiguration.Release, ZigReleaseMode.Safe) => "-O2 -fsanitize=undefined",
-                (ZigConfiguration.Release, ZigReleaseMode.Small) => "-Oz",
+                (ZigConfiguration.Release, ZigReleaseMode.Small) => "-Os",
                 _ => throw new Exception(),
             });
 
