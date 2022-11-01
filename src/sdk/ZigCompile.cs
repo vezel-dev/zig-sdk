@@ -230,8 +230,7 @@ public sealed class ZigCompile : ZigToolTask
             if (_configuration == ZigConfiguration.Release)
                 builder.AppendSwitch($"-O Release{_releaseMode}");
 
-            if (!DebugSymbols)
-                builder.AppendSwitch("--strip");
+            builder.AppendSwitch(DebugSymbols ? "-fno-strip" : "-fstrip");
         }
         else
         {
