@@ -28,6 +28,7 @@
 
     <PropertyGroup>
         <HostAbi>gnu</HostAbi>
+        <HostAbi Condition="'$(HostSystem)' == 'macos'">none</HostAbi>
         <HostAbi Condition="'$(HostSystem)' == 'windows'">msvc</HostAbi>
         <HostAbi Condition="$(HostRuntimeIdentifier.Contains('-musl-'))">musl</HostAbi>
         <HostAbi Condition="'$(HostArchitecture)' == 'arm' and '$(HostAbi)' != 'msvc'">$(HostAbi)eabihf</HostAbi>

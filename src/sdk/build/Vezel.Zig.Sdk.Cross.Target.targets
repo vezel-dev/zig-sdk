@@ -37,6 +37,7 @@
 
     <PropertyGroup>
         <TargetAbi>gnu</TargetAbi>
+        <TargetAbi Condition="'$(TargetSystem)' == 'macos'">none</TargetAbi>
         <TargetAbi Condition="'$(TargetSystem)' == 'windows' and '$(UseMicrosoftAbi)' == 'true'">msvc</TargetAbi>
         <TargetAbi Condition="$(TargetRuntimeIdentifier.Contains('-musl-'))">musl</TargetAbi>
         <TargetAbi Condition="'$(TargetArchitecture)' == 'arm' and '$(TargetAbi)' != 'msvc'">$(TargetAbi)eabihf</TargetAbi>
