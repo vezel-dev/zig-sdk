@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)../tools/net6.0/Vezel.Zig.Tasks.dll</_ZigTasksPath>
+        <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)../tools/net7.0/Vezel.Zig.Tasks.dll</_ZigTasksPath>
         <_ZigTasksPath Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)../tools/net472/Vezel.Zig.Tasks.dll</_ZigTasksPath>
     </PropertyGroup>
 
