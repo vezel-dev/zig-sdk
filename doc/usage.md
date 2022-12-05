@@ -39,7 +39,7 @@ An executable project looks like:
 The project file extension determines the language your code will be compiled
 as - `.cproj` for C, `.cxxproj` for C++, and `.zigproj` for Zig.
 
-The convention used by the **Zig SDK** is that C projects should use a `.c`
+The convention used by the Zig SDK is that C projects should use a `.c`
 extension for source files and `.h` for header files, while C++ projects should
 use `.cxx` and `.hxx`. Zig projects use `.zig`.
 
