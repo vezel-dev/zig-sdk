@@ -291,68 +291,61 @@ public sealed class ZigCompile : ZigToolTask
             if (TreatWarningsAsErrors)
                 builder.AppendSwitch("-Werror");
 
-            var disabledWarnings = (DisableWarnings ?? string.Empty)
-                .Split(new[] { ';' }, SplitOptions)
-                .Select(w => w.Trim())
-                .Where(w =>
-                {
-                    if (string.IsNullOrEmpty(w))
-                        return false;
-
-                    if (w.StartsWith("no-", Comparison))
+            var disabledWarnings = new HashSet<string>(
+                (DisableWarnings ?? string.Empty)
+                    .Split(new[] { ';' }, SplitOptions)
+                    .Select(w => w.Trim())
+                    .Where(w =>
                     {
-                        Log.LogWarning(
-                            "The 'no-' prefix on warning '{0}' is invalid",
-                            w.Substring(3));
-                        return false;
-                    }
+                        if (string.IsNullOrEmpty(w))
+                            return false;
 
-                    if (w.StartsWith("error=", Comparison))
-                    {
-                        Log.LogWarning(
-                            "Changing specific warning '{0}' to error is not supported",
-                            w.Substring(6));
-                        return false;
-                    }
+                        if (w.StartsWith("no-", Comparison))
+                        {
+                            Log.LogWarning("The 'no-' prefix on warning '{0}' is invalid", w[3..]);
+                            return false;
+                        }
 
-                    if (w == "error")
-                    {
-                        Log.LogWarning(
-                            "Changing all warnings to errors should be done with '{0}'",
-                            nameof(TreatWarningsAsErrors));
-                        return false;
-                    }
+                        if (w.StartsWith("error=", Comparison))
+                        {
+                            Log.LogWarning("Changing specific warning '{0}' to error is not supported", w[6..]);
+                            return false;
+                        }
 
-                    string? property = null;
+                        if (w == "error")
+                        {
+                            Log.LogWarning(
+                                "Changing all warnings to errors should be done with '{0}'",
+                                nameof(TreatWarningsAsErrors));
+                            return false;
+                        }
 
-                    if (w.StartsWith("consumed", Comparison))
-                        property = nameof(ConsumptionAnalysis);
-                    else if (w.StartsWith("documentation", Comparison))
-                        property = nameof(DocumentationAnalysis);
-                    else if (w.StartsWith("microsoft", Comparison))
-                        property = nameof(MicrosoftExtensions);
-                    else if (w.StartsWith("nullability", Comparison) ||
-                        w.StartsWith("nullable", Comparison))
-                        property = nameof(NullabilityAnalysis);
-                    else if (w.StartsWith("tcb-enforcement", Comparison))
-                        property = nameof(TrustAnalysis);
-                    else if (w.StartsWith("type-safety", Comparison))
-                        property = nameof(TagAnalysis);
-                    else if (w.StartsWith("thread-safety", Comparison))
-                        property = nameof(ThreadingAnalysis);
+                        string? property = null;
 
-                    if (property != null)
-                    {
-                        Log.LogWarning(
-                            "The '{0}' warning is controlled by '{1}'",
-                            w,
-                            property);
-                        return false;
-                    }
+                        if (w.StartsWith("consumed", Comparison))
+                            property = nameof(ConsumptionAnalysis);
+                        else if (w.StartsWith("documentation", Comparison))
+                            property = nameof(DocumentationAnalysis);
+                        else if (w.StartsWith("microsoft", Comparison))
+                            property = nameof(MicrosoftExtensions);
+                        else if (w.StartsWith("nullability", Comparison) ||
+                            w.StartsWith("nullable", Comparison))
+                            property = nameof(NullabilityAnalysis);
+                        else if (w.StartsWith("tcb-enforcement", Comparison))
+                            property = nameof(TrustAnalysis);
+                        else if (w.StartsWith("type-safety", Comparison))
+                            property = nameof(TagAnalysis);
+                        else if (w.StartsWith("thread-safety", Comparison))
+                            property = nameof(ThreadingAnalysis);
 
-                    return true;
-                })
-                .ToHashSet();
+                        if (property != null)
+                        {
+                            Log.LogWarning("The '{0}' warning is controlled by '{1}'", w, property);
+                            return false;
+                        }
+
+                        return true;
+                    }));
 
             void TryAppendWarningSwitch(string name)
             {
@@ -514,10 +507,7 @@ public sealed class ZigCompile : ZigToolTask
             switch (item.ItemSpec.ToLowerInvariant())
             {
                 case "undefined":
-                    Log.LogWarning(
-                        "The '{0}' sanitizer is controlled by '{1}'",
-                        item,
-                        nameof(ReleaseMode));
+                    Log.LogWarning("The '{0}' sanitizer is controlled by '{1}'", item, nameof(ReleaseMode));
                     break;
                 case "thread" when isZig:
                     builder.AppendSwitch("-fsanitize-thread");

@@ -1,6 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
         <AssemblyName>Vezel.Zig.Tasks</AssemblyName>
         <BuildOutputTargetFolder>tools</BuildOutputTargetFolder>
         <DevelopmentDependency>true</DevelopmentDependency>
@@ -9,10 +8,6 @@
             $(NoWarn);
             NU5129
         </NoWarn>
-        <NoWarn Condition="'$(TargetFramework)' == 'net472'">
-            $(NoWarn);
-            nullable
-        </NoWarn>
         <PackageDescription>$(PackageDescription)
 
 This package provides the MSBuild SDK and associated tasks.</PackageDescription>
@@ -20,16 +15,8 @@ This package provides the MSBuild SDK and associated tasks.</PackageDescription>
         <PackageType>MSBuildSdk</PackageType>
         <RootNamespace>Vezel.Zig.Tasks</RootNamespace>
         <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-        <TargetFrameworks>
-            net472;
-            net7.0
-        </TargetFrameworks>
+        <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
-
-    <ItemGroup>
-        <Using Include="System.Diagnostics.CodeAnalysis" />
-        <Using Include="System.Runtime.InteropServices" />
-    </ItemGroup>
 
     <ItemGroup>
         <None Include="build/**; content/**; Sdk/**"
