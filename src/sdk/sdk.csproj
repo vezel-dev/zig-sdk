@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <AssemblyName>Vezel.Zig.Tasks</AssemblyName>
-        <BuildOutputTargetFolder>tools</BuildOutputTargetFolder>
         <DevelopmentDependency>true</DevelopmentDependency>
         <IsPackable>true</IsPackable>
+        <IsTool>true</IsTool>
         <NoWarn>
             $(NoWarn);
             NU5129

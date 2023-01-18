@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <_ZigTasksPath>$(MSBuildThisFileDirectory)../tools/netstandard2.0/Vezel.Zig.Tasks.dll</_ZigTasksPath>
+        <_ZigTasksPath>$(MSBuildThisFileDirectory)../tools/Vezel.Zig.Tasks.dll</_ZigTasksPath>
     </PropertyGroup>
 
     <UsingTask TaskName="ZigCompile"
