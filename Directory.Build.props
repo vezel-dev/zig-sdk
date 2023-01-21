@@ -12,10 +12,6 @@
         <AnalysisLevel>latest-all</AnalysisLevel>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <Configuration>Release</Configuration>
-        <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>embedded</DebugType>
-        <EmbedAllSources>true</EmbedAllSources>
         <EnablePackageValidation>true</EnablePackageValidation>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <ImplicitUsings>true</ImplicitUsings>
@@ -32,7 +28,6 @@ parcel of building and packaging native code.</PackageDescription>
         <PackageLicenseExpression>0BSD</PackageLicenseExpression>
         <PackageOutputPath>$(MSBuildThisFileDirectory)pkg/feed/</PackageOutputPath>
         <PackageProjectUrl>https://docs.vezel.dev/zig-sdk</PackageProjectUrl>
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RepositoryUrl>https://github.com/vezel-dev/zig-sdk.git</RepositoryUrl>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
