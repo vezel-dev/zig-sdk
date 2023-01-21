@@ -28,6 +28,7 @@ parcel of building and packaging native code.</PackageDescription>
         <PackageLicenseExpression>0BSD</PackageLicenseExpression>
         <PackageOutputPath>$(MSBuildThisFileDirectory)pkg/feed/</PackageOutputPath>
         <PackageProjectUrl>https://docs.vezel.dev/zig-sdk</PackageProjectUrl>
+        <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
         <RepositoryUrl>https://github.com/vezel-dev/zig-sdk.git</RepositoryUrl>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
