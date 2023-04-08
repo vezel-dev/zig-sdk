@@ -29,7 +29,7 @@
     <Target Name="_SetReleaseNotes"
             DependsOnTargets="GetBuildVersion"
             BeforeTargets="GenerateNuspec"
-            Condition="'$(IsPackable)' == 'true'">
+            Condition="'$(IsPackable)' == 'true' and '$(PublicRelease)' == 'true'">
         <PropertyGroup>
             <PackageReleaseNotes>https://github.com/vezel-dev/zig-sdk/releases/tag/v$(Version)</PackageReleaseNotes>
         </PropertyGroup>
