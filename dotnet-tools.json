@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "gpr": {
-      "version": "0.1.292",
+      "version": "0.1.294",
       "commands": [
         "gpr"
       ]
