@@ -22,7 +22,7 @@
 
 </div>
 
----
+--------------------------------------------------------------------------------
 
 The **Zig SDK** is an
 [MSBuild SDK](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-use-project-sdk)
