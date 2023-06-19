@@ -45,7 +45,7 @@ This package provides the MSBuild SDK and associated tasks.</PackageDescription>
 {
   "$schema": "https://json.schemastore.org/global.json",
   "msbuild-sdks": {
-    "Microsoft.Build.Traversal": "3.1.6",
+    "Microsoft.Build.Traversal": "4.1.0",
     "Vezel.Zig.Sdk": "$(Version)"
   }
 }
