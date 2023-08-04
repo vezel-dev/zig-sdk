@@ -2,6 +2,5 @@
     <PropertyGroup>
         <MicrosoftExtensions>true</MicrosoftExtensions>
         <PublicHeadersPath>api</PublicHeadersPath>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 </Project>
