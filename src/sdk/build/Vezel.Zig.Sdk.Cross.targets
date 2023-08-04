@@ -25,7 +25,7 @@
     <PropertyGroup>
         <_ArchitecturesCompatible Condition="'$(IsCrossCompilingArchitecture)' == 'false'">true</_ArchitecturesCompatible>
         <_ArchitecturesCompatible Condition="'$(HostArchitecture)' == 'aarch64' and '$(TargetArchitecture)' == 'arm'">true</_ArchitecturesCompatible>
-        <_ArchitecturesCompatible Condition="'$(HostArchitecture)' == 'x86_64' and '$(TargetArchitecture)' == 'i386'">true</_ArchitecturesCompatible>
+        <_ArchitecturesCompatible Condition="'$(HostArchitecture)' == 'x86_64' and '$(TargetArchitecture)' == 'x86'">true</_ArchitecturesCompatible>
         <IsCrossExecuting>false</IsCrossExecuting>
         <IsCrossExecuting Condition="'$(IsCrossCompilingSystem)' == 'false' and '$(_ArchitecturesCompatible)' != 'true'">true</IsCrossExecuting>
         <IsCrossExecuting Condition="'$(IsCrossCompilingSystem)' == 'true'">true</IsCrossExecuting>

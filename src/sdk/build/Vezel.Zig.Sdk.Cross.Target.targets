@@ -11,7 +11,7 @@
     <PropertyGroup>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-arm64'))">aarch64</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-arm'))">arm</TargetArchitecture>
-        <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x86'))">i386</TargetArchitecture>
+        <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x86'))">x86</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x64'))">x86_64</TargetArchitecture>
     </PropertyGroup>
 

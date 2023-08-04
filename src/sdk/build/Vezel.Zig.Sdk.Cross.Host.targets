@@ -11,7 +11,7 @@
     <PropertyGroup>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-arm64'))">aarch64</HostArchitecture>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-arm'))">arm</HostArchitecture>
-        <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-x86'))">i386</HostArchitecture>
+        <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-x86'))">x86</HostArchitecture>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-x64'))">x86_64</HostArchitecture>
     </PropertyGroup>
 
