@@ -65,7 +65,7 @@
                  Importance="high"
                  Condition="'$(IsCrossExecuting)' == 'false'" />
 
-        <Exec Command="&quot;@(TestAssembly)&quot; &quot;$(ZigExePath)&quot;"
+        <Exec Command="&quot;@(TestAssembly)&quot;"
               Condition="'$(IsCrossExecuting)' == 'false'" />
 
         <Message Text="Running tests with binary emulator '$(EmulatorName)'..."
