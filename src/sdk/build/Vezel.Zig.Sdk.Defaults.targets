@@ -63,9 +63,9 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/1 -->
         <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/3 -->
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == ''">
+            linux-arm;
             linux-arm64;
             linux-x64;
             linux-musl-arm;
