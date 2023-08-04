@@ -63,7 +63,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/3 -->
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == ''">
             linux-arm;
             linux-arm64;
@@ -73,6 +72,7 @@
             linux-musl-x64;
             osx-arm64;
             osx-x64;
+            win-arm64;
             win-x86;
             win-x64
         </RuntimeIdentifiers>
