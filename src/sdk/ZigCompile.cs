@@ -292,7 +292,7 @@ public sealed class ZigCompile : ZigToolTask
 
             var disabledWarnings = new HashSet<string>(
                 (DisableWarnings ?? string.Empty)
-                    .Split(new[] { ';' }, SplitOptions)
+                    .Split([';'], SplitOptions)
                     .Select(w => w.Trim())
                     .Where(w =>
                     {
@@ -527,7 +527,7 @@ public sealed class ZigCompile : ZigToolTask
         if (!LinkTimeOptimization)
             builder.AppendSwitch("-fno-lto");
 
-        foreach (var define in (DefineConstants ?? string.Empty).Split(new[] { ';' }, SplitOptions))
+        foreach (var define in (DefineConstants ?? string.Empty).Split([';'], SplitOptions))
         {
             var trimmed = define.Trim();
 
