@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <Product>Zig SDK</Product>
-        <Description>The Zig SDK is an MSBuild SDK for building Zig, C, and C++ projects using the Zig compiler.</Description>
+        <Description>The $(Product) is an MSBuild SDK for building Zig, C, and C++ projects using the Zig compiler.</Description>
         <Company>Vezel</Company>
         <Authors>$(Company) Contributors</Authors>
         <Copyright>Copyright © $(Authors)</Copyright>
@@ -19,16 +19,18 @@
         <IsPublishable>false</IsPublishable>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
+        <PackRelease>false</PackRelease>
         <PackageDescription>$(Description)
 
 With support for multiple programming languages, cross-compilation, NuGet
-packaging, and more, the Zig SDK makes it trivial to author native components as
-part of your .NET solution - without all the hassle that is usually part and
+packaging, and more, the $(Product) makes it trivial to author native components
+as part of your .NET solution - without all the hassle that is usually part and
 parcel of building and packaging native code.</PackageDescription>
         <PackageLicenseExpression>0BSD</PackageLicenseExpression>
         <PackageOutputPath>$(MSBuildThisFileDirectory)pkg/feed/</PackageOutputPath>
         <PackageProjectUrl>https://docs.vezel.dev/zig-sdk</PackageProjectUrl>
         <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
+        <PublishRelease>false</PublishRelease>
         <RepositoryUrl>https://github.com/vezel-dev/zig-sdk.git</RepositoryUrl>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
