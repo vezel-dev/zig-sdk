@@ -16,6 +16,6 @@
 
     <ItemGroup>
         <PackageVersion Include="Microsoft.Build.Tasks.Core"
-                        Version="17.7.2" />
+                        Version="17.8.3" />
     </ItemGroup>
 </Project>
