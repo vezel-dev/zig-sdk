@@ -2,7 +2,8 @@
 
 <div align="center">
     <img src="zig.svg"
-         width="128" />
+         width="128"
+         alt="Zig SDK" />
 </div>
 
 <p align="center">
@@ -52,6 +53,11 @@ To install an SDK package in a project, add it to your `global.json` under the
 
 For more information, please visit the
 [project home page](https://docs.vezel.dev/zig-sdk).
+
+## Building
+
+Simply run `./cake` (a [Bash](https://www.gnu.org/software/bash) script) to
+build artifacts.
 
 ## License
 

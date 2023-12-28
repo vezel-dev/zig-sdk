@@ -10,7 +10,6 @@
     <PropertyGroup>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AnalysisLevel>latest-all</AnalysisLevel>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <Configuration>Release</Configuration>
         <EnablePackageValidation>true</EnablePackageValidation>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
@@ -26,10 +25,17 @@ packaging, and more, the Zig SDK makes it trivial to author native components as
 part of your .NET solution - without all the hassle that is usually part and
 parcel of building and packaging native code.</PackageDescription>
         <PackageLicenseExpression>0BSD</PackageLicenseExpression>
-        <PackageOutputPath>$(MSBuildThisFileDirectory)pkg/feed/</PackageOutputPath>
         <PackageProjectUrl>https://docs.vezel.dev/zig-sdk</PackageProjectUrl>
         <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
         <RepositoryUrl>https://github.com/vezel-dev/zig-sdk.git</RepositoryUrl>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <UseArtifactsOutput>true</UseArtifactsOutput>
+        <ArtifactsPath>$(MSBuildThisFileDirectory)out</ArtifactsPath>
+        <ArtifactsProjectName>$([MSBuild]::MakeRelative('$(MSBuildThisFileDirectory)', '$(MSBuildProjectDirectory)'))</ArtifactsProjectName>
+        <ArtifactsPublishOutputName>pub</ArtifactsPublishOutputName>
+        <ArtifactsPackageOutputName>pkg</ArtifactsPackageOutputName>
     </PropertyGroup>
 </Project>

@@ -22,18 +22,6 @@ jobs:
                     - macos-13
                     - ubuntu-22.04
                     - windows-2022
-                cfg:
-                    - Debug
-                    - Release
-                mode:
-                    - Fast
-                    - Safe
-                    - Small
-                exclude:
-                    - cfg: Debug
-                      mode: Fast
-                    - cfg: Debug
-                      mode: Small
         runs-on: ${{ matrix.os }}
         steps:
             - name: Clone repository
@@ -43,25 +31,18 @@ jobs:
                   submodules: recursive
             - name: Set up .NET
               uses: actions/setup-dotnet@v4.0.0
-            - name: Build project
+            - name: Set up Node.js
+              uses: actions/setup-node@v4.0.1
+              with:
+                  node-version-file: doc/package.json
+            - name: Run Cake
               run: |
-                  dotnet tool restore
-                  dotnet build
-            - name: Restore samples
-              run: |
-                  dotnet restore src/samples
-            - name: Build samples
-              run: |
-                  dotnet build src/samples -c ${{ matrix.cfg }} --no-restore -p:ReleaseMode=${{ matrix.mode }}
-            - name: Test samples
-              run: |
-                  dotnet test src/samples -c ${{ matrix.cfg }} --no-restore -p:ReleaseMode=${{ matrix.mode }}
-            - name: Pack samples
-              run: |
-                  dotnet pack src/samples -c ${{ matrix.cfg }} --no-build
-            - name: Publish samples
-              run: |
-                  dotnet publish src/samples -c ${{ matrix.cfg }} --no-build
-            - name: Clean samples
-              run: |
-                  dotnet clean src/samples -c ${{ matrix.cfg }}
+                  ./cake
+            - name: Upload artifacts
+              if: always()
+              uses: actions/upload-artifact@v4.0.0
+              with:
+                  name: ${{ github.workflow }}-${{ github.run_number }}-${{ github.run_attempt }}-${{ matrix.os }}-Release
+                  path: |
+                      out/log
+                      out/pkg

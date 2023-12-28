@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "private": true,
+  "engines": {
+    "node": "^20.0.0"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "0.11.0"
+  }
+}

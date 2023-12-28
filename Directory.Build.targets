@@ -12,7 +12,6 @@
     <Choose>
         <When Condition="'$(IsPackable)' == 'true'">
             <PropertyGroup>
-                <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
                 <PackageIcon>zig.png</PackageIcon>
                 <PackageReadmeFile>PACKAGE.md</PackageReadmeFile>
             </PropertyGroup>

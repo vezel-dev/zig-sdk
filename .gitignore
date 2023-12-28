@@ -1,7 +1,8 @@
-.vs
-*.user
-/pkg/cache/*/*
-/pkg/feed/*.nupkg
+/out
+/src/samples/**/bin
+/src/samples/**/obj
 /src/samples/global.json
-bin
-obj
+*.user
+.idea
+.vs
+node_modules

@@ -1,10 +1,11 @@
 {
   "files.exclude": {
-    "**/.vs": true,
-    "pkg/cache/*[!_._]": true,
-    "pkg/feed/*.nupkg": true,
+    "out": true,
+    "src/samples/**/bin": true,
+    "src/samples/**/obj": true,
     "src/samples/global.json": true,
-    "**/bin": true,
-    "**/obj": true
+    "**/.idea": true,
+    "**/.vs": true,
+    "**/node_modules": true
   }
 }

@@ -1,0 +1,10 @@
+{
+  "files.exclude": [
+    "out",
+    ".idea",
+    ".vs",
+    "bin",
+    "node_modules",
+    "obj"
+  ]
+}
