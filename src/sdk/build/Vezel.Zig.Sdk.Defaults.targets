@@ -66,6 +66,7 @@
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == ''">
             linux-arm;
             linux-arm64;
+            linux-ppc64le;
             linux-x64;
             linux-musl-arm;
             linux-musl-arm64;
