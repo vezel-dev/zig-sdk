@@ -30,13 +30,13 @@
     </PropertyGroup>
 
     <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/6 -->
-    <PropertyGroup Condition="'$(TargetSystem)' == 'macos' and ('$(TargetArchitecture)' == 'x86' or '$(TargetArchitecture)' == 'x86_64') and '$(HostSystem)' == 'linux' and '$(HostArchitecture)' == 'x86_64'">
+    <PropertyGroup Condition="'$(TargetSystem)' == 'macos' and ('$(TargetArchitecture)' == 'x86' or '$(TargetArchitecture)' == 'x86_64') and '$(HostSystem)-$(HostArchitecture)' == 'linux-x86_64'">
         <_EmulatorName>darling</_EmulatorName>
         <_EmulatorCommand>darling</_EmulatorCommand>
     </PropertyGroup>
 
     <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/6 -->
-    <PropertyGroup Condition="'$(TargetSystem)' == 'macos' and ('$(TargetArchitecture)' == 'x86' or '$(TargetArchitecture)' == 'x86_64') and '$(HostSystem)' == 'windows' and '$(HostArchitecture)' == 'x86_64'">
+    <PropertyGroup Condition="'$(TargetSystem)' == 'macos' and ('$(TargetArchitecture)' == 'x86' or '$(TargetArchitecture)' == 'x86_64') and '$(HostSystem)-$(HostArchitecture)' == 'windows-x86_64'">
         <_EmulatorName>wsl darling</_EmulatorName>
         <_EmulatorCommand>wsl</_EmulatorCommand>
         <_EmulatorArgumentPrefix>darling "`wslpath </_EmulatorArgumentPrefix>
