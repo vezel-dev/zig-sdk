@@ -24,6 +24,11 @@
         <_EmulatorArgumentSuffix>`"</_EmulatorArgumentSuffix>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(TargetSystem)-$(TargetArchitecture)' == 'macos-x86_64' and '$(HostSystem)-$(HostArchitecture)' == 'macos-aarch64'">
+        <_EmulatorName>arch</_EmulatorName>
+        <_EmulatorCommand>arch -x86_64</_EmulatorCommand>
+    </PropertyGroup>
+
     <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/6 -->
     <PropertyGroup Condition="'$(TargetSystem)' == 'macos' and ('$(TargetArchitecture)' == 'x86' or '$(TargetArchitecture)' == 'x86_64') and '$(HostSystem)' == 'linux' and '$(HostArchitecture)' == 'x86_64'">
         <_EmulatorName>darling</_EmulatorName>
