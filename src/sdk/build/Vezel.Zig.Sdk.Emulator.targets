@@ -37,14 +37,9 @@
         <_EmulatorArgumentSuffix>`"</_EmulatorArgumentSuffix>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetSystem)' == 'windows' and '$(TargetBits)' == '32' and '$(IsCrossCompilingArchitecture)' == 'false'">
+    <PropertyGroup Condition="'$(TargetSystem)' == 'windows' and '$(IsCrossCompilingArchitecture)' == 'false'">
         <_EmulatorName>wine</_EmulatorName>
         <_EmulatorCommand>wine</_EmulatorCommand>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(TargetSystem)' == 'windows' and '$(TargetBits)' == '64' and '$(IsCrossCompilingArchitecture)' == 'false'">
-        <_EmulatorName>wine64</_EmulatorName>
-        <_EmulatorCommand>wine64</_EmulatorCommand>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(IsCrossExecuting)' == 'true' and '$(UseEmulator)' == 'true'">
