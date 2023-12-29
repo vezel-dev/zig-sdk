@@ -11,13 +11,14 @@
     <PropertyGroup>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-arm64'))">aarch64</HostArchitecture>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-arm'))">arm</HostArchitecture>
+        <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-ppc64le'))">powerpc64le</HostArchitecture>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-x86'))">x86</HostArchitecture>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-x64'))">x86_64</HostArchitecture>
     </PropertyGroup>
 
     <PropertyGroup>
         <HostBits>32</HostBits>
-        <HostBits Condition="$(HostArchitecture.EndsWith('64'))">64</HostBits>
+        <HostBits Condition="$(HostArchitecture.Contains('64'))">64</HostBits>
     </PropertyGroup>
 
     <PropertyGroup>

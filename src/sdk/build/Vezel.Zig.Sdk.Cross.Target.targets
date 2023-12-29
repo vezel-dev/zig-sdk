@@ -11,13 +11,14 @@
     <PropertyGroup>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-arm64'))">aarch64</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-arm'))">arm</TargetArchitecture>
+        <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-ppc64le'))">powerpc64le</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x86'))">x86</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x64'))">x86_64</TargetArchitecture>
     </PropertyGroup>
 
     <PropertyGroup>
         <TargetBits>32</TargetBits>
-        <TargetBits Condition="$(TargetArchitecture.EndsWith('64'))">64</TargetBits>
+        <TargetBits Condition="$(TargetArchitecture.Contains('64'))">64</TargetBits>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('linux-'))">
