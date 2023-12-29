@@ -4,17 +4,23 @@
     and target characteristics that were determined earlier.
     -->
 
+    <PropertyGroup>
+        <_QemuName>qemu-$(TargetArchitecture)</_QemuName>
+        <_QemuName Condition="'$(TargetArchitecture)' == 'powerpc64le'">qemu-ppc64</_QemuName>
+        <_QemuName Condition="'$(TargetArchitecture)' == 'x86'">qemu-i386</_QemuName>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(TargetSystem)' == 'linux' and '$(HostSystem)' == 'linux'">
-        <_EmulatorName>qemu-$(TargetArchitecture)</_EmulatorName>
-        <_EmulatorCommand>qemu-$(TargetArchitecture)</_EmulatorCommand>
+        <_EmulatorName>$(_QemuName)</_EmulatorName>
+        <_EmulatorCommand>$(_QemuName)</_EmulatorCommand>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetSystem)' == 'linux' and '$(HostSystem)' == 'windows'">
         <_EmulatorName>wsl</_EmulatorName>
-        <_EmulatorName Condition="'$(TargetArchitecture)' != 'x86_64'">$(_EmulatorName) qemu-$(TargetArchitecture)</_EmulatorName>
+        <_EmulatorName Condition="'$(TargetArchitecture)' != 'x86_64'">$(_EmulatorName) $(_QemuName)</_EmulatorName>
         <_EmulatorCommand>wsl</_EmulatorCommand>
         <_EmulatorArgumentPrefix>"`wslpath </_EmulatorArgumentPrefix>
-        <_EmulatorArgumentPrefix Condition="'$(TargetArchitecture)' != 'x86_64'">qemu-$(TargetArchitecture) $(_EmulatorArgumentPrefix)</_EmulatorArgumentPrefix>
+        <_EmulatorArgumentPrefix Condition="'$(TargetArchitecture)' != 'x86_64'">$(_QemuName) $(_EmulatorArgumentPrefix)</_EmulatorArgumentPrefix>
         <_EmulatorArgumentSuffix>`"</_EmulatorArgumentSuffix>
     </PropertyGroup>
 
