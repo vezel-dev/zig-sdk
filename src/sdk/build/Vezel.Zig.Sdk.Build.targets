@@ -39,6 +39,9 @@
         <CallTarget Targets="$(_FormatTarget)"
                     Condition="'$(_FormatTarget)' != ''" />
 
+        <Error Text="No source files in project."
+               Condition="@(Compile->Count()) == 0" />
+
         <ZigCompile AccessControl="$(AccessControl)"
                     BlockExtensions="$(BlockExtensions)"
                     CommandFragmentsDirectory="$(_CommandFragmentsPath)"
