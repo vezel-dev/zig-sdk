@@ -1,4 +1,8 @@
 <Project>
+    <PropertyGroup Condition="'$(UsingVezelZigSdk)' != 'true'">
+        <NBGV_ThisAssemblyNamespace>$(RootNamespace)</NBGV_ThisAssemblyNamespace>
+    </PropertyGroup>
+
     <ItemGroup>
         <Using Include="System.Diagnostics.CodeAnalysis" />
         <Using Include="System.Runtime.CompilerServices" />
