@@ -52,6 +52,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <DynamicImageBase Condition="'$(DynamicImageBase)' == ''">true</DynamicImageBase>
         <EagerBinding Condition="'$(EagerBinding)' == ''">true</EagerBinding>
         <FastMath Condition="'$(FastMath)' == ''">false</FastMath>
         <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/33 -->

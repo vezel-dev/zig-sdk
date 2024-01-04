@@ -156,6 +156,12 @@ historical reasons.
 * `RelocationHardening` (`true`, `false`): Enable/disable marking relocations as
   read-only. This has security benefits, especially in combination with
   `EagerBinding`. Defaults to `true`.
+* `ImageBase`: The location in memory that the binary should be loaded at. Only
+  takes effect at run time if `DynamicImageBase` is `false`. Unset by default.
+* `DynamicImageBase` (`true`, `false`): Enable/disable
+  [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization), i.e.
+  randomization of the image base at run time. Only affects Windows binaries.
+  Defaults to `true`.
 * `Sanitizers`: A semicolon-separated list of
   [sanitizers](https://github.com/google/sanitizers) to instrument code with.
   Currently, only `thread` is supported. Unset by default.
