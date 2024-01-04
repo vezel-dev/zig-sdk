@@ -12,9 +12,25 @@ typedef struct
 
 int x;
 
+#if defined(ZIG_OS_WINDOWS)
+
+void undefined()
+{
+    // Testing this scenario on Windows would require an import library.
+}
+
+#else
+
+void undefined();
+
+#endif
+
 __attribute__((visibility("default")))
 int clib(void)
 {
+    // Exercise AllowUndefinedSymbols.
+    undefined();
+
     // Triggers -Wparentheses.
     if (x = 42)
         return x;

@@ -149,6 +149,9 @@ historical reasons.
 * `SymbolVisibility` (`Default`, `Hidden`): Specifies the symbol visibility in
   C/C++ projects when `__attribute__((visibility(...)))` is not specified.
   `Default` (the default 😉) means public, while `Hidden` means private.
+* `AllowUndefinedSymbols` (`true`, `false`): Enable/disable permitting undefined
+  symbols when linking. This usually only applies when building libraries.
+  Defaults to `false`.
 * `EagerBinding` (`true`, `false`): Enable/disable eager binding of symbols when
   performing dynamic linking at run time. Eager binding has security benefits,
   especially in combination with `RelocationHardening`. It is also more reliable

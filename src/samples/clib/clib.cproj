@@ -1,5 +1,6 @@
 <Project Sdk="Vezel.Zig.Sdk">
     <PropertyGroup>
+        <AllowUndefinedSymbols>true</AllowUndefinedSymbols>
         <DisableWarnings>
             $(DisableWarnings);
             parentheses
