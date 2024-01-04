@@ -127,6 +127,12 @@ public sealed class ZigCompile : ZigToolTask
     [Required]
     public ITaskItem[] Sources { get; set; } = null!;
 
+    public int StackSize
+    {
+        get => _stackSize ?? 0;
+        set => _stackSize = value;
+    }
+
     [Required]
     public string SymbolExports
     {
@@ -178,6 +184,8 @@ public sealed class ZigCompile : ZigToolTask
     private ZigOutputType _outputType;
 
     private ZigReleaseMode _releaseMode;
+
+    private int? _stackSize;
 
     private ZigSymbolExports _symbolExports;
 
@@ -575,6 +583,9 @@ public sealed class ZigCompile : ZigToolTask
 
         if (!DynamicImageBase)
             builder.AppendSwitch(isZig ? "--no-dynamicbase" : "-Wl,--no-dynamicbase");
+
+        if (_stackSize is { } ss)
+            builder.AppendSwitchIfNotNull(isZig ? "--stack 0x" : "-Wl,-z,stack-size=0x", ss.ToString("x", _culture));
 
         builder.AppendSwitch(isZig ? "-z origin" : "-Wl,-z,origin");
         builder.AppendSwitchIfNotNull(isZig ? "-rpath " : "-Wl,-rpath,", "$ORIGIN");

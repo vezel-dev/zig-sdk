@@ -50,6 +50,7 @@
                     RelocationHardening="$(RelocationHardening)"
                     Sanitizers="$(Sanitizers)"
                     Sources="@(Compile)"
+                    StackSize="$(StackSize)"
                     SymbolExports="$(SymbolExports)"
                     SymbolVisibility="$(SymbolVisibility)"
                     TagAnalysis="$(TagAnalysis)"

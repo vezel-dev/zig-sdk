@@ -162,6 +162,8 @@ historical reasons.
   [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization), i.e.
   randomization of the image base at run time. Only affects Windows binaries.
   Defaults to `true`.
+* `StackSize`: Sets the stack size for the main thread. This only applies when
+  building executables. Unset by default.
 * `Sanitizers`: A semicolon-separated list of
   [sanitizers](https://github.com/google/sanitizers) to instrument code with.
   Currently, only `thread` is supported. Unset by default.
