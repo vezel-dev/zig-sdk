@@ -20,9 +20,9 @@
         <Compile Include="**/*.cxx"
                  Excludes="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
                  Condition="'$(CompilerMode)' == 'Cxx'" />
-        <Compile Include="main.zig"
-                 Condition="'$(CompilerMode)' == 'Zig' and '$(OutputType)' == 'Exe'" />
         <Compile Include="$(AssemblyName).zig"
-                 Condition="'$(CompilerMode)' == 'Zig' and '$(OutputType)' != 'Exe'" />
+                 Condition="'$(CompilerMode)' == 'Zig' and '$(OutputType)' == 'Library'" />
+        <Compile Include="main.zig"
+                 Condition="'$(CompilerMode)' == 'Zig' and '$(OutputType)' != 'Library'" />
     </ItemGroup>
 </Project>

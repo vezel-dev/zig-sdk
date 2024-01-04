@@ -1,10 +1,10 @@
 <Project>
-    <PropertyGroup Condition="'$(RunCommand)' == '' and '$(OutputType)' == 'Exe' and '$(EmulatorCommand)' != ''">
+    <PropertyGroup Condition="'$(RunCommand)' == '' and '$(OutputType)' != 'Library' and '$(EmulatorCommand)' != ''">
         <RunCommand>$(EmulatorCommand)</RunCommand>
         <RunArguments>$(EmulatorArgumentPrefix)&quot;$(TargetPath)&quot;$(EmulatorArgumentSuffix)$(StartArguments)</RunArguments>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(RunCommand)' == '' and '$(OutputType)' == 'Exe'">
+    <PropertyGroup Condition="'$(RunCommand)' == '' and '$(OutputType)' != 'Library'">
         <RunCommand>$(TargetPath)</RunCommand>
         <RunArguments>$(StartArguments)</RunArguments>
     </PropertyGroup>
@@ -16,7 +16,7 @@
 
     <Target Name="_UnableToRun">
         <Error Text="A project with output type '$(OutputType)' cannot be executed"
-               Condition="'$(OutputType)' != 'Exe'" />
+               Condition="'$(OutputType)' == 'Library'" />
         <Error Text="A suitable binary emulator is not available for '$(HostRuntimeIdentifier)' -> '$(TargetRuntimeIdentifier)'"
                Condition="'$(EmulatorCommand)' == ''" />
     </Target>

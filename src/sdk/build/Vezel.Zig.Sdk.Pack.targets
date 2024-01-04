@@ -60,7 +60,7 @@
             Returns="@(_NativeBinary)">
         <PropertyGroup>
             <_PackageNativePath>runtimes</_PackageNativePath>
-            <_PackageNativePath Condition="'$(OutputType)' == 'Exe'">tools</_PackageNativePath>
+            <_PackageNativePath Condition="'$(OutputType)' != 'Library'">tools</_PackageNativePath>
         </PropertyGroup>
 
         <ItemGroup>
