@@ -55,10 +55,19 @@ public sealed class ZigCompile : ZigToolTask
     public bool DocumentationAnalysis { get; set; }
 
     [Required]
+    public bool DynamicImageBase { get; set; }
+
+    [Required]
     public bool EagerBinding { get; set; }
 
     [Required]
     public bool FastMath { get; set; }
+
+    public int ImageBase
+    {
+        get => _imageBase ?? 0;
+        set => _imageBase = value;
+    }
 
     [Required]
     public ITaskItem[] IncludeDirectories { get; set; } = null!;
@@ -158,9 +167,13 @@ public sealed class ZigCompile : ZigToolTask
     [Required]
     public int WarningLevel { get; set; }
 
+    private static readonly CultureInfo _culture = CultureInfo.InvariantCulture;
+
     private ZigCompilerMode _compilerMode;
 
     private ZigConfiguration _configuration;
+
+    private int? _imageBase;
 
     private ZigOutputType _outputType;
 
@@ -556,13 +569,20 @@ public sealed class ZigCompile : ZigToolTask
         if (!RelocationHardening)
             builder.AppendSwitch(isZig ? "-z norelro" : "-Wl,-z,norelro");
 
+        if (_imageBase is { } ib)
+            builder.AppendSwitchIfNotNull(
+                isZig ? "--image-base 0x" : "-Wl,--image-base,0x", ib.ToString("x", _culture));
+
+        if (!DynamicImageBase)
+            builder.AppendSwitch(isZig ? "--no-dynamicbase" : "-Wl,--no-dynamicbase");
+
         builder.AppendSwitch(isZig ? "-z origin" : "-Wl,-z,origin");
         builder.AppendSwitchIfNotNull(isZig ? "-rpath " : "-Wl,-rpath,", "$ORIGIN");
 
         // TODO: https://github.com/vezel-dev/zig-sdk/issues/8
 
-        builder.AppendFileNamesIfNotNull(Sources, " ");
-        builder.AppendFileNamesIfNotNull(LibraryReferences, " ");
+        builder.AppendFileNamesIfNotNull(Sources, delimiter: " ");
+        builder.AppendFileNamesIfNotNull(LibraryReferences, delimiter: " ");
 
         foreach (var directory in LinkerDirectories)
             builder.AppendSwitchIfNotNull("-L ", directory);
