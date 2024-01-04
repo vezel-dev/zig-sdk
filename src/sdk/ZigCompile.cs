@@ -11,6 +11,9 @@ public sealed class ZigCompile : ZigToolTask
     private const StringComparison Comparison = StringComparison.InvariantCulture;
 
     [Required]
+    public bool AllowUndefinedSymbols { get; set; }
+
+    [Required]
     public bool AccessControl { get; set; }
 
     [Required]
@@ -234,6 +237,12 @@ public sealed class ZigCompile : ZigToolTask
                 builder.AppendSwitch("-shared");
                 builder.AppendSwitchIfNotNull("-Wl,-soname,", TargetFileName);
             }
+
+            var (un, no) = AllowUndefinedSymbols ? ("un", string.Empty) : (string.Empty, "no-");
+
+            // These flags are needed to cover Linux and Windows/macOS, respectively.
+            builder.AppendSwitch(isZig ? $"-z {un}defs" : $"-Wl,-z,{un}defs");
+            builder.AppendSwitch(isZig ? $"-f{no}allow-shlib-undefined" : $"-Wl,--{no}allow-shlib-undefined");
         }
 
         if (isZig)

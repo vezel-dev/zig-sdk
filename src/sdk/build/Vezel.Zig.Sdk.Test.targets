@@ -16,7 +16,8 @@
         -->
         <MakeDir Directories="$(IntermediateOutputPath)" />
 
-        <ZigCompile AccessControl="$(AccessControl)"
+        <ZigCompile AllowUndefinedSymbols="$(AllowUndefinedSymbols)"
+                    AccessControl="$(AccessControl)"
                     BlockExtensions="$(BlockExtensions)"
                     CompilerMode="Test"
                     Configuration="$(Configuration)"

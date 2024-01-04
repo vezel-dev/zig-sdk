@@ -42,7 +42,8 @@
         <Error Text="No source files in project"
                Condition="@(Compile->Count()) == 0" />
 
-        <ZigCompile AccessControl="$(AccessControl)"
+        <ZigCompile AllowUndefinedSymbols="$(AllowUndefinedSymbols)"
+                    AccessControl="$(AccessControl)"
                     BlockExtensions="$(BlockExtensions)"
                     CommandFragmentsDirectory="$(_CommandFragmentsPath)"
                     CompilerMode="$(CompilerMode)"
