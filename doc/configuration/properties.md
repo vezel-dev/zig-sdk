@@ -15,7 +15,9 @@ historical reasons.
 * `AssemblyName`: Name of the project. By default, this is set to the file name
   of the project file. Used to compute the final binary name (e.g. `foo` becomes
   `libfoo.so`).
-* `OutputType` (`Exe`, `Library`): Output binary type. Defaults to `Library`.
+* `OutputType` (`Exe`, `WinExe`, `Library`): Output binary type. When targeting
+  Windows and building executables, `Exe` and `WinExe` will target the CUI and
+  GUI subsystems, respectively. Defaults to `Library`.
 * `IsTestable` (`true`, `false`): Enable/disable `dotnet test` for Zig projects.
   Defaults to `true`.
 * `IsPackable` (`true`, `false`): Enable/disable `dotnet pack`. Defaults to

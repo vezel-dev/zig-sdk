@@ -211,8 +211,8 @@ public sealed class ZigCompile : ZigToolTask
         {
             (ZigCompilerMode.C, _) => "cc",
             (ZigCompilerMode.Cxx, _) => "c++",
-            (ZigCompilerMode.Zig, ZigOutputType.Exe) => "build-exe",
             (ZigCompilerMode.Zig, ZigOutputType.Library) => "build-lib",
+            (ZigCompilerMode.Zig, _) => "build-exe",
             (ZigCompilerMode.Test, _) => "test",
             _ => throw new Exception(),
         });
@@ -224,14 +224,7 @@ public sealed class ZigCompile : ZigToolTask
 
         builder.AppendSwitch($"-target {TargetTriple.ToLowerInvariant()}");
 
-        if (_outputType == ZigOutputType.Exe)
-        {
-            builder.AppendSwitch("-fPIE");
-
-            if (_symbolExports == ZigSymbolExports.All)
-                builder.AppendSwitch("-rdynamic");
-        }
-        else
+        if (_outputType == ZigOutputType.Library)
         {
             builder.AppendSwitch("-fPIC");
 
@@ -246,6 +239,13 @@ public sealed class ZigCompile : ZigToolTask
             // These flags are needed to cover Linux and Windows/macOS, respectively.
             builder.AppendSwitch(isZig ? $"-z {un}defs" : $"-Wl,-z,{un}defs");
             builder.AppendSwitch(isZig ? $"-f{no}allow-shlib-undefined" : $"-Wl,--{no}allow-shlib-undefined");
+        }
+        else
+        {
+            builder.AppendSwitch("-fPIE");
+
+            if (_symbolExports == ZigSymbolExports.All)
+                builder.AppendSwitch("-rdynamic");
         }
 
         if (isZig)
@@ -603,6 +603,9 @@ public sealed class ZigCompile : ZigToolTask
 
         builder.AppendSwitch(isZig ? "-z origin" : "-Wl,-z,origin");
         builder.AppendSwitchIfNotNull(isZig ? "-rpath " : "-Wl,-rpath,", "$ORIGIN");
+
+        builder.AppendSwitchIfNotNull(
+            isZig ? "--subsystem " : "-Wl,--subsystem,", _outputType == ZigOutputType.WinExe ? "windows" : "console");
 
         // TODO: https://github.com/vezel-dev/zig-sdk/issues/8
 

@@ -1,6 +1,6 @@
 <Project Sdk="Vezel.Zig.Sdk">
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
+        <OutputType>WinExe</OutputType>
     </PropertyGroup>
 
     <ItemGroup>

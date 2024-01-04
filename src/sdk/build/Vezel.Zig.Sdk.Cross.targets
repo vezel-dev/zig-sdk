@@ -31,13 +31,13 @@
         <IsCrossExecuting Condition="'$(IsCrossCompilingSystem)' == 'true'">true</IsCrossExecuting>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(OutputType)' == 'Exe'">
-        <TargetSuffix>$(TargetExeSuffix)</TargetSuffix>
-    </PropertyGroup>
-
     <PropertyGroup Condition="'$(OutputType)' == 'Library'">
         <TargetPrefix>$(TargetLibraryPrefix)</TargetPrefix>
         <TargetSuffix>$(TargetLibrarySuffix)</TargetSuffix>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(OutputType)' != 'Library'">
+        <TargetSuffix>$(TargetExeSuffix)</TargetSuffix>
     </PropertyGroup>
 
     <!--
