@@ -90,14 +90,14 @@ historical reasons.
   exceptions. Defaults to `true`.
 * `AsyncExceptions` (`true`, `false`): Enable/disable the ability to catch
   [SEH](https://learn.microsoft.com/en-us/cpp/cpp/structured-exception-handling-c-cpp)
-  exceptions with standard `try`/`catch` statements. Only affects Windows
-  binaries. Defaults to `false`.
+  exceptions with standard `try`/`catch` statements. This only applies when
+  targeting Windows. Defaults to `false`.
 * `CxxReflection` (`true`, `false`): Enable/disable generating C++ run-time type
   information. This feature is required for some uses of `dynamic_cast`.
   Defaults to `true`.
 * `MicrosoftExtensions` (`true`, `false`): Enable/disable a variety of
   Microsoft C/C++ extensions. Defaults to `false`, but note that the compiler
-  itself always enables some parts of this when targeting Windows as Windows
+  itself always enables some parts of this when targeting Windows as Win32
   headers require it.
 
 ## Static Analysis
@@ -167,8 +167,8 @@ historical reasons.
   takes effect at run time if `DynamicImageBase` is `false`. Unset by default.
 * `DynamicImageBase` (`true`, `false`): Enable/disable
   [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization), i.e.
-  randomization of the image base at run time. Only affects Windows binaries.
-  Defaults to `true`.
+  randomization of the image base at run time. This only applies when targeting
+  Windows. Defaults to `true`.
 * `StackSize`: Sets the stack size for the main thread. This only applies when
   building executables. Unset by default.
 * `Sanitizers`: A semicolon-separated list of
