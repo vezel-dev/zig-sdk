@@ -18,6 +18,7 @@
 
         <ZigCompile AllowUndefinedSymbols="$(AllowUndefinedSymbols)"
                     AccessControl="$(AccessControl)"
+                    AsyncExceptions="$(AsyncExceptions)"
                     BlockExtensions="$(BlockExtensions)"
                     CompilerMode="Test"
                     Configuration="$(Configuration)"

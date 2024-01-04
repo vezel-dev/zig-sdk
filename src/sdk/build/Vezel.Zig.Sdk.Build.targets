@@ -44,6 +44,7 @@
 
         <ZigCompile AllowUndefinedSymbols="$(AllowUndefinedSymbols)"
                     AccessControl="$(AccessControl)"
+                    AsyncExceptions="$(AsyncExceptions)"
                     BlockExtensions="$(BlockExtensions)"
                     CommandFragmentsDirectory="$(_CommandFragmentsPath)"
                     CompilerMode="$(CompilerMode)"
