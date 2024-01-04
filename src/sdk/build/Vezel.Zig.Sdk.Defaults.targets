@@ -33,6 +33,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <AsyncExceptions Condition="'$(AsyncExceptions)' == ''">false</AsyncExceptions>
         <AccessControl Condition="'$(AccessControl)' == ''">true</AccessControl>
         <BlockExtensions Condition="'$(BlockExtensions)' == ''">false</BlockExtensions>
         <CxxExceptions Condition="'$(CxxExceptions)' == ''">true</CxxExceptions>

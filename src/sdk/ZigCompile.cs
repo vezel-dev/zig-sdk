@@ -17,6 +17,9 @@ public sealed class ZigCompile : ZigToolTask
     public bool AccessControl { get; set; }
 
     [Required]
+    public bool AsyncExceptions { get; set; }
+
+    [Required]
     public bool BlockExtensions { get; set; }
 
     public ITaskItem? CommandFragmentsDirectory { get; set; }
@@ -308,6 +311,8 @@ public sealed class ZigCompile : ZigToolTask
 
                 if (!CxxExceptions)
                     builder.AppendSwitch("-fno-exceptions");
+                else if (AsyncExceptions)
+                    builder.AppendSwitch("-fasync-exceptions");
             }
             else if (CxxExceptions)
                 builder.AppendSwitch("-fexceptions");

@@ -88,6 +88,10 @@ historical reasons.
 * `CxxExceptions` (`true`, `false`): Enable/disable C++ exceptions. In C
   projects, this controls whether the C code will be unwindable by C++
   exceptions. Defaults to `true`.
+* `AsyncExceptions` (`true`, `false`): Enable/disable the ability to catch
+  [SEH](https://learn.microsoft.com/en-us/cpp/cpp/structured-exception-handling-c-cpp)
+  exceptions with standard `try`/`catch` statements. Only affects Windows
+  binaries. Defaults to `false`.
 * `CxxReflection` (`true`, `false`): Enable/disable generating C++ run-time type
   information. This feature is required for some uses of `dynamic_cast`.
   Defaults to `true`.
