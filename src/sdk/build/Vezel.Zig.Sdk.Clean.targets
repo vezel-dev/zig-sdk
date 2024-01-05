@@ -5,15 +5,15 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <_RealOrFanOutClean>_InnerClean</_RealOrFanOutClean>
-        <_RealOrFanOutClean Condition="'$(_RidFanOut)' == 'true'">_FanOutClean</_RealOrFanOutClean>
+        <_InnerOrOuterClean>_InnerClean</_InnerOrOuterClean>
+        <_InnerOrOuterClean Condition="'$(IsOuterBuild)' == 'true'">_OuterClean</_InnerOrOuterClean>
     </PropertyGroup>
 
     <Target Name="Clean"
-            DependsOnTargets="$(_RealOrFanOutClean)"
+            DependsOnTargets="$(_InnerOrOuterClean)"
             Condition="'$(_InvalidConfigurationWarning)' != 'true'" />
 
-    <Target Name="_FanOutClean">
+    <Target Name="_OuterClean">
         <ItemGroup>
             <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
             <_InnerProjects Include="$(MSBuildProjectFullPath)"

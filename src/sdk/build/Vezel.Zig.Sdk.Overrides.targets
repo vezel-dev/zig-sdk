@@ -18,13 +18,13 @@
 
     <!--
     If a RuntimeIdentifier value has not been set, it means the Build, Clean,
-    and Publish targets should fan out and run for every RID supported by the
+    and Publish targets should run inner builds for every RID supported by the
     project. That said, for running and testing, we still need to run natively
-    by default, so we still have to set a default RID. We use _RidFanOut to
-    indicate whether the fan-out behavior is required.
+    by default, so we still have to set a default RID. We use IsOuterBuild to
+    indicate whether inner builds are required.
     -->
     <PropertyGroup Condition="'$(RuntimeIdentifier)' == ''">
         <RuntimeIdentifier>$(NETCoreSdkPortableRuntimeIdentifier)</RuntimeIdentifier>
-        <_RidFanOut>true</_RidFanOut>
+        <IsOuterBuild>true</IsOuterBuild>
     </PropertyGroup>
 </Project>
