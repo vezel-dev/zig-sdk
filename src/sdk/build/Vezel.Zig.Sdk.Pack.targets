@@ -24,8 +24,8 @@
 
         <!--
         Zig projects need to package all source code. C and C++ projects only
-        need to package public header files. We allow packaging headers with
-        Zig projects, but not Zig sources with C/C++ projects.
+        need to package public header files. We allow packaging headers with Zig
+        projects, but not Zig sources with C/C++ projects.
         -->
         <ItemGroup>
             <None Include="$(PublicHeadersPath)**/*.h; $(PublicHeadersPath)**/*.hxx"
@@ -41,7 +41,10 @@
         </ItemGroup>
 
         <ItemGroup>
-            <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
+            <_RuntimeIdentifiers Include="$(RuntimeIdentifier)"
+                                 Condition="'$(IsOuterBuild)' != 'true'" />
+            <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)"
+                                 Condition="'$(IsOuterBuild)' == 'true'" />
         </ItemGroup>
 
         <MSBuild Projects="$(MSBuildProjectFullPath)"
