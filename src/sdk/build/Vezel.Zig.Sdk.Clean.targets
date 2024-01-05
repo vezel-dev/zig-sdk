@@ -5,15 +5,16 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <_InnerOrOuterClean>_InnerClean</_InnerOrOuterClean>
-        <_InnerOrOuterClean Condition="'$(IsOuterBuild)' == 'true'">_OuterClean</_InnerOrOuterClean>
+        <_InnerOrOuterClean>InnerClean</_InnerOrOuterClean>
+        <_InnerOrOuterClean Condition="'$(IsOuterBuild)' == 'true'">OuterClean</_InnerOrOuterClean>
     </PropertyGroup>
 
     <Target Name="Clean"
             DependsOnTargets="$(_InnerOrOuterClean)"
             Condition="'$(_InvalidConfigurationWarning)' != 'true'" />
 
-    <Target Name="_OuterClean">
+    <Target Name="OuterClean"
+            DependsOnTargets="$(OuterCleanDependsOn)">
         <ItemGroup>
             <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
             <_InnerProjects Include="$(MSBuildProjectFullPath)"
@@ -21,10 +22,10 @@
         </ItemGroup>
 
         <MSBuild Projects="@(_InnerProjects)"
-                 Targets="_InnerClean"
+                 Targets="InnerClean"
                  BuildInParallel="$(BuildInParallel)" />
     </Target>
 
-    <Target Name="_InnerClean"
+    <Target Name="InnerClean"
             DependsOnTargets="$(CleanDependsOn)" />
 </Project>

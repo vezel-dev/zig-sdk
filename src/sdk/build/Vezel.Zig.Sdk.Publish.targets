@@ -1,14 +1,15 @@
 <Project>
     <PropertyGroup>
-        <_InnerOrOuterPublish>_InnerPublish</_InnerOrOuterPublish>
-        <_InnerOrOuterPublish Condition="'$(IsOuterBuild)' == 'true'">_OuterPublish</_InnerOrOuterPublish>
+        <_InnerOrOuterPublish>InnerPublish</_InnerOrOuterPublish>
+        <_InnerOrOuterPublish Condition="'$(IsOuterBuild)' == 'true'">OuterPublish</_InnerOrOuterPublish>
     </PropertyGroup>
 
     <Target Name="Publish"
             DependsOnTargets="$(_InnerOrOuterPublish)"
             Condition="'$(_InvalidConfigurationWarning)' != 'true'" />
 
-    <Target Name="_OuterPublish">
+    <Target Name="OuterPublish"
+            DependsOnTargets="$(OuterPublishDependsOn)">
         <ItemGroup>
             <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
             <_InnerProjects Include="$(MSBuildProjectFullPath)"
@@ -16,7 +17,7 @@
         </ItemGroup>
 
         <MSBuild Projects="@(_InnerProjects)"
-                 Targets="_InnerPublish"
+                 Targets="InnerPublish"
                  BuildInParallel="$(BuildInParallel)" />
     </Target>
 
@@ -25,7 +26,7 @@
     well as the build and clean logic in MSBuild, so we have to duplicate some
     of the logic in the default Publish target here.
     -->
-    <Target Name="_InnerPublish"
+    <Target Name="InnerPublish"
             DependsOnTargets="_PublishBuildAlternative; _PublishNoBuildAlternative"
             Condition="'$(IsPublishable)' == 'true'">
         <Message Text="$(MSBuildProjectName) -> $([System.IO.Path]::GetFullPath('$(PublishDir)'))"
