@@ -19,9 +19,12 @@
     <!--
     If a RuntimeIdentifier value has not been set, it means the Build, Clean,
     and Publish targets should run inner builds for every RID supported by the
-    project. That said, for running and testing, we still need to run natively
-    by default, so we still have to set a default RID. We use IsOuterBuild to
-    indicate whether inner builds are required.
+    project, and Pack should include artifacts from every RID. That said, for
+    running and testing, we still need to run natively by default, so we still
+    have to actually set a default RID.
+
+    We use IsOuterBuild to disambiguate between us setting a default RID and the
+    user setting a RID on their own.
     -->
     <PropertyGroup Condition="'$(RuntimeIdentifier)' == ''">
         <RuntimeIdentifier>$(NETCoreSdkPortableRuntimeIdentifier)</RuntimeIdentifier>
