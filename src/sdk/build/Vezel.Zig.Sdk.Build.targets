@@ -1,14 +1,15 @@
 <Project>
     <PropertyGroup>
-        <_InnerOrOuterBuild>_InnerBuild</_InnerOrOuterBuild>
-        <_InnerOrOuterBuild Condition="'$(IsOuterBuild)' == 'true'">_OuterBuild</_InnerOrOuterBuild>
+        <_InnerOrOuterBuild>InnerBuild</_InnerOrOuterBuild>
+        <_InnerOrOuterBuild Condition="'$(IsOuterBuild)' == 'true'">OuterBuild</_InnerOrOuterBuild>
     </PropertyGroup>
 
     <Target Name="Build"
             DependsOnTargets="$(_InnerOrOuterBuild)"
             Condition="'$(_InvalidConfigurationWarning)' != 'true'" />
 
-    <Target Name="_OuterBuild">
+    <Target Name="OuterBuild"
+            DependsOnTargets="$(OuterBuildDependsOn)">
         <ItemGroup>
             <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
             <_InnerProjects Include="$(MSBuildProjectFullPath)"
@@ -16,11 +17,11 @@
         </ItemGroup>
 
         <MSBuild Projects="@(_InnerProjects)"
-                 Targets="_InnerBuild"
+                 Targets="InnerBuild"
                  BuildInParallel="$(BuildInParallel)" />
     </Target>
 
-    <Target Name="_InnerBuild"
+    <Target Name="InnerBuild"
             DependsOnTargets="$(BuildDependsOn)"
             Returns="@(TargetPathWithTargetPlatformMoniker)" />
 
