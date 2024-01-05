@@ -1,14 +1,14 @@
 <Project>
     <PropertyGroup>
-        <_RealOrFanOutPublish>_InnerPublish</_RealOrFanOutPublish>
-        <_RealOrFanOutPublish Condition="'$(_RidFanOut)' == 'true'">_FanOutPublish</_RealOrFanOutPublish>
+        <_InnerOrOuterPublish>_InnerPublish</_InnerOrOuterPublish>
+        <_InnerOrOuterPublish Condition="'$(IsOuterBuild)' == 'true'">_OuterPublish</_InnerOrOuterPublish>
     </PropertyGroup>
 
     <Target Name="Publish"
-            DependsOnTargets="$(_RealOrFanOutPublish)"
+            DependsOnTargets="$(_InnerOrOuterPublish)"
             Condition="'$(_InvalidConfigurationWarning)' != 'true'" />
 
-    <Target Name="_FanOutPublish">
+    <Target Name="_OuterPublish">
         <ItemGroup>
             <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
             <_InnerProjects Include="$(MSBuildProjectFullPath)"
@@ -32,6 +32,6 @@
                  Importance="high" />
 
         <AllowEmptyTelemetry EventName="PublishProperties"
-                             EventData="PublishReadyToRun=$(PublishReadyToRun); PublishTrimmed=$(PublishTrimmed); PublishSingleFile=$(PublishSingleFile)" />
+                             EventData="PublishReadyToRun=$(PublishReadyToRun); PublishTrimmed=$(PublishTrimmed); PublishSingleFile=$(PublishSingleFile); PublishAot=$(PublishAot); PublishProtocol=$(PublishProtocol)" />
     </Target>
 </Project>

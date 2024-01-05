@@ -1,14 +1,14 @@
 <Project>
     <PropertyGroup>
-        <_RealOrFanOutBuild>_InnerBuild</_RealOrFanOutBuild>
-        <_RealOrFanOutBuild Condition="'$(_RidFanOut)' == 'true'">_FanOutBuild</_RealOrFanOutBuild>
+        <_InnerOrOuterBuild>_InnerBuild</_InnerOrOuterBuild>
+        <_InnerOrOuterBuild Condition="'$(IsOuterBuild)' == 'true'">_OuterBuild</_InnerOrOuterBuild>
     </PropertyGroup>
 
     <Target Name="Build"
-            DependsOnTargets="$(_RealOrFanOutBuild)"
+            DependsOnTargets="$(_InnerOrOuterBuild)"
             Condition="'$(_InvalidConfigurationWarning)' != 'true'" />
 
-    <Target Name="_FanOutBuild">
+    <Target Name="_OuterBuild">
         <ItemGroup>
             <_RuntimeIdentifiers Include="$(RuntimeIdentifiers)" />
             <_InnerProjects Include="$(MSBuildProjectFullPath)"
