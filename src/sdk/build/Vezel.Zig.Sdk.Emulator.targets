@@ -17,10 +17,10 @@
 
     <PropertyGroup Condition="'$(TargetSystem)' == 'linux' and '$(HostSystem)' == 'windows'">
         <_EmulatorName>wsl</_EmulatorName>
-        <_EmulatorName Condition="'$(TargetArchitecture)' != 'x86_64'">$(_EmulatorName) $(_QemuName)</_EmulatorName>
+        <_EmulatorName Condition="'$(_ArchitecturesCompatible)' != 'true'">$(_EmulatorName) $(_QemuName)</_EmulatorName>
         <_EmulatorCommand>wsl</_EmulatorCommand>
         <_EmulatorArgumentPrefix>"`wslpath </_EmulatorArgumentPrefix>
-        <_EmulatorArgumentPrefix Condition="'$(TargetArchitecture)' != 'x86_64'">$(_QemuName) $(_EmulatorArgumentPrefix)</_EmulatorArgumentPrefix>
+        <_EmulatorArgumentPrefix Condition="'$(_ArchitecturesCompatible)' != 'true'">$(_QemuName) $(_EmulatorArgumentPrefix)</_EmulatorArgumentPrefix>
         <_EmulatorArgumentSuffix>`"</_EmulatorArgumentSuffix>
     </PropertyGroup>
 
