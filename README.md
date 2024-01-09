@@ -56,8 +56,10 @@ For more information, please visit the
 
 ## Building
 
-Simply run `./cake` (a [Bash](https://www.gnu.org/software/bash) script) to
-build artifacts.
+You will need the .NET SDK installed. Simply run `./cake`
+(a [Bash](https://www.gnu.org/software/bash) script) to build artifacts. You can
+also use `./cake pack` if you do not want to build the documentation (which
+requires Node.js).
 
 ## License
 
