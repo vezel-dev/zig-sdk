@@ -217,8 +217,8 @@ public sealed class ZigCompile : ZigToolTask
             _ => throw new Exception(),
         });
 
-        // This enables MSBuild to recognize diagnostics properly. Make sure we
-        // pass this immediately after the cc/c++ command.
+        // This enables MSBuild to recognize diagnostics properly. Make sure we pass this immediately after the cc/c++
+        // command.
         if (!isZig)
             builder.AppendSwitch("-fdiagnostics-format=msvc");
 
@@ -250,14 +250,11 @@ public sealed class ZigCompile : ZigToolTask
 
         if (isZig)
         {
-            // The compiler uses static linking by default when building Zig
-            // code. We want dynamic linking in all cases.
+            // The compiler uses static linking by default when building Zig code. We want dynamic linking in all cases.
             builder.AppendSwitch("-dynamic");
 
-            // When building Zig code, by default, the compiler links statically
-            // to a platform-appropriate libc. We absolutely do not want that
-            // behavior when building code that might be loaded in a .NET
-            // process.
+            // When building Zig code, by default, the compiler links statically to a platform-appropriate libc. We
+            // absolutely do not want that behavior when building code that might be loaded in a .NET process.
             builder.AppendSwitch("-lc");
 
             if (_configuration == ZigConfiguration.Release)
@@ -267,11 +264,9 @@ public sealed class ZigCompile : ZigToolTask
         }
         else
         {
-            // These exact flags are treated specially by zig cc/c++. They
-            // activate Debug, ReleaseFast, ReleaseSafe, and ReleaseSmall
-            // respectively. This in turns activates a bunch of other
-            // mode-specific flags that we do not have to specify here as a
-            // result.
+            // These exact flags are treated specially by zig cc/c++. They activate Debug, ReleaseFast, ReleaseSafe, and
+            // ReleaseSmall respectively. This in turns activates a bunch of other mode-specific flags that we do not
+            // have to specify here as a result.
             builder.AppendSwitch((_configuration, _releaseMode) switch
             {
                 (ZigConfiguration.Debug, _) => "-O0",
@@ -383,18 +378,16 @@ public sealed class ZigCompile : ZigToolTask
 
             void TryAppendWarningSwitch(string name)
             {
-                // Try to avoid adding a warning flag if the user explicitly
-                // disabled it. This will not cover every possible case due to
-                // aggregate flags, but it will at least prevent some amount of
-                // command line length explosion.
+                // Try to avoid adding a warning flag if the user explicitly disabled it. This will not cover every
+                // possible case due to aggregate flags, but it will at least prevent some amount of command line length
+                // explosion.
                 if (!disabledWarnings.Contains(name))
                     builder.AppendSwitch($"-W{name}");
             }
 
-            // Unfortunately, a lot of good warnings that really should be on by
-            // default are not. So, we have to keep a manual list of extra
-            // warnings to enable and make sure to keep it in sync with whatever
-            // LLVM/Clang version Zig is shipping with.
+            // Unfortunately, a lot of good warnings that really should be on by default are not. So, we have to keep a
+            // manual list of extra warnings to enable and make sure to keep it in sync with whatever LLVM/Clang version
+            // Zig is shipping with.
             switch (WarningLevel)
             {
                 case <= 0:
@@ -494,10 +487,8 @@ public sealed class ZigCompile : ZigToolTask
                     goto case 3;
             }
 
-            // The following -W flags need to be here because they have to be
-            // enabled regardless of WarningLevel. If they came before
-            // -Wno-everything (when WarningLevel is set to 0), they would have
-            // no effect.
+            // The following -W flags need to be here because they have to be enabled regardless of WarningLevel. If
+            // they came before -Wno-everything (when WarningLevel is set to 0), they would have no effect.
             builder.AppendSwitch("-Werror=newline-eof");
 
             if (ConsumptionAnalysis)
