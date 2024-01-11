@@ -1,4 +1,3 @@
 * text
 *.ico binary
 *.png binary
-*.zig eol=lf
