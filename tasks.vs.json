@@ -18,7 +18,6 @@
           "command": "dotnet",
           "args": [
             "cake",
-            "zig-sdk.cake",
             "-t",
             "pack"
           ]

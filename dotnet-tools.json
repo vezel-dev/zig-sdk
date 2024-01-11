@@ -8,6 +8,12 @@
         "dotnet-cake"
       ]
     },
+    "dotnet-file": {
+      "version": "1.4.1",
+      "commands": [
+        "dotnet-file"
+      ]
+    },
     "gpr": {
       "version": "0.1.294",
       "commands": [
