@@ -67,6 +67,10 @@ Task("default")
     .IsDependentOn("test")
     .IsDependentOn("build");
 
+Task("default-editor")
+    .IsDependentOn("build")
+    .IsDependentOn("pack");
+
 Task("restore-core")
     .Does(() =>
         DotNetRestore(

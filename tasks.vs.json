@@ -19,7 +19,7 @@
           "args": [
             "cake",
             "-t",
-            "pack"
+            "default-editor"
           ]
         }
       ]
