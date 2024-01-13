@@ -11,6 +11,7 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AnalysisLevel>latest-all</AnalysisLevel>
         <Configuration>Release</Configuration>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <EnablePackageValidation>true</EnablePackageValidation>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <ImplicitUsings>true</ImplicitUsings>
