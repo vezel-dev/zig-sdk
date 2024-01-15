@@ -9,7 +9,7 @@
     -->
     <Target Name="VSTest"
             DependsOnTargets="$(VSTestDependsOn)"
-            Condition="'$(CompilerMode)' == 'Zig' and '$(IsTestable)' == 'true'">
+            Condition="'$(Language)' == 'Zig' and '$(IsTestable)' == 'true'">
         <!--
         We might be run before an actual build, in which case the intermediate
         output path will not exist.

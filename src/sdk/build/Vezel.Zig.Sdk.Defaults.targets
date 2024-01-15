@@ -4,12 +4,6 @@
     allow users to alter if they wish.
     -->
 
-    <PropertyGroup Condition="'$(CompilerMode)' == ''">
-        <CompilerMode Condition="'$(MSBuildProjectExtension)' == '.cproj'">C</CompilerMode>
-        <CompilerMode Condition="'$(MSBuildProjectExtension)' == '.cxxproj'">Cxx</CompilerMode>
-        <CompilerMode Condition="'$(MSBuildProjectExtension)' == '.zigproj'">Zig</CompilerMode>
-    </PropertyGroup>
-
     <PropertyGroup>
         <CachePath Condition="'$(CachePath)' == ''">$(IntermediateOutputPath)zig-cache</CachePath>
         <CommandsPath Condition="'$(CommandsPath)' == ''">$(IntermediateOutputPath)compile_commands.json</CommandsPath>
@@ -27,9 +21,9 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(LanguageStandard)' == ''">
-        <LanguageStandard Condition="'$(CompilerMode)' == 'C'">gnu2x</LanguageStandard>
-        <LanguageStandard Condition="'$(CompilerMode)' == 'Cxx'">gnu++2b</LanguageStandard>
-        <LanguageStandard Condition="'$(CompilerMode)' == 'Zig'">zig</LanguageStandard>
+        <LanguageStandard Condition="'$(Language)' == 'C'">gnu2x</LanguageStandard>
+        <LanguageStandard Condition="'$(Language)' == 'Cxx'">gnu++2b</LanguageStandard>
+        <LanguageStandard Condition="'$(Language)' == 'Zig'">zig</LanguageStandard>
     </PropertyGroup>
 
     <PropertyGroup>

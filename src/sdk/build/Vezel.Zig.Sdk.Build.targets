@@ -48,7 +48,7 @@
                     AsyncExceptions="$(AsyncExceptions)"
                     BlockExtensions="$(BlockExtensions)"
                     CommandFragmentsDirectory="$(_CommandFragmentsPath)"
-                    CompilerMode="$(CompilerMode)"
+                    CompilerMode="$(Language)"
                     ConsumptionAnalysis="$(ConsumptionAnalysis)"
                     Configuration="$(Configuration)"
                     CxxExceptions="$(CxxExceptions)"

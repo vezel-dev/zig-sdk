@@ -16,13 +16,13 @@
     <ItemGroup Condition="'$(DefaultSources)' == 'true'">
         <Compile Include="**/*.c"
                  Excludes="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
-                 Condition="'$(CompilerMode)' == 'C'" />
+                 Condition="'$(Language)' == 'C'" />
         <Compile Include="**/*.cxx"
                  Excludes="$(DefaultItemExcludes); $(DefaultExcludesInProjectFolder)"
-                 Condition="'$(CompilerMode)' == 'Cxx'" />
+                 Condition="'$(Language)' == 'Cxx'" />
         <Compile Include="$(AssemblyName).zig"
-                 Condition="'$(CompilerMode)' == 'Zig' and '$(OutputType)' == 'Library'" />
+                 Condition="'$(Language)' == 'Zig' and '$(OutputType)' == 'Library'" />
         <Compile Include="main.zig"
-                 Condition="'$(CompilerMode)' == 'Zig' and '$(OutputType)' != 'Library'" />
+                 Condition="'$(Language)' == 'Zig' and '$(OutputType)' != 'Library'" />
     </ItemGroup>
 </Project>

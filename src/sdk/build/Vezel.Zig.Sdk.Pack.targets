@@ -37,7 +37,7 @@
                   Exclude="$(DefaultItemExcludes)"
                   Pack="true"
                   PackagePath="zig"
-                  Condition="'$(CompilerMode)' == 'Zig'" />
+                  Condition="'$(Language)' == 'Zig'" />
         </ItemGroup>
 
         <ItemGroup>

@@ -10,8 +10,6 @@ historical reasons.
 
 ## Project Setup
 
-* `CompilerMode` (`C`, `Cxx`, `Zig`): The language to compile the project as.
-  This is inferred from the project file extension by default.
 * `AssemblyName`: Name of the project. By default, this is set to the file name
   of the project file. Used to compute the final binary name (e.g. `foo` becomes
   `libfoo.so`).

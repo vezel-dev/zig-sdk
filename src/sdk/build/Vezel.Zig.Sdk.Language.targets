@@ -1,0 +1,7 @@
+<Project>
+    <PropertyGroup>
+        <Language Condition="'$(MSBuildProjectExtension)' == '.cproj'">C</Language>
+        <Language Condition="'$(MSBuildProjectExtension)' == '.cxxproj'">Cxx</Language>
+        <Language Condition="'$(MSBuildProjectExtension)' == '.zigproj'">Zig</Language>
+    </PropertyGroup>
+</Project>

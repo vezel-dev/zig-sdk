@@ -6,6 +6,7 @@
     last.
     -->
 
+    <Import Project="../build/Vezel.Zig.Sdk.Language.targets" />
     <Import Project="../build/Vezel.Zig.Sdk.Overrides.targets" />
     <Import Project="../build/Vezel.Zig.Sdk.Cross.targets" />
     <Import Project="../build/Vezel.Zig.Sdk.Symbols.targets" />

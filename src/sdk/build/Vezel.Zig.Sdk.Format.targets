@@ -1,6 +1,6 @@
 <Project>
     <Target Name="_CheckFormat"
-            Condition="'$(CompilerMode)' == 'Zig' and @(ZigSource->Count()) != 0">
+            Condition="'$(Language)' == 'Zig' and @(ZigSource->Count()) != 0">
         <ZigFormat FormatterMode="Check"
                    Sources="@(ZigSource)"
                    StandardOutputImportance="high"
@@ -8,7 +8,7 @@
     </Target>
 
     <Target Name="Format"
-            Condition="'$(CompilerMode)' == 'Zig' and @(ZigSource->Count()) != 0">
+            Condition="'$(Language)' == 'Zig' and @(ZigSource->Count()) != 0">
         <ZigFormat FormatterMode="Execute"
                    Sources="@(ZigSource)"
                    ToolExe="$(ZigExePath)" />

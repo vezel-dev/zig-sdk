@@ -15,7 +15,7 @@
     <Target Name="_CheckCompileCommands"
             Inputs="$(MSBuildAllProjects); $(IntermediateOutputPath)$(MSBuildProjectFile).CoreCompileInputs.cache"
             Outputs="$(CommandsPath)"
-            Condition="'$(CompilerMode)' != 'Zig' and '$(EditorSupport)' == 'true'">
+            Condition="'$(Language)' != 'Zig' and '$(EditorSupport)' == 'true'">
         <CreateProperty Value="true">
             <Output TaskParameter="ValueSetByTask"
                     PropertyName="_RefreshCompileCommands" />
