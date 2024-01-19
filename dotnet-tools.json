@@ -8,6 +8,12 @@
         "dotnet-cake"
       ]
     },
+    "dotnet-config": {
+      "version": "1.0.6",
+      "commands": [
+        "dotnet-config"
+      ]
+    },
     "dotnet-file": {
       "version": "1.4.1",
       "commands": [
