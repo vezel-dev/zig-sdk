@@ -1,6 +1,5 @@
 #addin nuget:?package=Cake.DoInDirectory&version=6.0.0
 #addin nuget:?package=Cake.Npm&version=2.0.0
-#addin nuget:?package=Cake.Npx&version=1.7.0
 
 #nullable enable
 
@@ -100,7 +99,7 @@ Task("build-core")
 
 Task("build-doc")
     .IsDependentOn("restore-doc")
-    .Does(() => DoInDirectory(doc, () => Npx("markdownlint-cli2")));
+    .Does(() => DoInDirectory(doc, () => NpmRunScript("build")));
 
 Task("build")
     .IsDependentOn("build-core")
