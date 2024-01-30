@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
         <Product>Zig SDK</Product>
-        <Description>The Zig SDK is an MSBuild SDK for building Zig, C, and C++ projects using the Zig compiler.</Description>
+        <Description>The $(Product) is an MSBuild SDK for building Zig, C, and C++ projects using the Zig compiler.</Description>
         <Company>Vezel</Company>
         <Authors>$(Company) Contributors</Authors>
         <Copyright>Copyright © $(Authors)</Copyright>
