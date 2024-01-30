@@ -8,7 +8,7 @@
             $(NoWarn);
             NU5129
         </NoWarn>
-        <PackageDescription>$(PackageDescription)
+        <PackageDescription>$(Description)
 
 This package provides the MSBuild SDK and associated tasks.</PackageDescription>
         <PackageId>Vezel.Zig.Sdk</PackageId>
