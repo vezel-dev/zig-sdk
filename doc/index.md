@@ -7,7 +7,8 @@ that augments the .NET SDK with the ability to build Zig, C, and C++ projects.
 With support for multiple programming languages, cross-compilation, NuGet
 packaging, and more, the **Zig SDK** makes it trivial to author native
 components as part of your .NET solution - without all the hassle that is
-usually part and parcel of building and packaging native code.
+usually part and parcel of building and packaging native code. These features
+are powered by the [Zig](https://ziglang.org) toolchain.
 
 ## Features
 
