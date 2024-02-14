@@ -8,6 +8,6 @@
     "markdownlint-cli2": "0.12.1"
   },
   "scripts": {
-    "build": "npx markdownlint-cli"
+    "build": "npx markdownlint-cli2"
   }
 }
