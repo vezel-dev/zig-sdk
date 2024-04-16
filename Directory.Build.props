@@ -10,8 +10,8 @@
     <PropertyGroup>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AnalysisLevel>latest-all</AnalysisLevel>
-        <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
         <Configuration>Release</Configuration>
+        <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <EnablePackageValidation>true</EnablePackageValidation>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
