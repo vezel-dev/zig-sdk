@@ -52,7 +52,7 @@
         <EagerBinding Condition="'$(EagerBinding)' == ''">true</EagerBinding>
         <FastMath Condition="'$(FastMath)' == ''">false</FastMath>
         <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/33 -->
-        <LinkTimeOptimization Condition="'$(LinkTimeOptimization)' == ''">false</LinkTimeOptimization>
+        <LinkTimeOptimization Condition="'$(LinkTimeOptimization)' == ''">true</LinkTimeOptimization>
         <ReleaseMode Condition="'$(ReleaseMode)' == ''">Fast</ReleaseMode>
         <RelocationHardening Condition="'$(RelocationHardening)' == ''">true</RelocationHardening>
         <SymbolExports Condition="'$(SymbolExports)' == ''">Used</SymbolExports>
