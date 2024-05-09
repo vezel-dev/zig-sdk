@@ -51,7 +51,7 @@ Here are some of the **Zig SDK** highlights:
   there is limited [ZLS](https://github.com/zigtools/zls) support.
 
 Please note that the **Zig SDK** is *not* intended to be a full replacement for
-[Zig's build system](https://ziglearn.org/chapter-3). The goal of the
+the [Zig Build System](https://ziglang.org/learn/build-system). The goal of the
 **Zig SDK** is specifically to make it simple to integrate Zig, C, and C++
 components into the .NET ecosystem. For that reason, the **Zig SDK** has no
 support for platforms that Zig supports but that .NET does not (yet) run on,
