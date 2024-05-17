@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: 0BSD -->
+
 <Project>
     <Target Name="_CheckFormat"
             Condition="'$(Language)' == 'Zig' and @(ZigSource->Count()) != 0">

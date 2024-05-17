@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: 0BSD -->
+
 <Project>
     <!--
     We set this so that third-party build logic can determine whether it is

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: 0BSD
+
 const std = @import("std");
 const expect = std.testing.expect;
 const header = @cImport(@cInclude("zigexe.h"));

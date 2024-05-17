@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: 0BSD -->
+
 <Project>
     <PropertyGroup>
         <PublicHeadersPath Condition="'$(PublicHeadersPath)' != ''">$([MSBuild]::EnsureTrailingSlash('$(PublicHeadersPath)'))</PublicHeadersPath>

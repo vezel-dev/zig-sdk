@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: 0BSD -->
+
 <Project>
     <!--
     Microsoft.NET.Sdk unconditionally sets TargetExt to force a .dll suffix. We

@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: 0BSD -->
+
 <Project>
     <ItemGroup Condition="'$(DotNetWatchBuild)' == 'true'">
         <Watch Include="@(CHeader->WithMetadataValue('Watch', 'true'))" />

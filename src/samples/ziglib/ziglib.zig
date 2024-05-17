@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: 0BSD
+
 const std = @import("std");
 const assert = std.debug.assert;
 

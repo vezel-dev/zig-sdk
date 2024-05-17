@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: 0BSD -->
+
 <Project>
     <!--
     This file figures out if a suitable binary emulator exists given the host

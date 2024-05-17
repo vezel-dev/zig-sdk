@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: 0BSD
+
 using Microsoft.Build.Framework;
 using Microsoft.Build.Tasks;
 

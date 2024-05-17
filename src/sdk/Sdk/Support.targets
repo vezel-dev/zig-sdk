@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: 0BSD -->
+
 <Project>
     <!--
     This file is meant to be imported in regular Microsoft.NET.Sdk projects. It

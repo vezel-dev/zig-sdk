@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: 0BSD -->
+
 <Project>
     <!--
     Here we override some properties from Microsoft.NET.Sdk to disable default
