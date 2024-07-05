@@ -43,11 +43,6 @@
 	sha = 7d581ae5eedad5892855cebc673edafad664856b
 	etag = 4fe195e9c11a20688615d92035ac752eeac4ab3f3d82b20df798ea6dc1b49aab
 	weak
-[file "LICENSE-CC-BY-SA-4.0"]
-	url = https://github.com/vezel-dev/.github/blob/master/syn/LICENSE-CC-BY-SA-4.0
-	sha = 7d581ae5eedad5892855cebc673edafad664856b
-	etag = 26b3362c0fddb0fe853c03d52b189c0772c3396f42aac019804253338e8667ae
-	weak
 [file "cake"]
 	url = https://github.com/vezel-dev/.github/blob/master/syn/cake
 	sha = a562349156aa1bdc7aae6d27d97ec3b65ed1f46e
