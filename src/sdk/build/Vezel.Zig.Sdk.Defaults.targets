@@ -24,7 +24,7 @@
 
     <PropertyGroup Condition="'$(LanguageStandard)' == ''">
         <LanguageStandard Condition="'$(Language)' == 'C'">gnu23</LanguageStandard>
-        <LanguageStandard Condition="'$(Language)' == 'Cxx'">gnu++2c</LanguageStandard>
+        <LanguageStandard Condition="'$(Language)' == 'Cxx'">gnu++23</LanguageStandard>
         <LanguageStandard Condition="'$(Language)' == 'Zig'">zig</LanguageStandard>
     </PropertyGroup>
 
