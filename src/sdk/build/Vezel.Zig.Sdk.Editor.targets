@@ -18,6 +18,10 @@
             Inputs="$(MSBuildAllProjects); $(IntermediateOutputPath)$(MSBuildProjectFile).CoreCompileInputs.cache"
             Outputs="$(CommandsPath)"
             Condition="'$(Language)' != 'Zig' and '$(EditorSupport)' == 'true'">
+        <!--
+        The property is set in this way, rather than in a PropertyGroup, to
+        avoid MSBuild's output inference causing it to always be set.
+        -->
         <CreateProperty Value="true">
             <Output TaskParameter="ValueSetByTask"
                     PropertyName="_RefreshCompileCommands" />
@@ -41,6 +45,48 @@
     </Target>
 
     <!--
+    This hacktastic task is necessary to work around MSBuild transforming slash
+    characters on Unix systems. This breaks the JSON, rendering the generated
+    compile_commands.json unusable.
+    -->
+    <UsingTask TaskName="ZigGenerateCompileCommands"
+               TaskFactory="RoslynCodeTaskFactory"
+               AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <Fragments ParameterType="Microsoft.Build.Framework.ITaskItem[]"
+                       Required="true" />
+            <CommandsPath ParameterType="System.String"
+                          Required="true" />
+        </ParameterGroup>
+
+        <Task>
+            <Code Type="Fragment"
+                  Language="cs">
+                <![CDATA[
+                    var sb = new StringBuilder();
+
+                    _ = sb.AppendLine("[");
+
+                    for (var i = 0; i < Fragments.Length; i++)
+                    {
+                        _ = sb.AppendFormat(
+                            "  {0}", File.ReadAllText(Fragments[i].GetMetadata("FullPath")).Trim().TrimEnd(','));
+
+                        if (i != Fragments.Length - 1)
+                            _ = sb.Append(',');
+
+                        _ = sb.AppendLine();
+                    }
+
+                    _ = sb.AppendLine("]");
+
+                    File.WriteAllText(CommandsPath, sb.ToString());
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+
+    <!--
     Read in all the compilation database fragments, remove the trailing comma
     from each, join them into a valid JSON array, and finally write the
     compile_commands.json file.
@@ -49,20 +95,9 @@
             Condition="'$(_RefreshCompileCommands)' == 'true'">
         <ItemGroup>
             <_CdbFragments Include="$(_CommandFragmentsPath)/*.json" />
-            <_CdbFragments Update="@(_CdbFragments)"
-                           Json="$([System.IO.File]::ReadAllText('%(FullPath)').Trim().TrimEnd(','))" />
         </ItemGroup>
 
-        <PropertyGroup>
-            <_CompileCommands>
-                <![CDATA[
-[ @(_CdbFragments->'%(Json)', ', ') ]
-                ]]>
-            </_CompileCommands>
-        </PropertyGroup>
-
-        <WriteLinesToFile File="$(CommandsPath)"
-                          Lines="$(_CompileCommands)"
-                          Overwrite="true" />
+        <ZigGenerateCompileCommands Fragments="@(_CdbFragments)"
+                                    CommandsPath="$(CommandsPath)" />
     </Target>
 </Project>
