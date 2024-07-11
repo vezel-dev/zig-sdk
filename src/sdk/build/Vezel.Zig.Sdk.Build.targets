@@ -95,6 +95,7 @@
                     ToolExe="$(ZigExePath)"
                     TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
                     TrustAnalysis="$(TrustAnalysis)"
+                    UnicodeEnvironment="$(UnicodeEnvironment)"
                     WarningLevel="$(WarningLevel)" />
 
         <CallTarget Targets="_GatherCompileCommands" />

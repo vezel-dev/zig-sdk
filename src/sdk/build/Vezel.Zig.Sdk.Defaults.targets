@@ -35,6 +35,7 @@
         <CxxExceptions Condition="'$(CxxExceptions)' == ''">true</CxxExceptions>
         <CxxReflection Condition="'$(CxxReflection)' == ''">true</CxxReflection>
         <MicrosoftExtensions Condition="'$(MicrosoftExtensions)' == ''">false</MicrosoftExtensions>
+        <UnicodeEnvironment Condition="'$(UnicodeEnvironment)' == ''">false</UnicodeEnvironment>
         <ZigVersion Condition="'$(ZigVersion)' == ''">0.13.0</ZigVersion>
     </PropertyGroup>
 

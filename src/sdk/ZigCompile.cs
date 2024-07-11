@@ -182,6 +182,9 @@ public sealed class ZigCompile : ZigToolTask
     public bool TrustAnalysis { get; set; }
 
     [Required]
+    public bool UnicodeEnvironment { get; set; }
+
+    [Required]
     public int WarningLevel { get; set; }
 
     private static readonly CultureInfo _culture = CultureInfo.InvariantCulture;
@@ -316,6 +319,9 @@ public sealed class ZigCompile : ZigToolTask
             }
             else if (CxxExceptions)
                 builder.AppendSwitch("-fexceptions");
+
+            if (UnicodeEnvironment)
+                builder.AppendSwitch("-municode");
 
             builder.AppendSwitch("-fno-strict-aliasing");
 

@@ -67,6 +67,7 @@
                     ToolExe="$(ZigExePath)"
                     TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
                     TrustAnalysis="$(TrustAnalysis)"
+                    UnicodeEnvironment="$(UnicodeEnvironment)"
                     WarningLevel="$(WarningLevel)" />
 
         <Message Text="Running tests natively..."

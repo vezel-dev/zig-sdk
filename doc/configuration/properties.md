@@ -99,6 +99,13 @@ historical reasons.
   Microsoft C/C++ extensions. Defaults to `false`, but note that the compiler
   itself always enables some parts of this when targeting Windows as Win32
   headers require it.
+* `UnicodeEnvironment` (`true`, `false`): Enable/disable compiling for a Unicode
+  environment when targeting Windows in C/C++ projects. This causes the
+  `UNICODE` macro to be defined, and makes it so that
+  [`wmain`](https://learn.microsoft.com/en-us/cpp/c-language/using-wmain) and
+  [`wWinMain`](https://learn.microsoft.com/en-us/windows/win32/learnwin32/winmain--the-application-entry-point)
+  entry point functions must be used when building executables. Defaults to
+  `false`.
 
 ## Static Analysis
 
