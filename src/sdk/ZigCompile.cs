@@ -397,6 +397,7 @@ public sealed class ZigCompile : ZigToolTask
                     break;
                 case 1:
                     TryAppendWarningSwitch("alloca");
+                    TryAppendWarningSwitch("invalid-utf8");
                     TryAppendWarningSwitch("non-gcc");
                     TryAppendWarningSwitch("reserved-identifier");
                     TryAppendWarningSwitch("signed-enum-bitfield");
@@ -460,6 +461,7 @@ public sealed class ZigCompile : ZigToolTask
                     TryAppendWarningSwitch("extra-semi");
                     TryAppendWarningSwitch("format=2");
                     TryAppendWarningSwitch("four-char-constants");
+                    TryAppendWarningSwitch("incompatible-function-pointer-types-strict");
                     TryAppendWarningSwitch("missing-noreturn");
                     TryAppendWarningSwitch("redundant-parens");
                     TryAppendWarningSwitch("undef");
