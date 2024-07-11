@@ -22,6 +22,7 @@
                     AccessControl="$(AccessControl)"
                     AsyncExceptions="$(AsyncExceptions)"
                     BlockExtensions="$(BlockExtensions)"
+                    BufferAnalysis="$(BufferAnalysis)"
                     CompilerMode="Test"
                     Configuration="$(Configuration)"
                     ConsumptionAnalysis="$(ConsumptionAnalysis)"

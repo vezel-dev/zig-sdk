@@ -24,6 +24,9 @@ public sealed class ZigCompile : ZigToolTask
     [Required]
     public bool BlockExtensions { get; set; }
 
+    [Required]
+    public bool BufferAnalysis { get; set; }
+
     public ITaskItem? CommandFragmentsDirectory { get; set; }
 
     [Required]
@@ -494,6 +497,9 @@ public sealed class ZigCompile : ZigToolTask
             // The following -W flags need to be here because they have to be enabled regardless of WarningLevel. If
             // they came before -Wno-everything (when WarningLevel is set to 0), they would have no effect.
             builder.AppendSwitch("-Werror=newline-eof");
+
+            if (BufferAnalysis)
+                builder.AppendSwitch("-Wunsafe-buffer-usage");
 
             if (ConsumptionAnalysis)
                 builder.AppendSwitch("-Wconsumed");

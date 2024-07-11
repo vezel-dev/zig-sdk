@@ -49,6 +49,7 @@
                     AccessControl="$(AccessControl)"
                     AsyncExceptions="$(AsyncExceptions)"
                     BlockExtensions="$(BlockExtensions)"
+                    BufferAnalysis="$(BufferAnalysis)"
                     CommandFragmentsDirectory="$(_CommandFragmentsPath)"
                     CompilerMode="$(Language)"
                     ConsumptionAnalysis="$(ConsumptionAnalysis)"

@@ -105,6 +105,8 @@ historical reasons.
 * `EnforceCodeStyleInBuild` (`true`, `false`): Enable/disable checking that
   source code is in the canonical style during build in Zig projects. Defaults
   to `false`.
+* `BufferAnalysis` (`true`, `false`): Enable/disable static analysis with
+  unsafe buffer annotations in C/C++ projects. Defaults to `false`.
 * `ConsumptionAnalysis` (`true`, `false`): Enable/disable static analysis with
   [consumption and type state annotations](https://clang.llvm.org/docs/AttributeReference.html#consumed-annotation-checking)
   in C/C++ projects. Defaults to `true`.

@@ -39,6 +39,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <BufferAnalysis Condition="'$(BufferAnalysis)' == ''">false</BufferAnalysis>
         <ConsumptionAnalysis Condition="'$(ConsumptionAnalysis)' == ''">true</ConsumptionAnalysis>
         <DocumentationAnalysis Condition="'$(DocumentationAnalysis)' == ''">false</DocumentationAnalysis>
         <NullabilityAnalysis Condition="'$(NullabilityAnalysis)' == ''">true</NullabilityAnalysis>
