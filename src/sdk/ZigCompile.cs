@@ -321,7 +321,10 @@ public sealed class ZigCompile : ZigToolTask
                 builder.AppendSwitch("-fexceptions");
 
             if (UnicodeEnvironment)
+            {
                 builder.AppendSwitch("-municode");
+                builder.AppendSwitchIfNotNull("-D ", "_UNICODE");
+            }
 
             builder.AppendSwitch("-fno-strict-aliasing");
 
