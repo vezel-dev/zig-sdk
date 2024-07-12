@@ -101,7 +101,7 @@ historical reasons.
   headers require it.
 * `UnicodeEnvironment` (`true`, `false`): Enable/disable compiling for a Unicode
   environment when targeting Windows in C/C++ projects. This causes the
-  `UNICODE` macro to be defined, and makes it so that
+  `UNICODE` and `_UNICODE` macros to be defined, and makes it so that
   [`wmain`](https://learn.microsoft.com/en-us/cpp/c-language/using-wmain) and
   [`wWinMain`](https://learn.microsoft.com/en-us/windows/win32/learnwin32/winmain--the-application-entry-point)
   entry point functions must be used when building executables. Defaults to
