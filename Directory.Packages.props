@@ -9,7 +9,7 @@
         <GlobalPackageReference Include="Microsoft.Build.CopyOnWrite"
                                 Version="1.0.315" />
         <GlobalPackageReference Include="Nerdbank.GitVersioning"
-                                Version="3.6.141" />
+                                Version="3.6.143" />
         <GlobalPackageReference Include="PolySharp"
                                 Version="1.14.1" />
         <GlobalPackageReference Include="StyleCop.Analyzers"
