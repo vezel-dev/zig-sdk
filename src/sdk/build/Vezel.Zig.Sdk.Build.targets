@@ -31,7 +31,7 @@
     This is the target that actually compiles source code to a native binary.
     -->
     <Target Name="CoreCompile"
-            DependsOnTargets="$(CoreCompileDependsOn)">
+            DependsOnTargets="_CheckCompileCommands; $(CoreCompileDependsOn)">
         <CallTarget Targets="_PrepareCompileCommands" />
 
         <PropertyGroup>
