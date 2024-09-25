@@ -7,7 +7,8 @@
     -->
 
     <PropertyGroup>
-        <CachePath Condition="'$(CachePath)' == ''">$(IntermediateOutputPath)zig-cache</CachePath>
+        <GlobalCachePath Condition="'$(CachePath)' == ''">$(BaseIntermediateOutputPath)zig-cache</GlobalCachePath>
+        <LocalCachePath Condition="'$(CachePath)' == ''">$(IntermediateOutputPath)zig-cache</LocalCachePath>
         <CommandsPath Condition="'$(CommandsPath)' == ''">$(IntermediateOutputPath)compile_commands.json</CommandsPath>
         <DefaultSources Condition="'$(DefaultSources)' == ''">true</DefaultSources>
         <EditorSupport Condition="'$(EditorSupport)' == ''">true</EditorSupport>
