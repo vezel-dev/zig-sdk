@@ -63,7 +63,7 @@
                     DocumentationAnalysis="$(DocumentationAnalysis)"
                     DynamicImageBase="$(DynamicImageBase)"
                     EagerBinding="$(EagerBinding)"
-                    EnvironmentVariables="ZIG_LOCAL_CACHE_DIR=$(CachePath)"
+                    EnvironmentVariables="ZIG_GLOBAL_CACHE_DIR=$(GlobalCachePath); ZIG_LOCAL_CACHE_DIR=$(LocalCachePath)"
                     FastMath="$(FastMath)"
                     ImageBase="$(ImageBase)"
                     IncludeDirectories="@(IncludeDirectory)"

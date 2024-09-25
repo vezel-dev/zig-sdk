@@ -1,8 +1,9 @@
 <!-- SPDX-License-Identifier: 0BSD -->
 
 <Project>
-    <ItemGroup>
-        <Clean Include="$(CachePath)/**" />
+    <ItemGroup Condition="'$(IsOuterBuild)' != 'true'">
+        <Clean Include="$(GlobalCachePath)/**" />
+        <Clean Include="$(LocalCachePath)/**" />
         <Clean Include="$(_CommandFragmentsPath)/**" />
     </ItemGroup>
 
