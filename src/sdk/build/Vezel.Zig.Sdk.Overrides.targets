@@ -15,7 +15,7 @@
         <GenerateDependencyFile>false</GenerateDependencyFile>
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <ShouldBeValidatedAsExecutableReference>false</ShouldBeValidatedAsExecutableReference>
-        <TargetFramework>netstandard1.0</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
 
     <!--
