@@ -14,7 +14,7 @@
 
     <Target Name="_PackNativeAssets">
         <!--
-        Since we claim to support netstandard1.0 but do not package any managed
+        Since we claim to support netstandard2.0 but do not package any managed
         assemblies, NuGet will warn during package validation. We place a dummy
         file in the lib directory to silence it.
         -->
