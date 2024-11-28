@@ -105,6 +105,9 @@ public sealed class ZigCompile : ZigToolTask
     public bool MicrosoftExtensions { get; set; }
 
     [Required]
+    public bool NoEntryPoint { get; set; }
+
+    [Required]
     public bool NullabilityAnalysis { get; set; }
 
     [Required]
@@ -250,6 +253,9 @@ public sealed class ZigCompile : ZigToolTask
         {
             if (!TargetTriple.StartsWith("wasm", StringComparison.Ordinal))
                 builder.AppendSwitch("-fPIE");
+
+            if (NoEntryPoint)
+                builder.AppendSwitch(isZig ? "-fno-entry" : "-Wl,--no-entry");
 
             if (_symbolExports == ZigSymbolExports.All)
                 builder.AppendSwitch("-rdynamic");
