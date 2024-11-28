@@ -234,8 +234,6 @@ public sealed class ZigCompile : ZigToolTask
 
         if (_outputType == ZigOutputType.Library)
         {
-            builder.AppendSwitch("-fPIC");
-
             if (!isZig)
             {
                 builder.AppendSwitch("-shared");
