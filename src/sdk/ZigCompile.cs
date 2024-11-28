@@ -248,7 +248,8 @@ public sealed class ZigCompile : ZigToolTask
         }
         else
         {
-            builder.AppendSwitch("-fPIE");
+            if (!TargetTriple.StartsWith("wasm", StringComparison.Ordinal))
+                builder.AppendSwitch("-fPIE");
 
             if (_symbolExports == ZigSymbolExports.All)
                 builder.AppendSwitch("-rdynamic");
