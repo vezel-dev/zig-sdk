@@ -99,6 +99,8 @@ historical reasons.
   Microsoft C/C++ extensions. Defaults to `false`, but note that the compiler
   itself always enables some parts of this when targeting Windows as Win32
   headers require it.
+* `NoEntryPoint` (`true`, `false`): Enable/disable the omission of an entry
+  point function when building executables. Defaults to `false`.
 * `UnicodeEnvironment` (`true`, `false`): Enable/disable compiling for a Unicode
   environment when targeting Windows in C/C++ projects. This causes the
   `UNICODE` and `_UNICODE` macros to be defined, and makes it so that

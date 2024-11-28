@@ -74,6 +74,7 @@
                     LinkerReferences="@(LinkerReference)"
                     LinkTimeOptimization="$(LinkTimeOptimization)"
                     MicrosoftExtensions="$(MicrosoftExtensions)"
+                    NoEntryPoint="$(NoEntryPoint)"
                     NullabilityAnalysis="$(NullabilityAnalysis)"
                     OutputBinary="@(IntermediateAssembly)"
                     OutputType="$(OutputType)"
