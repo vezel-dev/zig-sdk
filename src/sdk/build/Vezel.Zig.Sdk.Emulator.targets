@@ -8,7 +8,7 @@
 
     <PropertyGroup>
         <_QemuName>qemu-$(TargetArchitecture)</_QemuName>
-        <_QemuName Condition="'$(TargetArchitecture)' == 'powerpc64le'">qemu-ppc64</_QemuName>
+        <_QemuName Condition="'$(TargetArchitecture)' == 'powerpc64le'">qemu-ppc64le</_QemuName>
         <_QemuName Condition="'$(TargetArchitecture)' == 'x86'">qemu-i386</_QemuName>
     </PropertyGroup>
 
