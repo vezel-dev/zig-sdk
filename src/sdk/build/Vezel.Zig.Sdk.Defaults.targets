@@ -56,6 +56,7 @@
         <AllowUndefinedSymbols Condition="'$(AllowUndefinedSymbols)' == ''">false</AllowUndefinedSymbols>
         <DynamicImageBase Condition="'$(DynamicImageBase)' == ''">true</DynamicImageBase>
         <EagerBinding Condition="'$(EagerBinding)' == ''">true</EagerBinding>
+        <ExecutionModel Condition="'$(ExecutionModel)' == ''">Command</ExecutionModel>
         <FastMath Condition="'$(FastMath)' == ''">false</FastMath>
         <!-- TODO: https://github.com/vezel-dev/zig-sdk/issues/33 -->
         <LinkTimeOptimization Condition="'$(LinkTimeOptimization)' == ''">true</LinkTimeOptimization>

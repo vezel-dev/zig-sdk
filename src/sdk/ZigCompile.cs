@@ -72,6 +72,13 @@ public sealed class ZigCompile : ZigToolTask
     public bool EagerBinding { get; set; }
 
     [Required]
+    public string ExecutionModel
+    {
+        get => _executionModel.ToString();
+        set => _executionModel = (ZigExecutionModel)Enum.Parse(typeof(ZigExecutionModel), value);
+    }
+
+    [Required]
     public bool FastMath { get; set; }
 
     public int ImageBase
@@ -196,6 +203,8 @@ public sealed class ZigCompile : ZigToolTask
 
     private ZigConfiguration _configuration;
 
+    private ZigExecutionModel _executionModel;
+
     private int? _imageBase;
 
     private ZigOutputType _outputType;
@@ -251,7 +260,9 @@ public sealed class ZigCompile : ZigToolTask
         }
         else
         {
-            if (!TargetTriple.StartsWith("wasm", StringComparison.Ordinal))
+            if (TargetTriple.StartsWith("wasm", StringComparison.Ordinal))
+                builder.AppendSwitch($"-mexec-model={ExecutionModel.ToLowerInvariant()}");
+            else
                 builder.AppendSwitch("-fPIE");
 
             if (NoEntryPoint)
