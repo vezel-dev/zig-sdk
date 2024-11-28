@@ -45,6 +45,12 @@
         <_EmulatorArgumentSuffix>`"</_EmulatorArgumentSuffix>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(TargetSystem)' == 'wasi'">
+        <_EmulatorName>wasmtime</_EmulatorName>
+        <_EmulatorCommand>wasmtime</_EmulatorCommand>
+        <_EmulatorArgumentPrefix>--dir . -- </_EmulatorArgumentPrefix>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(TargetSystem)' == 'windows' and '$(IsCrossCompilingArchitecture)' == 'false'">
         <_EmulatorName>wine</_EmulatorName>
         <_EmulatorCommand>wine</_EmulatorCommand>
