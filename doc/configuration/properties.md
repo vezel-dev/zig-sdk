@@ -153,6 +153,8 @@ historical reasons.
 * `ReleaseMode` (`Fast`, `Safe`, `Small`): The
   [build mode](https://ziglang.org/documentation/master/#Build-Mode) to use when
   `Configuration` is set to `Release`. Defaults to `Fast`.
+* `ExecutionModel` (`Command`, `Reactor`): Specifies the execution model to use
+  when building WebAssembly executables. Defaults to `Command`.
 * `FastMath` (`true`, `false`): Enable/disable certain lossy floating point
   optimizations that may not be standards-compliant. Defaults to `false`.
 * `LinkTimeOptimization` (`true`, `false`): Enable/disable link-time
