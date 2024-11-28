@@ -16,6 +16,7 @@
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-ppc64le'))">powerpc64le</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x86'))">x86</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x64'))">x86_64</TargetArchitecture>
+        <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-wasm'))">wasm32</TargetArchitecture>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -33,6 +34,11 @@
         <TargetSystemVersion>11.7</TargetSystemVersion>
     </PropertyGroup>
 
+    <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('wasi-'))">
+        <TargetSystem>wasi</TargetSystem>
+        <!-- TODO: Add WASI version with Zig 0.14.0. -->
+    </PropertyGroup>
+
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('win-'))">
         <TargetSystem>windows</TargetSystem>
         <TargetSystemVersion>win8</TargetSystemVersion>
@@ -40,10 +46,10 @@
 
     <PropertyGroup>
         <TargetAbi>gnu</TargetAbi>
+        <TargetAbi Condition="'$(TargetSystem)' == 'wasi' or $(TargetRuntimeIdentifier.Contains('-musl-'))">musl</TargetAbi>
         <TargetAbi Condition="'$(TargetSystem)' == 'macos'">none</TargetAbi>
         <TargetAbi Condition="'$(TargetSystem)' == 'windows' and '$(UseMicrosoftAbi)' == 'true'">msvc</TargetAbi>
-        <TargetAbi Condition="$(TargetRuntimeIdentifier.Contains('-musl-'))">musl</TargetAbi>
-        <TargetAbi Condition="'$(TargetArchitecture)' == 'arm' and '$(TargetAbi)' != 'msvc'">$(TargetAbi)eabihf</TargetAbi>
+        <TargetAbi Condition="'$(TargetArchitecture)' == 'arm'">$(TargetAbi)eabihf</TargetAbi>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -51,11 +57,10 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetLibrary Condition="'$(TargetSystem)' == 'linux'">glibc</TargetLibrary>
+        <TargetLibrary>glibc</TargetLibrary>
+        <TargetLibrary Condition="'$(TargetSystem)' == 'wasi' or $(TargetAbi.StartsWith('musl'))">musl</TargetLibrary>
         <TargetLibrary Condition="'$(TargetSystem)' == 'macos'">libsystem</TargetLibrary>
         <TargetLibrary Condition="'$(TargetSystem)' == 'windows'">msvcrt</TargetLibrary>
-        <TargetLibrary Condition="$(TargetAbi.StartsWith('musl'))">musl</TargetLibrary>
-        <TargetLibraryVersion Condition="'$(TargetLibrary)' == 'glibc'">2.17</TargetLibraryVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetLibrary)' == 'glibc'">
@@ -78,6 +83,12 @@
     <PropertyGroup Condition="'$(TargetSystem)' == 'macos'">
         <TargetLibraryPrefix>lib</TargetLibraryPrefix>
         <TargetLibrarySuffix>.dylib</TargetLibrarySuffix>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetSystem)' == 'wasi'">
+        <TargetLibraryPrefix>lib</TargetLibraryPrefix>
+        <TargetLibrarySuffix>.wasm</TargetLibrarySuffix>
+        <TargetExeSuffix>.wasm</TargetExeSuffix>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetSystem)' == 'windows'">
