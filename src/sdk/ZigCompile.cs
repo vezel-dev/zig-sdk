@@ -276,9 +276,6 @@ public sealed class ZigCompile : ZigToolTask
         {
             // The compiler uses static linking by default when building Zig code. We want dynamic linking in all cases.
             builder.AppendSwitch("-dynamic");
-
-            // When building Zig code, by default, the compiler links statically to a platform-appropriate libc. We
-            // absolutely do not want that behavior when building code that might be loaded in a .NET process.
             builder.AppendSwitch("-lc");
 
             if (_configuration == ZigConfiguration.Release)
