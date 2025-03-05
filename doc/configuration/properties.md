@@ -158,7 +158,7 @@ historical reasons.
 * `FastMath` (`true`, `false`): Enable/disable certain lossy floating point
   optimizations that may not be standards-compliant. Defaults to `false`.
 * `LinkTimeOptimization` (`true`, `false`): Enable/disable link-time
-  optimization. Defaults to `true`.
+  optimization. Defaults to `false`.
 * `SymbolExports` (`Used`, `All`): Specifies whether to export all public
   symbols or only those that are needed to link successfully. This only applies
   when building executables. Defaults to `Used`.
