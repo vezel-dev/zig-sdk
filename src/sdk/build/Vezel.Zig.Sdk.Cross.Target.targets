@@ -14,6 +14,7 @@
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-arm64'))">aarch64</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-arm'))">arm</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-ppc64le'))">powerpc64le</TargetArchitecture>
+        <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-riscv64'))">riscv64</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x86'))">x86</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-x64'))">x86_64</TargetArchitecture>
         <TargetArchitecture Condition="$(TargetRuntimeIdentifier.EndsWith('-wasm'))">wasm32</TargetArchitecture>
@@ -28,6 +29,7 @@
         <TargetSystem>linux</TargetSystem>
         <TargetSystemVersion>3.10</TargetSystemVersion>
         <TargetSystemVersion Condition="'$(TargetArchitecture)' == 'powerpc64le'">3.14</TargetSystemVersion>
+        <TargetSystemVersion Condition="'$(TargetArchitecture)' == 'riscv64'">4.15</TargetSystemVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('osx-'))">
@@ -67,6 +69,7 @@
     <PropertyGroup Condition="'$(TargetLibrary)' == 'glibc'">
         <TargetLibraryVersion>2.17</TargetLibraryVersion>
         <TargetLibraryVersion Condition="'$(TargetArchitecture)' == 'powerpc64le'">2.19</TargetLibraryVersion>
+        <TargetLibraryVersion Condition="'$(TargetArchitecture)' == 'riscv64'">2.27</TargetLibraryVersion>
     </PropertyGroup>
 
     <PropertyGroup>
