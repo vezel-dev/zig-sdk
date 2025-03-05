@@ -13,6 +13,7 @@
     <PropertyGroup>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-arm64'))">aarch64</HostArchitecture>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-arm'))">arm</HostArchitecture>
+        <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-loongarch64'))">loongarch64</HostArchitecture>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-ppc64le'))">powerpc64le</HostArchitecture>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-riscv64'))">riscv64</HostArchitecture>
         <HostArchitecture Condition="$(HostRuntimeIdentifier.EndsWith('-s390x'))">s390x</HostArchitecture>
