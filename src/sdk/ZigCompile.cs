@@ -550,10 +550,8 @@ public sealed class ZigCompile : ZigToolTask
             if (!TrustAnalysis)
                 builder.AppendSwitch("-Wno-tcb-enforcement");
 
-            // TODO: https://github.com/vezel-dev/zig-sdk/issues/38
             if (Deterministic)
             {
-                builder.AppendSwitch("-Werror=date-time");
                 builder.AppendSwitch("-no-canonical-prefixes");
                 builder.AppendSwitchIfNotNull("-fdebug-compilation-dir ", GetWorkingDirectory() ?? ".");
             }
