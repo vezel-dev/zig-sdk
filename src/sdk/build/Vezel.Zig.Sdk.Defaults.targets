@@ -76,6 +76,7 @@
             linux-x64;
             linux-musl-arm;
             linux-musl-arm64;
+            linux-musl-ppc64le;
             linux-musl-riscv64;
             linux-musl-s390x;
             linux-musl-x64;
