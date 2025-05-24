@@ -42,7 +42,7 @@
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('wasi-'))">
         <TargetSystem>wasi</TargetSystem>
-        <!-- TODO: Add WASI version with Zig 0.14.0. -->
+        <TargetSystemVersion>0.1.0</TargetSystemVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('win-'))">
