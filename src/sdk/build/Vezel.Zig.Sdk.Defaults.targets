@@ -38,7 +38,7 @@
         <MicrosoftExtensions Condition="'$(MicrosoftExtensions)' == ''">false</MicrosoftExtensions>
         <NoEntryPoint Condition="'$(NoEntryPoint)' == ''">false</NoEntryPoint>
         <UnicodeEnvironment Condition="'$(UnicodeEnvironment)' == ''">false</UnicodeEnvironment>
-        <ZigVersion Condition="'$(ZigVersion)' == ''">0.14.0</ZigVersion>
+        <ZigVersion Condition="'$(ZigVersion)' == ''">0.14.1</ZigVersion>
     </PropertyGroup>
 
     <PropertyGroup>
