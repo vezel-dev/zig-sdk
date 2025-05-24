@@ -6,6 +6,7 @@
         <IsTool>true</IsTool>
         <NoWarn>
             $(NoWarn);
+            NU1901;
             NU5129
         </NoWarn>
         <PackageDescription>$(Description)
