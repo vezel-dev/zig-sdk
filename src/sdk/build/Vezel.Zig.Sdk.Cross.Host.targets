@@ -27,6 +27,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <HostSystem Condition="$(HostRuntimeIdentifier.StartsWith('freebsd-'))">freebsd</HostSystem>
         <HostSystem Condition="$(HostRuntimeIdentifier.StartsWith('linux-'))">linux</HostSystem>
         <HostSystem Condition="$(HostRuntimeIdentifier.StartsWith('osx-'))">macos</HostSystem>
         <HostSystem Condition="$(HostRuntimeIdentifier.StartsWith('win-'))">windows</HostSystem>
@@ -34,10 +35,11 @@
 
     <PropertyGroup>
         <HostAbi>gnu</HostAbi>
-        <HostAbi Condition="'$(HostSystem)' == 'macos'">none</HostAbi>
+        <HostAbi Condition="'$(HostSystem)' == 'freebsd' or '$(HostSystem)' == 'macos'">none</HostAbi>
         <HostAbi Condition="'$(HostSystem)' == 'windows'">msvc</HostAbi>
         <HostAbi Condition="$(HostRuntimeIdentifier.Contains('-musl-'))">musl</HostAbi>
         <HostAbi Condition="'$(HostArchitecture)' == 'arm'">$(HostAbi)eabihf</HostAbi>
+        <HostAbi Condition="'$(HostArchitecture)' == 'arm' and '$(HostSystem)' != 'linux'">eabihf</HostAbi>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -46,6 +48,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
+        <HostLibrary Condition="'$(HostSystem)' == 'freebsd'">fbsd</HostLibrary>
         <HostLibrary Condition="'$(HostSystem)' == 'linux'">glibc</HostLibrary>
         <HostLibrary Condition="'$(HostSystem)' == 'macos'">libsystem</HostLibrary>
         <HostLibrary Condition="'$(HostSystem)' == 'windows'">msvcrt</HostLibrary>
@@ -56,7 +59,7 @@
         <HostTriple>$(HostArchitecture)-$(HostSystem)-$(HostAbi)</HostTriple>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(HostSystem)' == 'linux'">
+    <PropertyGroup Condition="'$(HostSystem)' == 'freebsd' or '$(HostSystem)' == 'linux'">
         <HostLibraryPrefix>lib</HostLibraryPrefix>
         <HostLibrarySuffix>.so</HostLibrarySuffix>
     </PropertyGroup>

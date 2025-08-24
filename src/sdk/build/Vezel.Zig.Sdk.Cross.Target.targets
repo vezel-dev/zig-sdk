@@ -27,6 +27,11 @@
         <TargetBits Condition="$(TargetArchitecture.Contains('64')) or '$(TargetArchitecture)' == 's390x'">64</TargetBits>
     </PropertyGroup>
 
+    <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('freebsd-'))">
+        <TargetSystem>freebsd</TargetSystem>
+        <TargetSystemVersion>14.0</TargetSystemVersion>
+    </PropertyGroup>
+
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('linux-'))">
         <TargetSystem>linux</TargetSystem>
         <TargetSystemVersion>3.10</TargetSystemVersion>
@@ -53,9 +58,10 @@
     <PropertyGroup>
         <TargetAbi>gnu</TargetAbi>
         <TargetAbi Condition="'$(TargetSystem)' == 'wasi' or $(TargetRuntimeIdentifier.Contains('-musl-'))">musl</TargetAbi>
-        <TargetAbi Condition="'$(TargetSystem)' == 'macos'">none</TargetAbi>
+        <TargetAbi Condition="'$(TargetSystem)' == 'freebsd' or '$(TargetSystem)' == 'macos'">none</TargetAbi>
         <TargetAbi Condition="'$(TargetSystem)' == 'windows' and '$(UseMicrosoftAbi)' == 'true'">msvc</TargetAbi>
         <TargetAbi Condition="'$(TargetArchitecture)' == 'arm'">$(TargetAbi)eabihf</TargetAbi>
+        <TargetAbi Condition="'$(TargetArchitecture)' == 'arm' and '$(TargetSystem)' != 'linux'">eabihf</TargetAbi>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -65,6 +71,7 @@
 
     <PropertyGroup>
         <TargetLibrary>glibc</TargetLibrary>
+        <TargetLibrary Condition="'$(TargetSystem)' == 'freebsd'">fbsd</TargetLibrary>
         <TargetLibrary Condition="'$(TargetSystem)' == 'wasi' or $(TargetAbi.StartsWith('musl'))">musl</TargetLibrary>
         <TargetLibrary Condition="'$(TargetSystem)' == 'macos'">libsystem</TargetLibrary>
         <TargetLibrary Condition="'$(TargetSystem)' == 'windows'">msvcrt</TargetLibrary>
@@ -84,7 +91,7 @@
         <FullTargetTriple>$(TargetArchitecture)-$(TargetSystem)$(_TargetSystemSuffix)-$(TargetAbi)$(_TargetLibrarySuffix)</FullTargetTriple>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(TargetSystem)' == 'linux'">
+    <PropertyGroup Condition="'$(TargetSystem)' == 'freebsd' or '$(TargetSystem)' == 'linux'">
         <TargetLibraryPrefix>lib</TargetLibraryPrefix>
         <TargetLibrarySuffix>.so</TargetLibrarySuffix>
     </PropertyGroup>
