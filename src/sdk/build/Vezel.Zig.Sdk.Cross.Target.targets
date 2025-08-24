@@ -60,6 +60,7 @@
 
     <PropertyGroup>
         <TargetEndian>little</TargetEndian>
+        <TargetEndian Condition="'$(TargetArchitecture)' == 's390x'">big</TargetEndian>
     </PropertyGroup>
 
     <PropertyGroup>

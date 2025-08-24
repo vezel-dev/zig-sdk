@@ -42,6 +42,7 @@
 
     <PropertyGroup>
         <HostEndian>little</HostEndian>
+        <HostEndian Condition="'$(HostArchitecture)' == 's390x'">big</HostEndian>
     </PropertyGroup>
 
     <PropertyGroup>
