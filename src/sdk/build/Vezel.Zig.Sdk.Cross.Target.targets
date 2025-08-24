@@ -24,7 +24,7 @@
 
     <PropertyGroup>
         <TargetBits>32</TargetBits>
-        <TargetBits Condition="$(TargetArchitecture.Contains('64'))">64</TargetBits>
+        <TargetBits Condition="$(TargetArchitecture.Contains('64')) or '$(TargetArchitecture)' == 's390x'">64</TargetBits>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('linux-'))">

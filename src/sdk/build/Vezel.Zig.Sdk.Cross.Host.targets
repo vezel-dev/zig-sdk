@@ -23,7 +23,7 @@
 
     <PropertyGroup>
         <HostBits>32</HostBits>
-        <HostBits Condition="$(HostArchitecture.Contains('64'))">64</HostBits>
+        <HostBits Condition="$(HostArchitecture.Contains('64')) or '$(HostArchitecture)' == 's390x'">64</HostBits>
     </PropertyGroup>
 
     <PropertyGroup>
