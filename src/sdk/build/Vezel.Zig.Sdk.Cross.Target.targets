@@ -52,7 +52,7 @@
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('win-'))">
         <TargetSystem>windows</TargetSystem>
-        <TargetSystemVersion>win8</TargetSystemVersion>
+        <TargetSystemVersion>win10</TargetSystemVersion>
     </PropertyGroup>
 
     <PropertyGroup>
