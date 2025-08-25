@@ -252,10 +252,9 @@ public sealed class ZigCompile : ZigToolTask
                 builder.AppendSwitchIfNotNull("-Wl,-soname,", TargetFileName);
             }
 
-            var (un, no) = AllowUndefinedSymbols ? ("un", string.Empty) : (string.Empty, "no-");
+            var no = AllowUndefinedSymbols ? string.Empty : "no-";
 
             // These flags are needed to cover Linux and Windows/macOS, respectively.
-            builder.AppendSwitch(isZig ? $"-z {un}defs" : $"-Wl,-z,{un}defs");
             builder.AppendSwitch(isZig ? $"-f{no}allow-shlib-undefined" : $"-Wl,--{no}allow-shlib-undefined");
         }
         else
