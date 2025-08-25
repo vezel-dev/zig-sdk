@@ -34,10 +34,8 @@
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('linux-'))">
         <TargetSystem>linux</TargetSystem>
-        <TargetSystemVersion>3.10</TargetSystemVersion>
+        <TargetSystemVersion>4.18</TargetSystemVersion>
         <TargetSystemVersion Condition="'$(TargetArchitecture)' == 'loongarch64'">5.19</TargetSystemVersion>
-        <TargetSystemVersion Condition="'$(TargetArchitecture)' == 'powerpc64le'">3.14</TargetSystemVersion>
-        <TargetSystemVersion Condition="'$(TargetArchitecture)' == 'riscv64'">4.15</TargetSystemVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('osx-'))">
