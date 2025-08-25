@@ -67,6 +67,8 @@
 
     <PropertyGroup>
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == ''">
+            freebsd-arm64;
+            freebsd-x64;
             linux-arm;
             linux-arm64;
             linux-loongarch64;
