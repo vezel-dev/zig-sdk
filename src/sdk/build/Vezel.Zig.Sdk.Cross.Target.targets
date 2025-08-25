@@ -78,6 +78,7 @@
     <PropertyGroup Condition="'$(TargetLibrary)' == 'glibc'">
         <TargetLibraryVersion>2.23</TargetLibraryVersion>
         <TargetLibraryVersion Condition="'$(TargetArchitecture)' == 'loongarch64'">2.36</TargetLibraryVersion>
+        <TargetLibraryVersion Condition="'$(TargetArchitecture)' == 'riscv64'">2.27</TargetLibraryVersion>
     </PropertyGroup>
 
     <PropertyGroup>
