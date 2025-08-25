@@ -272,10 +272,11 @@ public sealed class ZigCompile : ZigToolTask
                 builder.AppendSwitch("-rdynamic");
         }
 
+        // The compiler uses static linking by default when it can. We want dynamic linking in all cases.
+        builder.AppendSwitch("-dynamic");
+
         if (isZig)
         {
-            // The compiler uses static linking by default when building Zig code. We want dynamic linking in all cases.
-            builder.AppendSwitch("-dynamic");
             builder.AppendSwitch("-lc");
 
             if (_configuration == ZigConfiguration.Release)
