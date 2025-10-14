@@ -55,6 +55,7 @@ DotNetMSBuildSettings ConfigureMSBuild(string category, string target)
         ConsoleLoggerSettings = new()
         {
             NoSummary = true,
+            Verbosity = Cake.Common.Tools.DotNet.DotNetVerbosity.Diagnostic,
         },
         ArgumentCustomization = args => args.Append("-ds:false"),
     };
