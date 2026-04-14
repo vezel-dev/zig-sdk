@@ -83,6 +83,8 @@
             linux-musl-riscv64;
             linux-musl-s390x;
             linux-musl-x64;
+            openbsd-arm64;
+            openbsd-x64;
             osx-arm64;
             osx-x64;
             win-arm64;
