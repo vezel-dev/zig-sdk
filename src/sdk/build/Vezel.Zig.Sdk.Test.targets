@@ -45,7 +45,6 @@
                     LibraryReferences="@(LibraryReference)"
                     LinkerDirectories="@(LinkerDirectory)"
                     LinkerReferences="@(LinkerReference)"
-                    LinkTimeOptimization="$(LinkTimeOptimization)"
                     MicrosoftExtensions="$(MicrosoftExtensions)"
                     NoEntryPoint="$(NoEntryPoint)"
                     NullabilityAnalysis="$(NullabilityAnalysis)"

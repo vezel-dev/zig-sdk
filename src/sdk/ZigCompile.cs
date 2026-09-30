@@ -106,9 +106,6 @@ public sealed class ZigCompile : ZigToolTask
     public ITaskItem[] LinkerReferences { get; set; } = null!;
 
     [Required]
-    public bool LinkTimeOptimization { get; set; }
-
-    [Required]
     public bool MicrosoftExtensions { get; set; }
 
     [Required]
@@ -579,9 +576,6 @@ public sealed class ZigCompile : ZigToolTask
                     break;
             }
         }
-
-        if (!LinkTimeOptimization)
-            builder.AppendSwitch("-fno-lto");
 
         foreach (var define in (DefineConstants ?? string.Empty).Split([';'], SplitOptions))
         {

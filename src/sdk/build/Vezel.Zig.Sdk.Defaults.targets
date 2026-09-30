@@ -58,7 +58,6 @@
         <EagerBinding Condition="'$(EagerBinding)' == ''">true</EagerBinding>
         <ExecutionModel Condition="'$(ExecutionModel)' == ''">Command</ExecutionModel>
         <FastMath Condition="'$(FastMath)' == ''">false</FastMath>
-        <LinkTimeOptimization Condition="'$(LinkTimeOptimization)' == ''">false</LinkTimeOptimization>
         <ReleaseMode Condition="'$(ReleaseMode)' == ''">Fast</ReleaseMode>
         <RelocationHardening Condition="'$(RelocationHardening)' == ''">true</RelocationHardening>
         <SymbolExports Condition="'$(SymbolExports)' == ''">Used</SymbolExports>
