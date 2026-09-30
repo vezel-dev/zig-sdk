@@ -45,7 +45,7 @@
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('osx-'))">
         <TargetSystem>macos</TargetSystem>
-        <TargetSystemVersion>13.0</TargetSystemVersion>
+        <TargetSystemVersion>14.0</TargetSystemVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(TargetRuntimeIdentifier.StartsWith('wasi-'))">
