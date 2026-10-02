@@ -577,28 +577,30 @@ public sealed class ZigCompile : ZigToolTask
             }
         }
 
-        foreach (var define in (DefineConstants ?? string.Empty).Split([';'], SplitOptions))
-        {
-            var trimmed = define.Trim();
-
-            if (string.IsNullOrEmpty(trimmed))
-                continue;
-
-            builder.AppendSwitchIfNotNull("-D ", trimmed);
-        }
-
-        builder.AppendSwitchIfNotNull("-I ", GetWorkingDirectory() ?? ".");
-        builder.AppendSwitchIfNotNull("-I ", PublicIncludeDirectory);
-
-        foreach (var directory in LibraryIncludeDirectories)
-            builder.AppendSwitchIfNotNull("-isystem ", directory);
-
-        foreach (var directory in IncludeDirectories)
-            builder.AppendSwitchIfNotNull("-I ", directory);
-
         if (!isZig)
+        {
+            foreach (var define in (DefineConstants ?? string.Empty).Split([';'], SplitOptions))
+            {
+                var trimmed = define.Trim();
+
+                if (string.IsNullOrEmpty(trimmed))
+                    continue;
+
+                builder.AppendSwitchIfNotNull("-D ", trimmed);
+            }
+
+            builder.AppendSwitchIfNotNull("-I ", GetWorkingDirectory() ?? ".");
+            builder.AppendSwitchIfNotNull("-I ", PublicIncludeDirectory);
+
+            foreach (var directory in LibraryIncludeDirectories)
+                builder.AppendSwitchIfNotNull("-isystem ", directory);
+
+            foreach (var directory in IncludeDirectories)
+                builder.AppendSwitchIfNotNull("-I ", directory);
+
             foreach (var header in PreludeHeaders)
                 builder.AppendSwitchIfNotNull("-include ", header);
+        }
 
         if (!EagerBinding)
             builder.AppendSwitch(isZig ? "-z lazy" : "-Wl,-z,lazy");
