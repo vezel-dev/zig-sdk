@@ -84,6 +84,7 @@
     <PropertyGroup Condition="'$(TargetLibrary)' == 'glibc'">
         <TargetLibraryVersion>2.27</TargetLibraryVersion>
         <TargetLibraryVersion Condition="'$(TargetArchitecture)' == 'loongarch64'">2.36</TargetLibraryVersion>
+        <TargetLibraryVersion Condition="'$(TargetArchitecture)' == 'powerpc64le'">2.32</TargetLibraryVersion>
     </PropertyGroup>
 
     <PropertyGroup>
