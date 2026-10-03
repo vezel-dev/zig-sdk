@@ -218,8 +218,9 @@ Task("upload-core-github")
     .Does(() =>
         DotNetTool(
             null,
-            "gpr push",
+            "gpr",
             new ProcessArgumentBuilder()
+                .Append("push")
                 .AppendQuoted(githubGlob)
                 .AppendSwitchQuotedSecret("-k", githubToken)));
 
