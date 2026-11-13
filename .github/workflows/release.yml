@@ -15,7 +15,6 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
   DOTNET_GENERATE_ASPNET_CERTIFICATE: false
   DOTNET_NOLOGO: true
-  NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
 jobs:
   release:
     if: github.repository == 'vezel-dev/zig-sdk'
@@ -32,9 +31,19 @@ jobs:
         uses: actions/setup-node@v7.1.0
         with:
           node-version-file: doc/package.json
-      - name: Run Cake
+      - name: Build packages
         run: |
-          ./cake upload-core-nuget
+          ./cake pack-core
+      - name: Log in to NuGet
+        id: nuget-login
+        uses: NuGet/login@v1.2.0
+        with:
+          user: alexrp
+      - name: Upload packages
+        env:
+          NUGET_TOKEN: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+        run: |
+          ./cake upload-core-nuget --exclusive
       - name: Attest packages
         uses: actions/attest-build-provenance@v4.2.2
         with:
