@@ -8,7 +8,7 @@
         <GlobalPackageReference Include="DotNet.ReproducibleBuilds"
                                 Version="2.0.5" />
         <GlobalPackageReference Include="Microsoft.Build.CopyOnWrite"
-                                Version="1.0.334" />
+                                Version="1.1.1" />
         <GlobalPackageReference Include="Nerdbank.GitVersioning"
                                 Version="3.10.94" />
         <GlobalPackageReference Include="PolySharp"
